@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(/usr/local/bin/npm install *)",
+      "Read(//usr/local/lib/**)",
+      "Read(//Users/oguz/.nvm/versions/**)",
+      "Read(//opt/homebrew/**)",
+      "Read(//Users/oguz/**)",
+      "Bash(find /Users/oguz -name \"node\" -type f 2>/dev/null | head -5; find /opt -name \"node\" -type f 2>/dev/null | head -5)",
+      "Bash(mkdir -p /Users/oguz/Desktop/kupaacademy/.claude)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(chmod +x /Users/oguz/Desktop/kupaacademy/start-dev.sh)",
+      "Bash(/Users/oguz/.nvm/versions/node/v20.20.2/bin/node node_modules/.bin/next build)",
+      "Bash(npx tsc *)",
+      "Bash(/usr/local/bin/npx tsc *)",
+      "Bash(node_modules/.bin/tsc --noEmit)",
+      "Bash(which node *)",
+      "Bash(mkdir -p /Users/oguz/Desktop/kupaacademy/app/\\\\\\(app\\\\\\)/admin/recipes/\\\\[id\\\\]/edit)",
+      "Bash(node -e ' *)",
+      "Bash(npx tsx -e ' *)",
+      "Bash(curl -s https://xxvzdmrosixvqhssokep.supabase.co/rest/v1/recipes?select=id,name,category_id,ingredients,status,cup_type,preparation,allergens,description -H 'apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4dnpkbXJvc2l4dnFoc3Nva2VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwODEyMzUsImV4cCI6MjA5ODY1NzIzNX0.SaTlH3_ILffGzIksUjycWPpqtXdSL7bg0ARjhoyHaPs' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4dnpkbXJvc2l4dnFoc3Nva2VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwODEyMzUsImV4cCI6MjA5ODY1NzIzNX0.SaTlH3_ILffGzIksUjycWPpqtXdSL7bg0ARjhoyHaPs')",
+      "Bash(curl -s -X POST https://xxvzdmrosixvqhssokep.supabase.co/rest/v1/recipes -H 'apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4dnpkbXJvc2l4dnFoc3Nva2VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwODEyMzUsImV4cCI6MjA5ODY1NzIzNX0.SaTlH3_ILffGzIksUjycWPpqtXdSL7bg0ARjhoyHaPs' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4dnpkbXJvc2l4dnFoc3Nva2VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwODEyMzUsImV4cCI6MjA5ODY1NzIzNX0.SaTlH3_ILffGzIksUjycWPpqtXdSL7bg0ARjhoyHaPs' -H 'Content-Type: application/json' -H 'Prefer: return=minimal' -d '[ *)",
+      "Bash(echo \"HTTP Status: $?\")",
+      "Bash(curl -s 'https://xxvzdmrosixvqhssokep.supabase.co/rest/v1/recipes?name=like.Ice*&select=id,name' -H 'apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4dnpkbXJvc2l4dnFoc3Nva2VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwODEyMzUsImV4cCI6MjA5ODY1NzIzNX0.SaTlH3_ILffGzIksUjycWPpqtXdSL7bg0ARjhoyHaPs' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4dnpkbXJvc2l4dnFoc3Nva2VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwODEyMzUsImV4cCI6MjA5ODY1NzIzNX0.SaTlH3_ILffGzIksUjycWPpqtXdSL7bg0ARjhoyHaPs')",
+      "Bash(curl -s 'https://xxvzdmrosixvqhssokep.supabase.co/rest/v1/recipes?name=ilike.*enengi*&select=id,name,description' -H 'apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4dnpkbXJvc2l4dnFoc3Nva2VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwODEyMzUsImV4cCI6MjA5ODY1NzIzNX0.SaTlH3_ILffGzIksUjycWPpqtXdSL7bg0ARjhoyHaPs' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4dnpkbXJvc2l4dnFoc3Nva2VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwODEyMzUsImV4cCI6MjA5ODY1NzIzNX0.SaTlH3_ILffGzIksUjycWPpqtXdSL7bg0ARjhoyHaPs')",
+      "Bash(curl -s 'https://xxvzdmrosixvqhssokep.supabase.co/rest/v1/recipes?id=eq.recipe-ciddn0kp0&select=*' -H 'apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4dnpkbXJvc2l4dnFoc3Nva2VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwODEyMzUsImV4cCI6MjA5ODY1NzIzNX0.SaTlH3_ILffGzIksUjycWPpqtXdSL7bg0ARjhoyHaPs' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4dnpkbXJvc2l4dnFoc3Nva2VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwODEyMzUsImV4cCI6MjA5ODY1NzIzNX0.SaTlH3_ILffGzIksUjycWPpqtXdSL7bg0ARjhoyHaPs')",
+      "Bash(curl -s -X PATCH https://xxvzdmrosixvqhssokep.supabase.co/rest/v1/recipes?id=eq.recipe-ciddn0kp0 -H 'apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4dnpkbXJvc2l4dnFoc3Nva2VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwODEyMzUsImV4cCI6MjA5ODY1NzIzNX0.SaTlH3_ILffGzIksUjycWPpqtXdSL7bg0ARjhoyHaPs' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4dnpkbXJvc2l4dnFoc3Nva2VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwODEyMzUsImV4cCI6MjA5ODY1NzIzNX0.SaTlH3_ILffGzIksUjycWPpqtXdSL7bg0ARjhoyHaPs' -H 'Content-Type: application/json' -H 'Prefer: return=minimal' -d '{\"preparation\": \"180 ml sütü küçük bir cezveye alın ve 72-77 derece arasında ısıtın. Sütü ocaktan almadan 15 gr menengiç kahvesini ekleyip tahta kaşıkla karıştırarak 1-2 dakika hafifçe pişirin. Kahvenin dibin çökmesini bekleyin, ardından Double Türk kahvesi bardağına süzerek servis yapın.\"}')",
+      "Bash(curl -s 'https://xxvzdmrosixvqhssokep.supabase.co/rest/v1/recipes?category_id=in.\\(cat-ym2sp85qm,cat-qcodp40o2\\)&select=id,name,category_id,ingredients,cup_type,preparation,allergens,tags,status' -H 'apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4dnpkbXJvc2l4dnFoc3Nva2VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwODEyMzUsImV4cCI6MjA5ODY1NzIzNX0.SaTlH3_ILffGzIksUjycWPpqtXdSL7bg0ARjhoyHaPs' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4dnpkbXJvc2l4dnFoc3Nva2VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwODEyMzUsImV4cCI6MjA5ODY1NzIzNX0.SaTlH3_ILffGzIksUjycWPpqtXdSL7bg0ARjhoyHaPs')",
+      "Bash(echo \"Exit: $?\")",
+      "Bash(curl -s 'https://xxvzdmrosixvqhssokep.supabase.co/rest/v1/recipes?id=in.\\(recipe-ice-kupa-special,recipe-ice-breve-special,recipe-ice-coconut-breve,recipe-ice-matcha-latte,recipe-ice-aromali-matcha\\)&select=id,name' -H 'apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4dnpkbXJvc2l4dnFoc3Nva2VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwODEyMzUsImV4cCI6MjA5ODY1NzIzNX0.SaTlH3_ILffGzIksUjycWPpqtXdSL7bg0ARjhoyHaPs' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4dnpkbXJvc2l4dnFoc3Nva2VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwODEyMzUsImV4cCI6MjA5ODY1NzIzNX0.SaTlH3_ILffGzIksUjycWPpqtXdSL7bg0ARjhoyHaPs')",
+      "Bash(curl -s 'https://xxvzdmrosixvqhssokep.supabase.co/rest/v1/recipes?select=id,name,description,category_id&order=name' -H 'apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4dnpkbXJvc2l4dnFoc3Nva2VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwODEyMzUsImV4cCI6MjA5ODY1NzIzNX0.SaTlH3_ILffGzIksUjycWPpqtXdSL7bg0ARjhoyHaPs' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4dnpkbXJvc2l4dnFoc3Nva2VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwODEyMzUsImV4cCI6MjA5ODY1NzIzNX0.SaTlH3_ILffGzIksUjycWPpqtXdSL7bg0ARjhoyHaPs')"
+    ]
+  }
+}
