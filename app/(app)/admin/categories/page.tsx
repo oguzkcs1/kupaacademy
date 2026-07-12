@@ -176,18 +176,18 @@ export default function AdminCategoriesPage() {
 
                   {contentItems.length > 0 && (
                     <div className="divide-y divide-border">
-                      {contentItems.map((item) => (
+                      {(contentItems as Array<{ id: string; name?: string; title?: string; status?: string }>).map((item) => (
                         <div key={item.id} className="flex items-center gap-3 px-4 py-2 text-sm hover:bg-muted/20">
                           <ChefHat className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
                           <Link
                             href={type === "recipe" ? `/recipes/${item.id}` : type === "training" ? `/trainings/${item.id}` : `/videos/${item.id}`}
                             className="flex-1 hover:text-primary transition-colors"
                           >
-                            {"name" in item ? item.name : ("title" in item ? (item as { title: string }).title : item.id)}
+                            {item.name ?? item.title ?? item.id}
                           </Link>
-                          {"status" in item && (
-                            <Badge variant={(item as { status: string }).status === "published" ? "default" : "secondary"} className="text-xs">
-                              {(item as { status: string }).status === "published" ? "Yayında" : "Taslak"}
+                          {item.status && (
+                            <Badge variant={item.status === "published" ? "default" : "secondary"} className="text-xs">
+                              {item.status === "published" ? "Yayında" : "Taslak"}
                             </Badge>
                           )}
                         </div>
