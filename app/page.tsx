@@ -121,6 +121,29 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ── Biz Kimiz? (kısa tanıtım) ───────────────────── */}
+      <section className="bg-muted/30 border-y border-border/60">
+        <div className="max-w-4xl mx-auto px-5 py-16 sm:py-20 text-center">
+          <p className="text-sm font-medium text-primary uppercase tracking-wider mb-4">
+            Biz Kimiz?
+          </p>
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight leading-snug">
+            Amasya'da başlayan yolculuk;{" "}
+            <span className="text-primary">Konya, Ankara, Denizli ve Samsun</span>'da devam ediyor
+          </h2>
+          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Kupa Coffee olarak her şubemizde aynı kültürü, aynı kaliteyi ve aynı tutkuyu
+            yaşatmayı hedefliyoruz. Kupa Academy de tam olarak bunun için var — çünkü
+            gerçek gücümüz, şubelerimizde çalışan insanlarımızdır.
+          </p>
+          <div className="mt-7">
+            <Button asChild variant="outline" size="lg" className="font-medium">
+              <Link href="/biz-kimiz">Hikâyemizi Keşfet<ArrowRight className="w-4 h-4 ml-1.5" /></Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* ── İki Ana Modül ───────────────────────────────── */}
       <section id="moduller" className="max-w-6xl mx-auto px-5 py-16 sm:py-24">
         <div className="text-center mb-14">
