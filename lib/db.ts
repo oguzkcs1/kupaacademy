@@ -8,6 +8,9 @@ import type {
   Category, Document, DocumentFolder, TrainingCompletion,
   Notification, Branch,
 } from "@/types";
+import type {
+  ChecklistTemplate, ChecklistRun, OpsPhoto, OpsTask,
+} from "@/types/operations";
 
 // ─── helpers ──────────────────────────────────────────────────────────────────
 
@@ -472,6 +475,22 @@ export async function getBranches(): Promise<Branch[]> {
   }));
 }
 
+export async function upsertBranch(b: Branch) {
+  const { error } = await supabase.from("branches").upsert({
+    id: b.id,
+    name: b.name,
+    company_id: b.companyId,
+    address: b.address ?? null,
+    status: b.status,
+  });
+  if (error) throw error;
+}
+
+export async function deleteBranch(id: string) {
+  const { error } = await supabase.from("branches").delete().eq("id", id);
+  if (error) throw error;
+}
+
 // ─── Badges ───────────────────────────────────────────────────────────────────
 
 export async function getBadges(): Promise<Badge[]> {
@@ -576,5 +595,171 @@ export async function markAllNotificationsRead(userId: string) {
     .from("notifications")
     .update({ read: true })
     .eq("user_id", userId);
+  if (error) throw error;
+}
+
+// ─── Operasyon: Checklist Şablonları ──────────────────────────────────────────
+
+export async function getOpsTemplates(): Promise<ChecklistTemplate[]> {
+  const { data, error } = await supabase.from("ops_templates").select("*");
+  if (error) throw error;
+  return (data ?? []).map((r) => ({
+    id: r.id,
+    type: r.type,
+    title: r.title,
+    sections: r.sections ?? [],
+  }));
+}
+
+export async function upsertOpsTemplate(t: ChecklistTemplate) {
+  const { error } = await supabase.from("ops_templates").upsert({
+    id: t.id,
+    type: t.type,
+    title: t.title,
+    sections: t.sections,
+    updated_at: new Date().toISOString(),
+  });
+  if (error) throw error;
+}
+
+// ─── Operasyon: Kontrol Kayıtları ─────────────────────────────────────────────
+
+function mapRun(r: Record<string, any>): ChecklistRun {
+  return {
+    id: r.id,
+    type: r.type,
+    templateId: r.template_id,
+    branchId: r.branch_id,
+    userId: r.user_id,
+    date: r.date,
+    startedAt: r.started_at ?? undefined,
+    completedAt: r.completed_at ?? undefined,
+    status: r.status,
+    sections: r.sections ?? [],
+    score: r.score ?? undefined,
+    managerComment: r.manager_comment ?? undefined,
+    gpsLat: r.gps_lat ?? undefined,
+    gpsLng: r.gps_lng ?? undefined,
+    aiScore: r.ai_score ?? undefined,
+  };
+}
+
+export async function getOpsRuns(): Promise<ChecklistRun[]> {
+  const { data, error } = await supabase
+    .from("ops_runs")
+    .select("*")
+    .order("date", { ascending: false });
+  if (error) throw error;
+  return (data ?? []).map(mapRun);
+}
+
+export async function upsertOpsRun(run: ChecklistRun) {
+  const { error } = await supabase.from("ops_runs").upsert({
+    id: run.id,
+    type: run.type,
+    template_id: run.templateId,
+    branch_id: run.branchId,
+    user_id: run.userId,
+    date: run.date,
+    started_at: run.startedAt ?? null,
+    completed_at: run.completedAt ?? null,
+    status: run.status,
+    sections: run.sections,
+    score: run.score ?? null,
+    manager_comment: run.managerComment ?? null,
+    gps_lat: run.gpsLat ?? null,
+    gps_lng: run.gpsLng ?? null,
+    ai_score: run.aiScore ?? null,
+  });
+  if (error) throw error;
+}
+
+// ─── Operasyon: Fotoğraflar ───────────────────────────────────────────────────
+
+export async function getOpsPhotos(): Promise<OpsPhoto[]> {
+  const { data, error } = await supabase
+    .from("ops_photos")
+    .select("*")
+    .order("taken_at", { ascending: false });
+  if (error) throw error;
+  return (data ?? []).map((r) => ({
+    id: r.id,
+    url: r.url,
+    storagePath: r.storage_path ?? undefined,
+    branchId: r.branch_id,
+    userId: r.user_id,
+    runId: r.run_id ?? undefined,
+    sectionId: r.section_id ?? undefined,
+    categoryLabel: r.category_label ?? "",
+    takenAt: r.taken_at,
+    aiAnalysis: r.ai_analysis ?? undefined,
+  }));
+}
+
+export async function insertOpsPhoto(p: OpsPhoto) {
+  const { error } = await supabase.from("ops_photos").insert({
+    id: p.id,
+    url: p.url,
+    storage_path: p.storagePath ?? null,
+    branch_id: p.branchId,
+    user_id: p.userId,
+    run_id: p.runId ?? null,
+    section_id: p.sectionId ?? null,
+    category_label: p.categoryLabel,
+    taken_at: p.takenAt,
+  });
+  if (error) throw error;
+}
+
+/** Fotoğrafı Storage'a yükler, public URL + path döner */
+export async function uploadOpsPhoto(
+  file: File | Blob,
+  branchId: string
+): Promise<{ url: string; path: string }> {
+  const ext = file instanceof File ? file.name.split(".").pop() || "jpg" : "jpg";
+  const path = `${branchId}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+  const { error } = await supabase.storage
+    .from("ops-photos")
+    .upload(path, file, { contentType: file.type || "image/jpeg", upsert: false });
+  if (error) throw error;
+  const { data } = supabase.storage.from("ops-photos").getPublicUrl(path);
+  return { url: data.publicUrl, path };
+}
+
+// ─── Operasyon: Görevler ──────────────────────────────────────────────────────
+
+export async function getOpsTasks(): Promise<OpsTask[]> {
+  const { data, error } = await supabase
+    .from("ops_tasks")
+    .select("*")
+    .order("created_at", { ascending: false });
+  if (error) throw error;
+  return (data ?? []).map((r) => ({
+    id: r.id,
+    title: r.title,
+    description: r.description ?? undefined,
+    branchId: r.branch_id,
+    assigneeId: r.assignee_id ?? undefined,
+    dueDate: r.due_date ?? undefined,
+    status: r.status,
+    createdBy: r.created_by,
+    createdAt: r.created_at,
+    completedAt: r.completed_at ?? undefined,
+  }));
+}
+
+export async function upsertOpsTask(t: OpsTask) {
+  const { error } = await supabase.from("ops_tasks").upsert({
+    id: t.id,
+    title: t.title,
+    description: t.description ?? null,
+    branch_id: t.branchId,
+    assignee_id: t.assigneeId ?? null,
+    due_date: t.dueDate ?? null,
+    status: t.status,
+    created_by: t.createdBy,
+    created_at: t.createdAt,
+    completed_at: t.completedAt ?? null,
+  });
   if (error) throw error;
 }

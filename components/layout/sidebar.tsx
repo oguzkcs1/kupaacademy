@@ -6,6 +6,8 @@ import {
   LayoutDashboard, GraduationCap, Video, FileText, ChefHat,
   Package, Megaphone, FolderOpen, ClipboardList, Users, Award,
   BarChart3, Settings, Image, ChevronLeft, ChevronRight, Tag,
+  Building2, Sunrise, Sunset, ClipboardCheck, Camera, ListTodo, PieChart,
+  Store, ListChecks,
 } from "lucide-react";
 import { KupaLogo } from "@/components/kupa-logo";
 import { cn } from "@/lib/utils";
@@ -23,6 +25,14 @@ const navItems = [
   { label: "Reçeteler", href: "/recipes", icon: ChefHat },
   { label: "Ürünler", href: "/products", icon: Package },
   { label: "Dokümanlar", href: "/documents", icon: FolderOpen },
+  { type: "separator", label: "OPERASYON MERKEZİ" },
+  { label: "Operasyon Paneli", href: "/operations", icon: Building2 },
+  { label: "Açılış Kontrolü", href: "/operations/opening", icon: Sunrise },
+  { label: "Kapanış Kontrolü", href: "/operations/closing", icon: Sunset },
+  { label: "Günlük Denetimler", href: "/operations/audits", icon: ClipboardCheck, adminOnly: true },
+  { label: "Fotoğraf Galerisi", href: "/operations/gallery", icon: Camera },
+  { label: "Görevler", href: "/operations/tasks", icon: ListTodo },
+  { label: "Operasyon Raporları", href: "/operations/reports", icon: PieChart, adminOnly: true },
   { type: "separator", label: "YÖNETİM" },
   { label: "Duyurular", href: "/announcements", icon: Megaphone },
   { label: "Sınavlar", href: "/quizzes", icon: ClipboardList },
@@ -32,6 +42,8 @@ const navItems = [
   { label: "Video Yönetimi", href: "/admin/videos", icon: Video, adminOnly: true },
   { label: "Reçete Yönetimi", href: "/admin/recipes", icon: ChefHat, adminOnly: true },
   { label: "Kategori Yönetimi", href: "/admin/categories", icon: Tag, adminOnly: true },
+  { label: "Şube Yönetimi", href: "/admin/branches", icon: Store, adminOnly: true },
+  { label: "Checklist Yönetimi", href: "/admin/checklists", icon: ListChecks, adminOnly: true },
   { label: "Doküman Yönetimi", href: "/admin/documents", icon: FolderOpen, adminOnly: true },
   { label: "Duyuru Yönetimi", href: "/admin/announcements", icon: Megaphone, adminOnly: true },
   { label: "Kullanıcılar", href: "/admin/users", icon: Users, adminOnly: true },
@@ -95,7 +107,8 @@ export function Sidebar() {
             }
 
             const Icon = item.icon!;
-            const isActive = pathname === item.href || (item.href !== "/dashboard" && pathname.startsWith(item.href + "/"));
+            const exactOnly = item.href === "/dashboard" || item.href === "/operations";
+            const isActive = pathname === item.href || (!exactOnly && pathname.startsWith(item.href + "/"));
 
             return (
               <Link

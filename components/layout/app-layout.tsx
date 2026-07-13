@@ -6,11 +6,13 @@ import { Sidebar } from "./sidebar";
 import { Header } from "./header";
 import { useAuthStore } from "@/lib/store";
 import { useDataStore } from "@/lib/data-store";
+import { useOpsStore } from "@/lib/ops-store";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, _hasHydrated } = useAuthStore();
   const { loadAll, _loaded } = useDataStore();
+  const { loadAll: loadOps, _loaded: opsLoaded } = useOpsStore();
   const router = useRouter();
   const pathname = usePathname();
 
@@ -25,6 +27,12 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       loadAll();
     }
   }, [isAuthenticated, _loaded, loadAll]);
+
+  useEffect(() => {
+    if (isAuthenticated && !opsLoaded) {
+      loadOps();
+    }
+  }, [isAuthenticated, opsLoaded, loadOps]);
 
   if (!_hasHydrated) return null;
   if (!isAuthenticated) return null;

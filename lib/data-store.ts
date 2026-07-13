@@ -75,6 +75,11 @@ interface DataState {
   updateCategory: (id: string, data: Partial<Category>) => Promise<void>;
   deleteCategory: (id: string) => Promise<void>;
 
+  // Branch CRUD
+  addBranch: (branch: Branch) => Promise<void>;
+  updateBranch: (id: string, data: Partial<Branch>) => Promise<void>;
+  deleteBranch: (id: string) => Promise<void>;
+
   // Completion / Progress
   completeTraining: (userId: string, trainingId: string) => Promise<string[]>;
   isTrainingCompleted: (userId: string, trainingId: string) => boolean;
@@ -218,6 +223,21 @@ export const useDataStore = create<DataState>()((set, get) => ({
   deleteCategory: async (id) => {
     await db.deleteCategory(id);
     set((s) => ({ categories: s.categories.filter((c) => c.id !== id) }));
+  },
+
+  // ── Branch ──────────────────────────────────────────────────────────────────
+  addBranch: async (branch) => {
+    await db.upsertBranch(branch);
+    set((s) => ({ branches: [...s.branches, branch] }));
+  },
+  updateBranch: async (id, data) => {
+    const updated = { ...get().branches.find((b) => b.id === id)!, ...data };
+    await db.upsertBranch(updated);
+    set((s) => ({ branches: s.branches.map((b) => b.id === id ? updated : b) }));
+  },
+  deleteBranch: async (id) => {
+    await db.deleteBranch(id);
+    set((s) => ({ branches: s.branches.filter((b) => b.id !== id) }));
   },
 
   // ── Document ────────────────────────────────────────────────────────────────
