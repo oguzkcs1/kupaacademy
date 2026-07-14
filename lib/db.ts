@@ -6,7 +6,7 @@ import { supabase } from "./supabase";
 import type {
   Training, Video, Recipe, Announcement, User, Badge,
   Category, Document, DocumentFolder, TrainingCompletion,
-  Notification, Branch,
+  Notification, Branch, JobApplication,
 } from "@/types";
 import type {
   ChecklistTemplate, ChecklistRun, OpsPhoto, OpsTask,
@@ -762,4 +762,68 @@ export async function upsertOpsTask(t: OpsTask) {
     completed_at: t.completedAt ?? null,
   });
   if (error) throw error;
+}
+
+// ─── Kariyer Başvuruları ──────────────────────────────────────────────────────
+
+export async function getJobApplications(): Promise<JobApplication[]> {
+  const { data, error } = await supabase
+    .from("job_applications")
+    .select("*")
+    .order("created_at", { ascending: false });
+  if (error) throw error;
+  return (data ?? []).map((r) => ({
+    id: r.id,
+    fullName: r.full_name,
+    phone: r.phone,
+    email: r.email ?? undefined,
+    city: r.city ?? undefined,
+    position: r.position ?? undefined,
+    experience: r.experience ?? undefined,
+    message: r.message ?? undefined,
+    cvUrl: r.cv_url ?? undefined,
+    cvPath: r.cv_path ?? undefined,
+    status: r.status,
+    createdAt: r.created_at,
+  }));
+}
+
+export async function insertJobApplication(a: JobApplication) {
+  const { error } = await supabase.from("job_applications").insert({
+    id: a.id,
+    full_name: a.fullName,
+    phone: a.phone,
+    email: a.email ?? null,
+    city: a.city ?? null,
+    position: a.position ?? null,
+    experience: a.experience ?? null,
+    message: a.message ?? null,
+    cv_url: a.cvUrl ?? null,
+    cv_path: a.cvPath ?? null,
+    status: a.status,
+    created_at: a.createdAt,
+  });
+  if (error) throw error;
+}
+
+export async function updateJobApplicationStatus(id: string, status: JobApplication["status"]) {
+  const { error } = await supabase.from("job_applications").update({ status }).eq("id", id);
+  if (error) throw error;
+}
+
+export async function deleteJobApplication(id: string) {
+  const { error } = await supabase.from("job_applications").delete().eq("id", id);
+  if (error) throw error;
+}
+
+/** CV dosyasını Storage'a yükler, public URL + path döner */
+export async function uploadCV(file: File): Promise<{ url: string; path: string }> {
+  const ext = file.name.split(".").pop() || "pdf";
+  const path = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+  const { error } = await supabase.storage
+    .from("cv-files")
+    .upload(path, file, { contentType: file.type || "application/pdf", upsert: false });
+  if (error) throw error;
+  const { data } = supabase.storage.from("cv-files").getPublicUrl(path);
+  return { url: data.publicUrl, path };
 }

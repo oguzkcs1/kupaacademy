@@ -122,9 +122,14 @@ export default function AboutPage() {
         <p className="text-muted-foreground mb-6">
           Kupa Coffee ailesinin bir parçası olmaya hazır mısınız?
         </p>
-        <Button asChild size="lg" className="font-medium shadow-lg shadow-primary/25 min-w-44">
-          <Link href="/login">Giriş Yap<ArrowRight className="w-4 h-4 ml-1.5" /></Link>
-        </Button>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <Button asChild size="lg" className="font-medium shadow-lg shadow-primary/25 min-w-44">
+            <Link href="/kariyer">Bize Katıl<ArrowRight className="w-4 h-4 ml-1.5" /></Link>
+          </Button>
+          <Button asChild variant="outline" size="lg" className="font-medium">
+            <Link href="/login">Giriş Yap</Link>
+          </Button>
+        </div>
       </section>
 
       {/* ── Footer ──────────────────────────────────────── */}

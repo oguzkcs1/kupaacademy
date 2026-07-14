@@ -287,6 +287,23 @@ export interface Notification {
   createdAt: string;
 }
 
+export type JobApplicationStatus = "new" | "reviewing" | "accepted" | "rejected";
+
+export interface JobApplication {
+  id: string;
+  fullName: string;
+  phone: string;
+  email?: string;
+  city?: string;
+  position?: string;
+  experience?: string;
+  message?: string;
+  cvUrl?: string;
+  cvPath?: string;
+  status: JobApplicationStatus;
+  createdAt: string;
+}
+
 export interface MediaFile {
   id: string;
   name: string;

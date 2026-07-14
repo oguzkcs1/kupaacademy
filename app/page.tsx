@@ -55,8 +55,11 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
           <KupaLogo variant="color" width={104} height={52} />
           <div className="flex items-center gap-1.5 sm:gap-3">
-            <Button asChild variant="ghost" size="sm" className="font-medium">
+            <Button asChild variant="ghost" size="sm" className="font-medium hidden sm:inline-flex">
               <Link href="/biz-kimiz">Biz Kimiz?</Link>
+            </Button>
+            <Button asChild variant="ghost" size="sm" className="font-medium">
+              <Link href="/kariyer">Kariyer</Link>
             </Button>
             <Button asChild size="sm" className="font-medium">
               <Link href={ctaHref}>
@@ -327,6 +330,7 @@ export default function LandingPage() {
           <KupaLogo variant="color" width={88} height={44} />
           <div className="flex items-center gap-5">
             <Link href="/biz-kimiz" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Biz Kimiz?</Link>
+            <Link href="/kariyer" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Kariyer</Link>
             <p className="text-xs text-muted-foreground">
               © {new Date().getFullYear()} Kupa Coffee Co. — Tüm hakları saklıdır.
             </p>

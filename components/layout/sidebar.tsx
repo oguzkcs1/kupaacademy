@@ -7,7 +7,7 @@ import {
   Package, Megaphone, FolderOpen, ClipboardList, Users, Award,
   BarChart3, Settings, Image, ChevronLeft, ChevronRight, Tag,
   Building2, Sunrise, Sunset, ClipboardCheck, Camera, ListTodo, PieChart,
-  Store, ListChecks,
+  Store, ListChecks, Briefcase,
 } from "lucide-react";
 import { KupaLogo } from "@/components/kupa-logo";
 import { cn } from "@/lib/utils";
@@ -47,6 +47,7 @@ const navItems = [
   { label: "Doküman Yönetimi", href: "/admin/documents", icon: FolderOpen, adminOnly: true },
   { label: "Duyuru Yönetimi", href: "/admin/announcements", icon: Megaphone, adminOnly: true },
   { label: "Kullanıcılar", href: "/admin/users", icon: Users, adminOnly: true },
+  { label: "Kariyer Başvuruları", href: "/admin/applications", icon: Briefcase, adminOnly: true },
   { label: "Medya Kütüphanesi", href: "/admin/media", icon: Image, adminOnly: true },
   { label: "Raporlar", href: "/admin/reports", icon: BarChart3, adminOnly: true },
   { label: "Ayarlar", href: "/admin/settings", icon: Settings, adminOnly: true },
