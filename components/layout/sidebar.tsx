@@ -9,6 +9,7 @@ import {
   Building2, Sunrise, Sunset, ClipboardCheck, Camera, ListTodo, PieChart,
   Store, ListChecks, Briefcase,
 } from "lucide-react";
+import { X } from "lucide-react";
 import { KupaLogo } from "@/components/kupa-logo";
 import { cn } from "@/lib/utils";
 import { useUIStore, useAuthStore } from "@/lib/store";
@@ -53,44 +54,22 @@ const navItems = [
   { label: "Ayarlar", href: "/admin/settings", icon: Settings, adminOnly: true },
 ];
 
-export function Sidebar() {
+/** Sidebar iç içeriği — hem masaüstü hem mobil drawer tarafından kullanılır */
+function SidebarContent({ collapsed, onNavClick }: { collapsed: boolean; onNavClick?: () => void }) {
   const pathname = usePathname();
-  const { sidebarCollapsed, toggleSidebarCollapse } = useUIStore();
   const { user } = useAuthStore();
   const isAdmin = user?.role === "admin";
   const filtered = navItems.filter((item) => !item.adminOnly || isAdmin);
 
   return (
-    <motion.aside
-      animate={{ width: sidebarCollapsed ? 68 : 256 }}
-      transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-      className="flex flex-col h-screen bg-[hsl(var(--sidebar-background))] border-r border-[hsl(var(--sidebar-border))] relative flex-shrink-0 overflow-hidden shadow-lg shadow-black/20"
-    >
+    <>
       {/* Logo */}
-      <div className="flex items-center justify-center h-16 px-3 border-b border-[hsl(var(--sidebar-border))]">
-        <AnimatePresence mode="wait">
-          {sidebarCollapsed ? (
-            <motion.div
-              key="collapsed"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.15 }}
-            >
-              <KupaLogo variant="dark" width={44} height={44} className="rounded" />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="expanded"
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -8 }}
-              transition={{ duration: 0.2 }}
-            >
-              <KupaLogo variant="dark" width={130} height={65} />
-            </motion.div>
-          )}
-        </AnimatePresence>
+      <div className="flex items-center justify-center h-16 px-3 border-b border-[hsl(var(--sidebar-border))] flex-shrink-0">
+        {collapsed ? (
+          <KupaLogo variant="dark" width={44} height={44} className="rounded" />
+        ) : (
+          <KupaLogo variant="dark" width={130} height={65} />
+        )}
       </div>
 
       {/* Nav */}
@@ -99,7 +78,7 @@ export function Sidebar() {
           {filtered.map((item, i) => {
             if (item.type === "separator") {
               return (
-                <div key={i} className={cn("pt-4 pb-1", sidebarCollapsed ? "hidden" : "block")}>
+                <div key={i} className={cn("pt-4 pb-1", collapsed ? "hidden" : "block")}>
                   <p className="px-3 text-[10px] font-semibold uppercase tracking-widest text-[hsl(var(--sidebar-foreground))]/35">
                     {item.label}
                   </p>
@@ -115,39 +94,25 @@ export function Sidebar() {
               <Link
                 key={item.href}
                 href={item.href!}
-                title={sidebarCollapsed ? item.label : undefined}
+                onClick={onNavClick}
+                title={collapsed ? item.label : undefined}
                 className={cn(
-                  "group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 cursor-pointer relative overflow-hidden",
-                  sidebarCollapsed && "justify-center px-0",
+                  "group flex items-center gap-3 rounded-lg px-3 py-3 lg:py-2.5 text-sm font-medium transition-all duration-200 cursor-pointer relative overflow-hidden",
+                  collapsed && "justify-center px-0",
                   isActive
                     ? "text-white bg-primary/25 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]"
                     : "text-[hsl(var(--sidebar-foreground))]/60 hover:text-white hover:bg-[hsl(var(--sidebar-accent))]"
                 )}
               >
                 {isActive && (
-                  <motion.span
-                    layoutId="activeIndicator"
-                    className="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-0.5 bg-primary rounded-full"
-                  />
+                  <span className="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-0.5 bg-primary rounded-full" />
                 )}
                 <Icon className={cn(
                   "flex-shrink-0 transition-colors duration-200",
-                  sidebarCollapsed ? "w-5 h-5" : "w-4 h-4",
+                  collapsed ? "w-5 h-5" : "w-4 h-4",
                   isActive ? "text-primary" : "text-[hsl(var(--sidebar-foreground))]/50 group-hover:text-white/80"
                 )} />
-                <AnimatePresence>
-                  {!sidebarCollapsed && (
-                    <motion.span
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.15 }}
-                      className="truncate"
-                    >
-                      {item.label}
-                    </motion.span>
-                  )}
-                </AnimatePresence>
+                {!collapsed && <span className="truncate">{item.label}</span>}
               </Link>
             );
           })}
@@ -156,10 +121,10 @@ export function Sidebar() {
 
       {/* User */}
       {user && (
-        <div className="border-t border-[hsl(var(--sidebar-border))] p-3">
+        <div className="border-t border-[hsl(var(--sidebar-border))] p-3 flex-shrink-0">
           <div className={cn(
             "flex items-center gap-3 rounded-lg px-2 py-2 transition-colors hover:bg-[hsl(var(--sidebar-accent))] cursor-pointer",
-            sidebarCollapsed && "justify-center px-0"
+            collapsed && "justify-center px-0"
           )}>
             <Avatar className="w-8 h-8 flex-shrink-0 ring-2 ring-primary/30">
               <AvatarImage src={user.avatar} />
@@ -167,34 +132,78 @@ export function Sidebar() {
                 {getInitials(user.name)}
               </AvatarFallback>
             </Avatar>
-            <AnimatePresence>
-              {!sidebarCollapsed && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.15 }}
-                  className="overflow-hidden flex-1 min-w-0"
-                >
-                  <p className="text-sm font-medium text-white/85 truncate leading-tight">{user.name}</p>
-                  <p className="text-xs text-[hsl(var(--sidebar-foreground))]/40 truncate">{ROLE_LABELS[user.role]}</p>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {!collapsed && (
+              <div className="overflow-hidden flex-1 min-w-0">
+                <p className="text-sm font-medium text-white/85 truncate leading-tight">{user.name}</p>
+                <p className="text-xs text-[hsl(var(--sidebar-foreground))]/40 truncate">{ROLE_LABELS[user.role]}</p>
+              </div>
+            )}
           </div>
         </div>
       )}
+    </>
+  );
+}
+
+/** Masaüstü sidebar — akışta, daraltılabilir (lg ve üzeri) */
+export function Sidebar() {
+  const { sidebarCollapsed, toggleSidebarCollapse } = useUIStore();
+
+  return (
+    <motion.aside
+      animate={{ width: sidebarCollapsed ? 68 : 256 }}
+      transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+      className="hidden lg:flex flex-col h-screen bg-[hsl(var(--sidebar-background))] border-r border-[hsl(var(--sidebar-border))] relative flex-shrink-0 overflow-hidden shadow-lg shadow-black/20"
+    >
+      <SidebarContent collapsed={sidebarCollapsed} />
 
       {/* Collapse button */}
       <button
         onClick={toggleSidebarCollapse}
         className="absolute -right-3 top-[72px] h-6 w-6 rounded-full border border-[hsl(var(--sidebar-border))] bg-[hsl(var(--sidebar-background))] text-[hsl(var(--sidebar-foreground))]/60 hover:text-white flex items-center justify-center shadow-md transition-colors z-10"
       >
-        {sidebarCollapsed
-          ? <ChevronRight className="h-3 w-3" />
-          : <ChevronLeft className="h-3 w-3" />
-        }
+        {sidebarCollapsed ? <ChevronRight className="h-3 w-3" /> : <ChevronLeft className="h-3 w-3" />}
       </button>
     </motion.aside>
+  );
+}
+
+/** Mobil off-canvas drawer — hamburgerle açılır (lg altı) */
+export function MobileSidebar() {
+  const { sidebarOpen, setSidebarOpen } = useUIStore();
+
+  return (
+    <AnimatePresence>
+      {sidebarOpen && (
+        <div className="lg:hidden fixed inset-0 z-50">
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setSidebarOpen(false)}
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+          />
+          {/* Drawer */}
+          <motion.aside
+            initial={{ x: "-100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "-100%" }}
+            transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
+            className="absolute left-0 top-0 h-full w-[280px] max-w-[85vw] flex flex-col bg-[hsl(var(--sidebar-background))] border-r border-[hsl(var(--sidebar-border))] shadow-2xl"
+          >
+            <button
+              onClick={() => setSidebarOpen(false)}
+              aria-label="Menüyü kapat"
+              className="absolute right-3 top-4 h-9 w-9 rounded-lg text-[hsl(var(--sidebar-foreground))]/60 hover:text-white hover:bg-[hsl(var(--sidebar-accent))] flex items-center justify-center z-10"
+            >
+              <X className="h-5 w-5" />
+            </button>
+            <SidebarContent collapsed={false} onNavClick={() => setSidebarOpen(false)} />
+          </motion.aside>
+        </div>
+      )}
+    </AnimatePresence>
   );
 }

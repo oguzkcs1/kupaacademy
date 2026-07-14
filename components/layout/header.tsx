@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   Bell, Search, Sun, Moon, LogOut, User, Settings, Menu, Command,
   CheckCheck, GraduationCap, Megaphone, Star,
 } from "lucide-react";
+import { KupaLogo } from "@/components/kupa-logo";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -85,6 +87,10 @@ export function Header() {
           </div>
         </form>
 
+        {/* Mobil logo (arama gizliyken) */}
+        <Link href="/dashboard" className="md:hidden flex items-center">
+          <KupaLogo variant="color" width={78} height={34} />
+        </Link>
         <div className="flex-1 md:hidden" />
 
         {/* Right actions */}
