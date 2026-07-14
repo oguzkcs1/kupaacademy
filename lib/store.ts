@@ -3,7 +3,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { User } from "@/types";
-import { getUserByUsername } from "@/lib/db";
+import { login as dbLogin } from "@/lib/db";
 
 interface AuthState {
   user: User | null;
@@ -25,8 +25,9 @@ export const useAuthStore = create<AuthState>()(
 
       login: async (username: string, password: string) => {
         try {
-          const found = await getUserByUsername(username);
-          if (found && found.password === password && found.status === "active") {
+          // Şifre karşılaştırması sunucuda (bcrypt) yapılır
+          const found = await dbLogin(username, password);
+          if (found) {
             set({ user: found, isAuthenticated: true });
             return true;
           }

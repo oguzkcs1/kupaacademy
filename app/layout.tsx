@@ -21,15 +21,43 @@ const barlow = Barlow({
   display: "swap",
 });
 
+const siteUrl = "https://kupaacademy-ten.vercel.app";
+const siteDescription =
+  "Kupa Coffee'nin dijital operasyon ve eğitim platformu. Eğitimler, reçeteler, günlük şube denetimleri ve performans yönetimi tek merkezde.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Kupa Academy",
+    default: "Kupa Academy — Dijital Operasyon & Eğitim Platformu",
     template: "%s | Kupa Academy",
   },
-  description: "İşletmenizin dijital bilgi ve eğitim merkezi",
+  description: siteDescription,
+  applicationName: "Kupa Academy",
+  keywords: ["Kupa Coffee", "Kupa Academy", "barista eğitimi", "şube denetimi", "operasyon yönetimi", "kahve"],
+  authors: [{ name: "Kupa Coffee Co." }],
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-48.png", type: "image/png", sizes: "48x48" },
+    ],
+    apple: "/apple-touch-icon.png",
   },
+  openGraph: {
+    type: "website",
+    locale: "tr_TR",
+    url: siteUrl,
+    siteName: "Kupa Academy",
+    title: "Kupa Academy — Dijital Operasyon & Eğitim Platformu",
+    description: siteDescription,
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Kupa Academy" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kupa Academy — Dijital Operasyon & Eğitim Platformu",
+    description: siteDescription,
+    images: ["/og-image.png"],
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({

@@ -30,6 +30,7 @@ const empty = {
 export default function CareerPage() {
   const [form, setForm] = useState(empty);
   const [cvFile, setCvFile] = useState<File | null>(null);
+  const [consent, setConsent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -50,6 +51,10 @@ export default function CareerPage() {
     e.preventDefault();
     if (!form.fullName.trim() || !form.phone.trim()) {
       toast.error("Ad soyad ve telefon zorunludur");
+      return;
+    }
+    if (!consent) {
+      toast.error("Devam etmek için KVKK aydınlatma metnini onaylamalısınız");
       return;
     }
     setSubmitting(true);
@@ -222,16 +227,30 @@ export default function CareerPage() {
                 <input ref={fileRef} type="file" accept=".pdf,.doc,.docx" className="hidden" onChange={handleFile} />
               </div>
 
-              <Button type="submit" size="lg" className="w-full font-medium" disabled={submitting}>
+              {/* KVKK onayı */}
+              <label className="flex items-start gap-3 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  checked={consent}
+                  onChange={(e) => setConsent(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 flex-shrink-0 rounded border-border accent-[hsl(var(--primary))] cursor-pointer"
+                />
+                <span className="text-xs text-muted-foreground leading-relaxed">
+                  Başvurumla paylaştığım kişisel verilerin,{" "}
+                  <Link href="/kvkk" target="_blank" className="text-primary underline underline-offset-2 hover:text-primary/80">
+                    KVKK Aydınlatma Metni
+                  </Link>{" "}
+                  kapsamında işe alım süreçlerinde işlenmesine açık rıza veriyorum. *
+                </span>
+              </label>
+
+              <Button type="submit" size="lg" className="w-full font-medium" disabled={submitting || !consent}>
                 {submitting ? (
                   <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Gönderiliyor…</>
                 ) : (
                   <>Başvuruyu Gönder<ArrowRight className="w-4 h-4 ml-1.5" /></>
                 )}
               </Button>
-              <p className="text-xs text-muted-foreground text-center">
-                Bilgileriniz yalnızca işe alım süreçlerinde kullanılır.
-              </p>
             </form>
           </section>
         </>

@@ -409,29 +409,35 @@ export async function getUsers(): Promise<User[]> {
   }));
 }
 
-export async function getUserByUsername(username: string): Promise<User | null> {
-  const { data, error } = await supabase
-    .from("users")
-    .select("*")
-    .eq("username", username)
-    .maybeSingle();
+/**
+ * Sunucu taraflı giriş — şifre karşılaştırması Supabase'de (bcrypt) yapılır.
+ * Başarılıysa şifresiz User döner, aksi halde null.
+ */
+export async function login(username: string, password: string): Promise<User | null> {
+  const { data, error } = await supabase.rpc("app_login", {
+    p_username: username,
+    p_password: password,
+  });
   if (error || !data) return null;
+  const d = data as Record<string, unknown>;
+  // son giriş zamanını güncelle (hata olsa da girişi engellemesin)
+  supabase.rpc("app_touch_last_login", { p_user_id: d.id as string }).then(() => {}, () => {});
   return {
-    id: data.id,
-    name: data.name,
-    username: data.username,
-    password: data.password,
-    email: data.email,
-    role: data.role,
-    avatar: data.avatar,
-    companyId: data.company_id,
-    branchId: data.branch_id,
-    department: data.department,
-    position: data.position,
-    status: data.status,
+    id: d.id as string,
+    name: d.name as string,
+    username: d.username as string,
+    password: "",
+    email: (d.email as string) ?? undefined,
+    role: d.role as User["role"],
+    avatar: (d.avatar as string) ?? undefined,
+    companyId: d.company_id as string,
+    branchId: (d.branch_id as string) ?? undefined,
+    department: (d.department as string) ?? undefined,
+    position: (d.position as string) ?? undefined,
+    status: d.status as User["status"],
     badges: [],
-    createdAt: data.created_at,
-    lastLoginAt: data.last_login_at,
+    createdAt: d.created_at as string,
+    lastLoginAt: (d.last_login_at as string) ?? undefined,
   };
 }
 
