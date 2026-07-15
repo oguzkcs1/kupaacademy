@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Çevrimdışı — Kupa Academy</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #faf8f5; color: #0f1729;
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 24px;
+    }
+    .wrap { max-width: 320px; }
+    .logo {
+      width: 72px; height: 72px; border-radius: 20px; background: #0f1729;
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;
+    }
+    .logo span { color: #e8a13a; font-weight: 800; font-size: 40px; }
+    h1 { font-size: 20px; margin-bottom: 8px; }
+    p { font-size: 14px; color: #667; line-height: 1.5; }
+    button {
+      margin-top: 24px; background: #e8a13a; color: #fff; border: 0;
+      padding: 12px 24px; border-radius: 12px; font-size: 15px; font-weight: 600; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="logo"><span>K</span></div>
+    <h1>İnternet bağlantısı yok</h1>
+    <p>Kupa Academy'ye bağlanmak için internet bağlantınızı kontrol edin. Bağlantı sağlanınca kaldığınız yerden devam edebilirsiniz.</p>
+    <button onclick="location.reload()">Tekrar Dene</button>
+  </div>
+</body>
+</html>
