@@ -2,7 +2,7 @@
   "name": "Kupa Academy",
   "short_name": "Kupa",
   "description": "Kupa Coffee dijital operasyon ve eğitim platformu",
-  "start_url": "/dashboard",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
