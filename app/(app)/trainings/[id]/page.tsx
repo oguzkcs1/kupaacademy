@@ -1,11 +1,12 @@
 "use client";
 
+import { useEffect, useMemo, useRef, useState } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import {
   ArrowLeft, Clock, Tag, Edit, CheckCircle2, PlayCircle,
   FileText, ClipboardList, BookOpen, Download, ExternalLink,
-  AlertTriangle, Info, Quote,
+  AlertTriangle, Info, Quote, Lock, ScrollText,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -138,8 +139,52 @@ export default function TrainingDetailPage({ params }: { params: { id: string } 
   const hasContent = training.content && training.content.length > 0 &&
     training.content.some(b => b.data?.content);
 
+  // ── Okuma doğrulama (personel okumadan tamamlayamasın) ──────────────
+  // İçerikten tahmini okuma süresi (kelime sayısına göre), 12s–90s arası
+  const minSeconds = useMemo(() => {
+    const words = (training.content ?? [])
+      .map((b) => String((b.data?.content as string) ?? ""))
+      .join(" ").trim().split(/\s+/).filter(Boolean).length;
+    return Math.min(90, Math.max(12, Math.round(words / 15)));
+  }, [training.content]);
+
+  const endRef = useRef<HTMLDivElement>(null);
+  const [reachedEnd, setReachedEnd] = useState(false);
+  const [secondsLeft, setSecondsLeft] = useState(minSeconds);
+  const [confirmed, setConfirmed] = useState(false);
+
+  // Admin veya tamamlanmış eğitimde kapıları uygulama
+  const gated = !isAdmin && !completed;
+
+  // Geri sayım
+  useEffect(() => {
+    if (!gated) return;
+    setSecondsLeft(minSeconds);
+    const t = setInterval(() => {
+      setSecondsLeft((s) => (s <= 1 ? (clearInterval(t), 0) : s - 1));
+    }, 1000);
+    return () => clearInterval(t);
+  }, [gated, minSeconds]);
+
+  // İçeriğin sonuna gelindi mi (kaydırma)
+  useEffect(() => {
+    if (!gated) { setReachedEnd(true); return; }
+    const el = endRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setReachedEnd(true); },
+      { threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [gated]);
+
+  const timeDone = secondsLeft <= 0;
+  const canComplete = !gated || (reachedEnd && timeDone && confirmed);
+
   const handleComplete = async () => {
     if (!user) return;
+    if (!canComplete) return;
     const newBadges = await completeTraining(user.id, training.id);
     toast.success("Eğitim tamamlandı! 🎉");
     if (newBadges.length > 0) {
@@ -224,6 +269,16 @@ export default function TrainingDetailPage({ params }: { params: { id: string } 
                   Bu eğitim için henüz içerik eklenmemiş.
                 </p>
               )}
+              {/* Okuma sonu işareti — kaydırma doğrulaması için */}
+              <div ref={endRef} className="h-px" />
+              {gated && (
+                <div className={`flex items-center gap-2 text-xs rounded-lg px-3 py-2 mt-2 ${
+                  reachedEnd ? "text-emerald-600 bg-emerald-50 dark:bg-emerald-950/20" : "text-muted-foreground bg-muted/50"
+                }`}>
+                  {reachedEnd ? <CheckCircle2 className="w-3.5 h-3.5" /> : <ScrollText className="w-3.5 h-3.5" />}
+                  {reachedEnd ? "İçeriğin sonuna ulaştınız" : "Tamamlamak için içeriği sonuna kadar okuyun"}
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>
@@ -248,10 +303,38 @@ export default function TrainingDetailPage({ params }: { params: { id: string } 
                   Tamamlandı!
                 </div>
               ) : (
-                <Button className="w-full" onClick={handleComplete}>
-                  <CheckCircle2 className="w-4 h-4" />
-                  Tamamlandı Olarak İşaretle
-                </Button>
+                <div className="space-y-3">
+                  {gated && (
+                    <label className="flex items-start gap-2.5 cursor-pointer select-none">
+                      <input
+                        type="checkbox"
+                        checked={confirmed}
+                        onChange={(e) => setConfirmed(e.target.checked)}
+                        disabled={!reachedEnd || !timeDone}
+                        className="mt-0.5 h-4 w-4 flex-shrink-0 rounded border-border accent-[hsl(var(--primary))] cursor-pointer disabled:cursor-not-allowed"
+                      />
+                      <span className="text-xs text-muted-foreground leading-relaxed">
+                        Eğitim içeriğini <b>okudum ve anladım</b>.
+                      </span>
+                    </label>
+                  )}
+                  <Button className="w-full" onClick={handleComplete} disabled={!canComplete}>
+                    {canComplete ? (
+                      <><CheckCircle2 className="w-4 h-4" />Tamamlandı Olarak İşaretle</>
+                    ) : !reachedEnd ? (
+                      <><ScrollText className="w-4 h-4" />İçeriği okuyun</>
+                    ) : !timeDone ? (
+                      <><Clock className="w-4 h-4" />Okuma süresi: {secondsLeft}s</>
+                    ) : (
+                      <><Lock className="w-4 h-4" />Onay kutusunu işaretleyin</>
+                    )}
+                  </Button>
+                  {gated && !canComplete && (
+                    <p className="text-[11px] text-muted-foreground/70 text-center leading-relaxed">
+                      Eğitimi tamamlamak için içeriği sonuna kadar okuyun, kısa okuma süresini bekleyin ve onaylayın.
+                    </p>
+                  )}
+                </div>
               )}
             </CardContent>
           </Card>
