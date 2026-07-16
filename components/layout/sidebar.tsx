@@ -7,7 +7,7 @@ import {
   Package, Megaphone, FolderOpen, ClipboardList, Users, Award,
   BarChart3, Settings, Image, ChevronLeft, ChevronRight, Tag,
   Building2, Sunrise, Sunset, ClipboardCheck, Camera, ListTodo, PieChart,
-  Store, ListChecks, Briefcase,
+  Store, ListChecks, Briefcase, Trophy,
 } from "lucide-react";
 import { X } from "lucide-react";
 import { KupaLogo } from "@/components/kupa-logo";
@@ -27,11 +27,12 @@ const navItems = [
   { label: "Ürünler", href: "/products", icon: Package },
   { label: "Dokümanlar", href: "/documents", icon: FolderOpen },
   { type: "separator", label: "OPERASYON MERKEZİ" },
-  { label: "Operasyon Paneli", href: "/operations", icon: Building2 },
+  { label: "Operasyon Paneli", href: "/operations", icon: Building2, adminOnly: true },
   { label: "Açılış Kontrolü", href: "/operations/opening", icon: Sunrise },
   { label: "Kapanış Kontrolü", href: "/operations/closing", icon: Sunset },
+  { label: "Şube Şampiyonası", href: "/operations/leaderboard", icon: Trophy },
   { label: "Günlük Denetimler", href: "/operations/audits", icon: ClipboardCheck, adminOnly: true },
-  { label: "Fotoğraf Galerisi", href: "/operations/gallery", icon: Camera },
+  { label: "Fotoğraf Galerisi", href: "/operations/gallery", icon: Camera, adminOnly: true },
   { label: "Görevler", href: "/operations/tasks", icon: ListTodo },
   { label: "Operasyon Raporları", href: "/operations/reports", icon: PieChart, adminOnly: true },
   { type: "separator", label: "YÖNETİM" },

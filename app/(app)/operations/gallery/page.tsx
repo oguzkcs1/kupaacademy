@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Camera, MapPin, Tag, User as UserIcon, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -10,11 +11,21 @@ import {
 } from "@/components/ui/select";
 import { useOpsStore } from "@/lib/ops-store";
 import { useDataStore } from "@/lib/data-store";
+import { useAuthStore } from "@/lib/store";
 import { mockBranches } from "@/lib/mock-data";
 import type { OpsPhoto } from "@/types/operations";
 import { formatRelativeTime } from "@/lib/utils";
 
 export default function OpsGalleryPage() {
+  const { user } = useAuthStore();
+  const router = useRouter();
+  const isAdmin = user?.role === "admin";
+
+  // Galeri sadece merkez içindir — barista göremez
+  useEffect(() => {
+    if (user && !isAdmin) router.replace("/operations/leaderboard");
+  }, [user, isAdmin, router]);
+
   const { photos } = useOpsStore();
   const { branches: dataBranches, users } = useDataStore();
   const branches = dataBranches.length > 0 ? dataBranches : mockBranches;
@@ -41,6 +52,8 @@ export default function OpsGalleryPage() {
     .filter((p) => categoryFilter === "all" || p.categoryLabel === categoryFilter)
     .filter((p) => userFilter === "all" || p.userId === userFilter)
     .sort((a, b) => b.takenAt.localeCompare(a.takenAt));
+
+  if (user && !isAdmin) return null;
 
   return (
     <div className="space-y-6">

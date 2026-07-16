@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
@@ -49,10 +51,20 @@ function OpsStat({
 
 export default function OperationsDashboardPage() {
   const { user } = useAuthStore();
+  const router = useRouter();
+  const isAdmin = user?.role === "admin";
+
+  // Barista bu paneli göremez — şube sıralamasına yönlendir
+  useEffect(() => {
+    if (user && !isAdmin) router.replace("/operations/leaderboard");
+  }, [user, isAdmin, router]);
+
   const { runs, photos } = useOpsStore();
   const { branches: dataBranches, users } = useDataStore();
   const branches = dataBranches.length > 0 ? dataBranches : mockBranches;
   const activeBranches = branches.filter((b) => b.status === "active");
+
+  if (user && !isAdmin) return null;
 
   const today = new Date().toISOString().slice(0, 10);
   const todayRuns = runs.filter((r) => r.date === today);
@@ -92,7 +104,6 @@ export default function OperationsDashboardPage() {
 
   const userName = (id: string) => users.find((u) => u.id === id)?.name ?? "Personel";
   const branchName = (id: string) => branches.find((b) => b.id === id)?.name ?? "Şube";
-  const isAdmin = user?.role === "admin";
 
   return (
     <div className="space-y-7">
