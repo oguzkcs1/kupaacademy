@@ -45,12 +45,14 @@ export interface ChecklistTemplate {
 export interface RunItemResult {
   itemId: string;
   score: ItemScore | null;
+  /** Her maddenin KENDİ fotoğrafı — OpsPhoto.id referansları */
+  photoIds: string[];
 }
 
 export interface RunSectionResult {
   sectionId: string;
   items: RunItemResult[];
-  /** OpsPhoto.id referansları */
+  /** (Geriye dönük uyumluluk — artık fotoğraflar madde bazında tutulur) */
   photoIds: string[];
   note?: string;
 }
@@ -88,6 +90,8 @@ export interface OpsPhoto {
   userId: string;
   runId?: string;
   sectionId?: string;
+  /** Fotoğrafın ait olduğu madde — karışmayı önler */
+  itemId?: string;
   /** Görüntülenen kategori etiketi (ör. "Temizlik", "Bar") */
   categoryLabel: string;
   takenAt: string;
@@ -128,15 +132,28 @@ export function calculateRunScore(run: ChecklistRun): number {
   return Math.round((earned / max) * 100);
 }
 
+/** Bir madde tamamlandı mı: kendi fotoğrafı çekilmiş olmalı */
+export function isItemComplete(item: RunItemResult): boolean {
+  return (item.photoIds?.length ?? 0) > 0;
+}
+
 /**
- * Personel için bölüm tamamlama: (gerekiyorsa) en az 1 fotoğraf yeterli.
+ * Personel için bölüm tamamlama: bölümdeki HER maddenin kendi fotoğrafı çekilmiş olmalı.
  * Puanlama personel tarafından değil, merkez (admin) tarafından yapılır.
  */
 export function isSectionComplete(
   section: RunSectionResult,
-  template: ChecklistSection
+  _template: ChecklistSection
 ): boolean {
-  return !template.photoRequired || section.photoIds.length > 0;
+  if (section.items.length === 0) return false;
+  return section.items.every(isItemComplete);
+}
+
+/** Personel gönderebilir mi: tüm maddelerin fotoğrafı tamam mı */
+export function isRunPhotoComplete(run: ChecklistRun): boolean {
+  return run.sections.every(
+    (sec) => sec.items.length > 0 && sec.items.every(isItemComplete)
+  );
 }
 
 /** Merkez puanlaması tamamlandı mı: tüm maddeler puanlanmış olmalı */

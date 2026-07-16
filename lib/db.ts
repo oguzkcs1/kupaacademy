@@ -696,6 +696,7 @@ export async function getOpsPhotos(): Promise<OpsPhoto[]> {
     userId: r.user_id,
     runId: r.run_id ?? undefined,
     sectionId: r.section_id ?? undefined,
+    itemId: r.item_id ?? undefined,
     categoryLabel: r.category_label ?? "",
     takenAt: r.taken_at,
     aiAnalysis: r.ai_analysis ?? undefined,
@@ -711,6 +712,7 @@ export async function insertOpsPhoto(p: OpsPhoto) {
     user_id: p.userId,
     run_id: p.runId ?? null,
     section_id: p.sectionId ?? null,
+    item_id: p.itemId ?? null,
     category_label: p.categoryLabel,
     taken_at: p.takenAt,
   });

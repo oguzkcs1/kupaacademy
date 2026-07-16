@@ -233,25 +233,49 @@ export default function AuditDetailPage() {
                     {sectionEarned}/{sectionMax}
                   </span>
                 </div>
-                <div className={cn("space-y-1.5", canReview && "space-y-3")}>
+                <div className="space-y-2.5">
                   {section.items.map((item) => {
                     const itemTpl = tpl.items.find((t) => t.id === item.itemId);
-                    if (canReview) {
-                      // Merkez puanlama modu: her madde için 0-5 puan butonları
-                      return (
-                        <div
-                          key={item.itemId}
-                          className="flex flex-col sm:flex-row sm:items-center gap-2"
-                        >
-                          <span className="text-sm flex-1">{itemTpl?.label}</span>
-                          <div className="flex gap-1.5">
+                    const itemPhotos = photos.filter((p) => item.photoIds?.includes(p.id));
+                    return (
+                      <div key={item.itemId} className="rounded-xl border border-border p-3">
+                        <div className="flex items-start justify-between gap-2">
+                          <span className="text-sm font-medium flex-1">{itemTpl?.label}</span>
+                          {!canReview && (
+                            <span className={cn(
+                              "font-bold tabular-nums w-8 text-right text-sm",
+                              item.score === null ? "text-muted-foreground/40"
+                                : item.score >= 5 ? "text-emerald-600"
+                                : item.score >= 3 ? "text-amber-600" : "text-red-600"
+                            )}>
+                              {item.score ?? "—"}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Bu maddenin fotoğrafları */}
+                        {itemPhotos.length > 0 ? (
+                          <div className="grid grid-cols-4 sm:grid-cols-6 gap-2 mt-2.5">
+                            {itemPhotos.map((p) => (
+                              <a key={p.id} href={p.url} target="_blank" rel="noopener noreferrer"
+                                className="aspect-square rounded-lg overflow-hidden bg-muted block">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img src={p.url} alt={itemTpl?.label} className="w-full h-full object-cover" />
+                              </a>
+                            ))}
+                          </div>
+                        ) : (
+                          <p className="text-xs text-muted-foreground/60 mt-1.5">Fotoğraf yok</p>
+                        )}
+
+                        {/* Merkez puanlama */}
+                        {canReview && (
+                          <div className="flex gap-1.5 mt-3">
                             {SCORE_OPTIONS.map((score) => (
                               <button
                                 key={score}
                                 data-active={item.score === score}
-                                onClick={() =>
-                                  setItemScore(run.id, section.sectionId, item.itemId, score)
-                                }
+                                onClick={() => setItemScore(run.id, section.sectionId, item.itemId, score)}
                                 className={cn(
                                   "w-9 h-9 rounded-lg border border-border text-sm font-bold tabular-nums transition-all",
                                   "hover:border-primary/50 active:scale-95",
@@ -262,26 +286,7 @@ export default function AuditDetailPage() {
                               </button>
                             ))}
                           </div>
-                        </div>
-                      );
-                    }
-                    return (
-                      <div key={item.itemId} className="flex items-center justify-between text-sm py-1">
-                        <span className="text-muted-foreground">{itemTpl?.label}</span>
-                        <span
-                          className={cn(
-                            "font-bold tabular-nums w-8 text-right",
-                            item.score === null
-                              ? "text-muted-foreground/40"
-                              : item.score >= 5
-                              ? "text-emerald-600"
-                              : item.score >= 3
-                              ? "text-amber-600"
-                              : "text-red-600"
-                          )}
-                        >
-                          {item.score ?? "—"}
-                        </span>
+                        )}
                       </div>
                     );
                   })}

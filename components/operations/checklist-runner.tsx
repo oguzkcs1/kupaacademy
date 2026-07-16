@@ -3,7 +3,7 @@
 import { useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Camera, CheckCircle2, ChevronDown, Circle, ImagePlus, Loader2, Lock, PartyPopper,
+  Camera, CheckCircle2, ChevronDown, ImagePlus, Loader2, Lock, PartyPopper, Check,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -18,7 +18,7 @@ import { useOpsStore } from "@/lib/ops-store";
 import { useAuthStore } from "@/lib/store";
 import { useDataStore } from "@/lib/data-store";
 import { mockBranches } from "@/lib/mock-data";
-import { isSectionComplete, type ChecklistType } from "@/types/operations";
+import { isSectionComplete, isItemComplete, isRunPhotoComplete, type ChecklistType } from "@/types/operations";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 
@@ -37,39 +37,29 @@ export function ChecklistRunner({ type }: { type: ChecklistType }) {
   );
   const [openSection, setOpenSection] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [photoSectionId, setPhotoSectionId] = useState<string | null>(null);
+  const [photoTarget, setPhotoTarget] = useState<{ sectionId: string; itemId: string } | null>(null);
   const [submitting, setSubmitting] = useState(false);
-  const [uploadingSection, setUploadingSection] = useState<string | null>(null);
+  const [uploadingItem, setUploadingItem] = useState<string | null>(null);
   const [starting, setStarting] = useState(false);
 
   const today = new Date().toISOString().slice(0, 10);
   const run = runs.find(
     (r) => r.branchId === branchId && r.type === type && r.date === today
   );
-
   const locked = run?.status === "completed" || run?.status === "approved";
-
-  // İlk açık bölümü şablon yüklendiğinde ayarla
   const firstSectionId = template?.sections[0]?.id ?? null;
 
-  // İlerleme: fotoğrafı tamamlanan bölüm sayısı
+  // İlerleme: fotoğrafı çekilen madde / toplam madde
   const progress = useMemo(() => {
-    if (!run || !template) return 0;
-    const total = template.sections.length;
-    const done = run.sections.filter((sec) => {
-      const tpl = template.sections.find((t) => t.id === sec.sectionId);
-      return tpl ? isSectionComplete(sec, tpl) : false;
-    }).length;
+    if (!run) return 0;
+    let done = 0, total = 0;
+    for (const sec of run.sections) {
+      for (const it of sec.items) { total++; if (isItemComplete(it)) done++; }
+    }
     return total === 0 ? 0 : Math.round((done / total) * 100);
-  }, [run, template]);
+  }, [run]);
 
-  const allComplete = useMemo(() => {
-    if (!run || !template) return false;
-    return run.sections.every((sec) => {
-      const tpl = template.sections.find((t) => t.id === sec.sectionId);
-      return tpl ? isSectionComplete(sec, tpl) : false;
-    });
-  }, [run, template]);
+  const allComplete = useMemo(() => (run ? isRunPhotoComplete(run) : false), [run]);
 
   const handleStart = async () => {
     if (!user || !branchId || !template) return;
@@ -85,31 +75,33 @@ export function ChecklistRunner({ type }: { type: ChecklistType }) {
     }
   };
 
-  const handlePhotoClick = (sectionId: string) => {
-    setPhotoSectionId(sectionId);
+  const handlePhotoClick = (sectionId: string, itemId: string) => {
+    setPhotoTarget({ sectionId, itemId });
     fileInputRef.current?.click();
   };
 
   const handleFileSelected = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    const sectionId = photoSectionId;
+    const target = photoTarget;
     e.target.value = "";
-    if (!file || !run || !sectionId || !user || !template) return;
-    const sectionTpl = template.sections.find((s) => s.id === sectionId);
-    setUploadingSection(sectionId);
+    if (!file || !run || !target || !user || !template) return;
+    const sectionTpl = template.sections.find((s) => s.id === target.sectionId);
+    const itemTpl = sectionTpl?.items.find((i) => i.id === target.itemId);
+    setUploadingItem(target.itemId);
     try {
       await addPhoto(file, {
         branchId,
         userId: user.id,
         runId: run.id,
-        sectionId,
+        sectionId: target.sectionId,
+        itemId: target.itemId,
         categoryLabel: sectionTpl?.title ?? "",
       });
-      toast.success(`${sectionTpl?.title} fotoğrafı yüklendi`);
+      toast.success(`${itemTpl?.label ?? "Madde"} fotoğrafı yüklendi`);
     } catch {
       toast.error("Fotoğraf yüklenemedi — tekrar deneyin");
     } finally {
-      setUploadingSection(null);
+      setUploadingItem(null);
     }
   };
 
@@ -128,18 +120,19 @@ export function ChecklistRunner({ type }: { type: ChecklistType }) {
 
   if (!user) return null;
 
-  // Şablonlar henüz yüklenmediyse
   if (!template) {
     return (
       <div className="max-w-2xl">
         <Card>
           <CardContent className="py-12 text-center text-muted-foreground text-sm">
-            {_loaded ? "Şablon bulunamadı" : "Yükleniyor…"}
+            {_loaded ? "Şablon bulunamadı — Checklist Yönetimi'nden madde ekleyin" : "Yükleniyor…"}
           </CardContent>
         </Card>
       </div>
     );
   }
+
+  const totalItems = template.sections.reduce((a, s) => a + s.items.length, 0);
 
   return (
     <div className="space-y-5 max-w-2xl">
@@ -164,7 +157,6 @@ export function ChecklistRunner({ type }: { type: ChecklistType }) {
         {run && <RunStatusBadge status={run.status} />}
       </div>
 
-      {/* Henüz başlamadıysa */}
       {!run || run.status === "pending" ? (
         <Card className="border-dashed">
           <CardContent className="py-12 flex flex-col items-center text-center gap-4">
@@ -174,25 +166,21 @@ export function ChecklistRunner({ type }: { type: ChecklistType }) {
             <div>
               <p className="font-semibold">{template.title} henüz başlamadı</p>
               <p className="text-sm text-muted-foreground mt-1">
-                {template.sections.length} kategori · her kategori için fotoğraf zorunlu
+                {template.sections.length} bölüm · {totalItems} madde · her madde için ayrı fotoğraf
               </p>
             </div>
             <Button size="lg" onClick={handleStart} disabled={starting} className="min-w-44">
               {starting ? (
                 <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Başlatılıyor…</>
-              ) : (
-                "Kontrole Başla"
-              )}
+              ) : "Kontrole Başla"}
             </Button>
           </CardContent>
         </Card>
       ) : locked ? (
-        /* Tamamlandı ekranı */
         <Card>
           <CardContent className="py-12 flex flex-col items-center text-center gap-4">
             <motion.div
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
+              initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
               className="w-16 h-16 rounded-2xl bg-emerald-100 dark:bg-emerald-950/50 flex items-center justify-center"
             >
               <PartyPopper className="w-7 h-7 text-emerald-600" />
@@ -200,9 +188,7 @@ export function ChecklistRunner({ type }: { type: ChecklistType }) {
             <div>
               <p className="font-semibold text-lg">Bugünkü {template.title.toLowerCase()} tamamlandı</p>
               <p className="text-sm text-muted-foreground mt-1">
-                {run.status === "approved"
-                  ? "Merkez tarafından değerlendirildi"
-                  : "Merkez puanlaması bekleniyor"}
+                {run.status === "approved" ? "Merkez tarafından değerlendirildi" : "Merkez puanlaması bekleniyor"}
               </p>
             </div>
             {run.score != null ? (
@@ -211,14 +197,10 @@ export function ChecklistRunner({ type }: { type: ChecklistType }) {
                 <span className="text-muted-foreground text-xl font-medium"> / 100</span>
               </div>
             ) : (
-              <Badge variant="secondary" className="text-sm px-3 py-1">
-                Puanlama merkez tarafından yapılacak
-              </Badge>
+              <Badge variant="secondary" className="text-sm px-3 py-1">Puanlama merkez tarafından yapılacak</Badge>
             )}
             {run.managerComment && (
-              <p className="text-sm text-muted-foreground max-w-sm italic">
-                “{run.managerComment}”
-              </p>
+              <p className="text-sm text-muted-foreground max-w-sm italic">“{run.managerComment}”</p>
             )}
           </CardContent>
         </Card>
@@ -227,41 +209,33 @@ export function ChecklistRunner({ type }: { type: ChecklistType }) {
           {/* İlerleme */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between text-xs text-muted-foreground">
-              <span>İlerleme</span>
+              <span>İlerleme · fotoğraflanan maddeler</span>
               <span className="tabular-nums font-medium">%{progress}</span>
             </div>
             <Progress value={progress} className="h-2" />
           </div>
 
-          {/* Kategori kartları */}
+          {/* Bölümler */}
           <div className="space-y-3">
             {template.sections.map((sectionTpl) => {
-              const sectionRun = run.sections.find((s) => s.sectionId === sectionTpl.id)!;
+              const sectionRun = run.sections.find((s) => s.sectionId === sectionTpl.id);
+              if (!sectionRun) return null;
               const complete = isSectionComplete(sectionRun, sectionTpl);
               const isOpen = openSection === sectionTpl.id;
-              const sectionPhotos = photos.filter((p) =>
-                sectionRun.photoIds.includes(p.id)
-              );
+              const doneCount = sectionRun.items.filter(isItemComplete).length;
 
               return (
                 <Card
                   key={sectionTpl.id}
-                  className={cn(
-                    "overflow-hidden transition-colors",
-                    complete && "border-emerald-300 dark:border-emerald-800"
-                  )}
+                  className={cn("overflow-hidden transition-colors", complete && "border-emerald-300 dark:border-emerald-800")}
                 >
-                  <button
-                    className="w-full text-left"
-                    onClick={() => setOpenSection(isOpen ? null : sectionTpl.id)}
-                  >
+                  <button className="w-full text-left" onClick={() => setOpenSection(isOpen ? null : sectionTpl.id)}>
                     <CardHeader className="py-4 flex flex-row items-center gap-3 space-y-0">
                       <span className="text-2xl">{sectionTpl.emoji}</span>
                       <div className="flex-1 min-w-0">
                         <CardTitle className="text-base">{sectionTpl.title}</CardTitle>
                         <p className="text-xs text-muted-foreground mt-0.5">
-                          {sectionTpl.items.length} kontrol noktası
-                          {sectionTpl.photoRequired && ` · ${sectionRun.photoIds.length} fotoğraf`}
+                          {doneCount}/{sectionTpl.items.length} madde fotoğraflandı
                         </p>
                       </div>
                       {complete ? (
@@ -275,57 +249,63 @@ export function ChecklistRunner({ type }: { type: ChecklistType }) {
                   <AnimatePresence initial={false}>
                     {isOpen && (
                       <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
+                        initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2 }}
                       >
-                        <CardContent className="pt-0 pb-4 space-y-4">
-                          {/* Kontrol noktaları — bilgilendirme listesi */}
-                          <div className="space-y-2">
-                            {sectionTpl.items.map((item) => (
-                              <div key={item.id} className="flex items-center gap-2.5 text-sm">
-                                <Circle className="w-3.5 h-3.5 text-muted-foreground/40 flex-shrink-0" />
-                                <span>{item.label}</span>
-                              </div>
-                            ))}
-                          </div>
-
-                          {/* Çekilen fotoğraflar */}
-                          {sectionPhotos.length > 0 && (
-                            <div className="grid grid-cols-4 gap-2">
-                              {sectionPhotos.map((p) => (
-                                <div key={p.id} className="aspect-square rounded-lg overflow-hidden bg-muted">
-                                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                                  <img src={p.url} alt={p.categoryLabel} className="w-full h-full object-cover" />
-                                </div>
-                              ))}
-                            </div>
-                          )}
-
-                          {/* Fotoğraf */}
-                          {sectionTpl.photoRequired && (
-                            <div className="pt-2 border-t border-border/60">
-                              <Button
-                                variant={sectionRun.photoIds.length > 0 ? "outline" : "default"}
-                                size="sm"
-                                onClick={() => handlePhotoClick(sectionTpl.id)}
-                                disabled={uploadingSection === sectionTpl.id}
-                                className="w-full sm:w-auto"
-                              >
-                                {uploadingSection === sectionTpl.id ? (
-                                  <><Loader2 className="w-4 h-4 mr-1.5 animate-spin" />Yükleniyor…</>
-                                ) : (
-                                  <>
-                                    <ImagePlus className="w-4 h-4 mr-1.5" />
-                                    {sectionRun.photoIds.length > 0
-                                      ? `Fotoğraf Ekle (${sectionRun.photoIds.length})`
-                                      : "Fotoğraf Çek (zorunlu)"}
-                                  </>
+                        <CardContent className="pt-0 pb-4 space-y-3">
+                          {sectionTpl.items.map((item) => {
+                            const itemRun = sectionRun.items.find((i) => i.itemId === item.id);
+                            const itemPhotos = photos.filter((p) => itemRun?.photoIds.includes(p.id));
+                            const done = itemRun ? isItemComplete(itemRun) : false;
+                            const uploading = uploadingItem === item.id;
+                            return (
+                              <div
+                                key={item.id}
+                                className={cn(
+                                  "rounded-xl border p-3 transition-colors",
+                                  done ? "border-emerald-300 bg-emerald-50/50 dark:bg-emerald-950/20 dark:border-emerald-800" : "border-border"
                                 )}
-                              </Button>
-                            </div>
-                          )}
+                              >
+                                <div className="flex items-center gap-2.5">
+                                  <span className={cn(
+                                    "w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0",
+                                    done ? "bg-emerald-500 text-white" : "border-2 border-muted-foreground/30"
+                                  )}>
+                                    {done && <Check className="w-3 h-3" strokeWidth={3} />}
+                                  </span>
+                                  <span className="text-sm font-medium flex-1">{item.label}</span>
+                                </div>
+
+                                {/* Bu maddenin fotoğrafları */}
+                                {itemPhotos.length > 0 && (
+                                  <div className="grid grid-cols-4 gap-2 mt-2.5 pl-7">
+                                    {itemPhotos.map((p) => (
+                                      <div key={p.id} className="aspect-square rounded-lg overflow-hidden bg-muted">
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img src={p.url} alt={item.label} className="w-full h-full object-cover" />
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+
+                                <div className="pl-7 mt-2.5">
+                                  <Button
+                                    variant={done ? "outline" : "default"}
+                                    size="sm"
+                                    disabled={uploading}
+                                    onClick={() => handlePhotoClick(sectionTpl.id, item.id)}
+                                    className="w-full sm:w-auto"
+                                  >
+                                    {uploading ? (
+                                      <><Loader2 className="w-4 h-4 mr-1.5 animate-spin" />Yükleniyor…</>
+                                    ) : (
+                                      <><ImagePlus className="w-4 h-4 mr-1.5" />{done ? "Yeniden Çek / Ekle" : "Fotoğraf Çek"}</>
+                                    )}
+                                  </Button>
+                                </div>
+                              </div>
+                            );
+                          })}
                         </CardContent>
                       </motion.div>
                     )}
@@ -336,19 +316,18 @@ export function ChecklistRunner({ type }: { type: ChecklistType }) {
           </div>
 
           {/* Gönder */}
-          <div className="sticky bottom-4 pt-2">
+          <div className="sticky bottom-20 lg:bottom-4 pt-2">
             <Button
-              size="lg"
-              className="w-full shadow-lg"
+              size="lg" className="w-full shadow-lg"
               disabled={!allComplete || submitting}
               onClick={handleSubmit}
             >
               {submitting ? (
-                <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Gönderiliyor...</>
+                <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Gönderiliyor…</>
               ) : allComplete ? (
                 <>Kontrolü Tamamla ve Merkeze Gönder</>
               ) : (
-                <><Lock className="w-4 h-4 mr-2" />Tüm kategorilerin fotoğrafı çekilmeli</>
+                <><Lock className="w-4 h-4 mr-2" />Her maddenin fotoğrafı çekilmeli</>
               )}
             </Button>
           </div>

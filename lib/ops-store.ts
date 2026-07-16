@@ -23,10 +23,10 @@ interface OpsState {
 
   startRun: (branchId: string, userId: string, type: ChecklistType) => Promise<ChecklistRun | undefined>;
   setItemScore: (runId: string, sectionId: string, itemId: string, score: ItemScore) => Promise<void>;
-  /** Fotoğrafı Storage'a yükler ve run'a bağlar */
+  /** Fotoğrafı Storage'a yükler ve ilgili MADDEYE bağlar */
   addPhoto: (
     file: File | Blob,
-    meta: { branchId: string; userId: string; runId: string; sectionId: string; categoryLabel: string }
+    meta: { branchId: string; userId: string; runId: string; sectionId: string; itemId: string; categoryLabel: string }
   ) => Promise<void>;
   completeRun: (runId: string) => Promise<void>;
   approveRun: (runId: string, comment?: string) => Promise<void>;
@@ -122,7 +122,7 @@ export const useOpsStore = create<OpsState>()((set, get) => ({
       status: "in_progress",
       sections: template.sections.map((sec) => ({
         sectionId: sec.id,
-        items: sec.items.map((item) => ({ itemId: item.id, score: null })),
+        items: sec.items.map((item) => ({ itemId: item.id, score: null, photoIds: [] })),
         photoIds: [],
       })),
     };
@@ -163,19 +163,28 @@ export const useOpsStore = create<OpsState>()((set, get) => ({
       userId: meta.userId,
       runId: meta.runId,
       sectionId: meta.sectionId,
+      itemId: meta.itemId,
       categoryLabel: meta.categoryLabel,
       takenAt: new Date().toISOString(),
     };
     await db.insertOpsPhoto(photo);
 
-    // 3) Run'ın section.photoIds listesine ekle
+    // 3) Fotoğrafı ilgili MADDEYE bağla (hem madde hem bölüm listesine)
     const run = get().runs.find((r) => r.id === meta.runId);
     if (run) {
       const updatedRun: ChecklistRun = {
         ...run,
         sections: run.sections.map((sec) =>
           sec.sectionId === meta.sectionId
-            ? { ...sec, photoIds: [...sec.photoIds, photo.id] }
+            ? {
+                ...sec,
+                photoIds: [...sec.photoIds, photo.id],
+                items: sec.items.map((i) =>
+                  i.itemId === meta.itemId
+                    ? { ...i, photoIds: [...(i.photoIds ?? []), photo.id] }
+                    : i
+                ),
+              }
             : sec
         ),
       };
