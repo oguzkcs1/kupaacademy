@@ -20,7 +20,6 @@ import { scoreColor } from "@/components/operations/score-badge";
 import { useOpsStore } from "@/lib/ops-store";
 import { useDataStore } from "@/lib/data-store";
 import { useAuthStore } from "@/lib/store";
-import { mockBranches } from "@/lib/mock-data";
 import {
   MAX_ITEM_SCORE, SCORE_OPTIONS, calculateRunScore, isRunFullyScored,
 } from "@/types/operations";
@@ -41,7 +40,7 @@ export default function AuditDetailPage() {
   const { user } = useAuthStore();
   const { runs, photos, templates, approveRun, requestRevision, setItemScore } = useOpsStore();
   const { branches: dataBranches, users } = useDataStore();
-  const branches = dataBranches.length > 0 ? dataBranches : mockBranches;
+  const branches = dataBranches;
 
   const run = runs.find((r) => r.id === params.id);
   const [comment, setComment] = useState("");

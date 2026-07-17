@@ -355,11 +355,15 @@ function ResetPasswordDialog({ user, onClose }: { user: User; onClose: () => voi
   const handleReset = async () => {
     if (newPassword.length < 6) { toast.error("Şifre en az 6 karakter olmalı"); return; }
     setSaving(true);
-    await new Promise((r) => setTimeout(r, 400));
-    updateUser(user.id, { password: newPassword });
-    setSaving(false);
-    toast.success(`${user.name} için şifre sıfırlandı`);
-    onClose();
+    try {
+      await updateUser(user.id, { password: newPassword });
+      toast.success(`${user.name} için şifre sıfırlandı`);
+      onClose();
+    } catch {
+      toast.error("Şifre sıfırlanamadı. Lütfen tekrar deneyin.");
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (

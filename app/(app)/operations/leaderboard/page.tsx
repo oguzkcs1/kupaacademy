@@ -7,7 +7,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useOpsStore } from "@/lib/ops-store";
 import { useDataStore } from "@/lib/data-store";
 import { useAuthStore } from "@/lib/store";
-import { mockBranches } from "@/lib/mock-data";
 import { scoreColor } from "@/components/operations/score-badge";
 import { cn } from "@/lib/utils";
 
@@ -35,7 +34,7 @@ export default function LeaderboardPage() {
   const { user } = useAuthStore();
   const { runs } = useOpsStore();
   const { branches: dataBranches } = useDataStore();
-  const branches = (dataBranches.length > 0 ? dataBranches : mockBranches).filter((b) => b.status === "active");
+  const branches = dataBranches.filter((b) => b.status === "active");
   const [period, setPeriod] = useState<Period>("month");
 
   const ranking = useMemo(() => {

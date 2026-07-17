@@ -2,7 +2,7 @@
  * Supabase data access layer — replaces Zustand data store for server data.
  * All functions return typed data or throw on error.
  */
-import { supabase } from "./supabase";
+import { getDatabaseSession, setDatabaseSession, supabase } from "./supabase";
 import type {
   Training, Video, Recipe, Announcement, User, Badge,
   Category, Document, DocumentFolder, TrainingCompletion,
@@ -388,13 +388,16 @@ export async function deleteDocument(id: string) {
 // ─── Users ────────────────────────────────────────────────────────────────────
 
 export async function getUsers(): Promise<User[]> {
-  const { data, error } = await supabase.from("users").select("*").order("name");
+  // Şifre hash'leri hiçbir zaman tarayıcıya indirilmez.
+  const { data, error } = await supabase
+    .from("users")
+    .select("id,name,username,email,role,avatar,company_id,branch_id,department,position,status,created_at,last_login_at")
+    .order("name");
   if (error) throw error;
   return (data ?? []).map((r) => ({
     id: r.id,
     name: r.name,
     username: r.username,
-    password: r.password,
     email: r.email,
     role: r.role,
     avatar: r.avatar,
@@ -419,14 +422,18 @@ export async function login(username: string, password: string): Promise<User | 
     p_password: password,
   });
   if (error || !data) return null;
-  const d = data as Record<string, unknown>;
+  const raw = data as Record<string, unknown>;
+  // security-v2.sql sonrası cevap { user, sessionToken } biçimindedir.
+  // Eski RPC cevabını da geçiş sürecinde destekle.
+  const d = (raw.user ?? raw) as Record<string, unknown>;
+  const sessionToken = raw.sessionToken as string | undefined;
+  if (sessionToken) setDatabaseSession(sessionToken);
   // son giriş zamanını güncelle (hata olsa da girişi engellemesin)
   supabase.rpc("app_touch_last_login", { p_user_id: d.id as string }).then(() => {}, () => {});
   return {
     id: d.id as string,
     name: d.name as string,
     username: d.username as string,
-    password: "",
     email: (d.email as string) ?? undefined,
     role: d.role as User["role"],
     avatar: (d.avatar as string) ?? undefined,
@@ -441,12 +448,19 @@ export async function login(username: string, password: string): Promise<User | 
   };
 }
 
+export async function logout() {
+  const token = typeof window !== "undefined" ? localStorage.getItem("kupa-db-session") : null;
+  if (token) {
+    try { await supabase.rpc("app_logout", { p_token: token }); } catch { /* yerel çıkışı engelleme */ }
+  }
+  setDatabaseSession();
+}
+
 export async function upsertUser(u: Partial<User> & { id: string }) {
-  const { error } = await supabase.from("users").upsert({
+  const payload: Record<string, unknown> = {
     id: u.id,
     name: u.name,
     username: u.username,
-    password: u.password,
     email: u.email,
     role: u.role ?? "barista",
     avatar: u.avatar,
@@ -455,8 +469,22 @@ export async function upsertUser(u: Partial<User> & { id: string }) {
     department: u.department,
     position: u.position,
     status: u.status ?? "active",
+  };
+  // Boş/eksik şifre mevcut hash'i ezmemeli.
+  if (u.password?.trim()) payload.password = u.password;
+  const { error } = await supabase.from("users").upsert(payload);
+  if (error) throw error;
+}
+
+/** Kullanıcının mevcut şifresini doğrulayıp yeni şifreyi sunucuda hash'leyerek değiştirir. */
+export async function changePassword(userId: string, currentPassword: string, newPassword: string) {
+  const { data, error } = await supabase.rpc("app_change_password", {
+    p_user_id: userId,
+    p_current_password: currentPassword,
+    p_new_password: newPassword,
   });
   if (error) throw error;
+  return data === true;
 }
 
 export async function deleteUser(id: string) {
@@ -871,4 +899,46 @@ export async function uploadCV(file: File): Promise<{ url: string; path: string 
   if (error) throw error;
   const { data } = supabase.storage.from("cv-files").getPublicUrl(path);
   return { url: data.publicUrl, path };
+}
+
+// ─── Push Abonelikleri ────────────────────────────────────────────────────────
+
+export async function savePushSubscription(s: {
+  id: string; userId: string; endpoint: string; p256dh: string; auth: string; userAgent?: string;
+}) {
+  const { error } = await supabase.from("push_subscriptions").upsert(
+    {
+      id: s.id, user_id: s.userId, endpoint: s.endpoint,
+      p256dh: s.p256dh, auth: s.auth, user_agent: s.userAgent ?? null,
+    },
+    { onConflict: "endpoint" }
+  );
+  if (error) throw error;
+}
+
+export async function deletePushSubscription(endpoint: string) {
+  const { error } = await supabase.from("push_subscriptions").delete().eq("endpoint", endpoint);
+  if (error) throw error;
+}
+
+/** Edge function'ı tetikleyerek push gönderir (fire-and-forget kullanılır) */
+export async function sendPushToUsers(
+  userIds: string[],
+  payload: { title: string; body: string; url?: string; tag?: string }
+) {
+  if (!userIds.length) return;
+  const base = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const session = getDatabaseSession();
+  if (!base || !key || !session) return;
+  await fetch(`${base}/functions/v1/send-push`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      apikey: key,
+      Authorization: `Bearer ${key}`,
+      "x-kupa-session": session,
+    },
+    body: JSON.stringify({ userIds, ...payload }),
+  });
 }

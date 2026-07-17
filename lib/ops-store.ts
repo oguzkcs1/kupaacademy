@@ -17,7 +17,9 @@ interface OpsState {
   tasks: OpsTask[];
 
   _loaded: boolean;
+  _error: string | null;
   loadAll: () => Promise<void>;
+  retryLoad: () => Promise<void>;
 
   getTemplate: (type: ChecklistType) => ChecklistTemplate | undefined;
   getTodayRun: (branchId: string, type: ChecklistType) => ChecklistRun | undefined;
@@ -65,9 +67,11 @@ export const useOpsStore = create<OpsState>()((set, get) => ({
   photos: [],
   tasks: [],
   _loaded: false,
+  _error: null,
 
   loadAll: async () => {
     if (get()._loaded) return;
+    set({ _error: null });
     try {
       const [templates, runs, photos, tasks] = await Promise.all([
         db.getOpsTemplates(),
@@ -80,7 +84,12 @@ export const useOpsStore = create<OpsState>()((set, get) => ({
       // Tablolar henüz oluşturulmadıysa (ops-schema.sql çalıştırılmadıysa)
       // uygulama çökmez; boş durumda kalır.
       console.error("[ops] loadAll error — ops-schema.sql çalıştırıldı mı?", err);
+      set({ _error: "Operasyon verileri yüklenemedi. Lütfen tekrar deneyin." });
     }
+  },
+  retryLoad: async () => {
+    set({ _loaded: false, _error: null });
+    await get().loadAll();
   },
 
   getTemplate: (type) => get().templates.find((t) => t.type === type),

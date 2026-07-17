@@ -13,6 +13,7 @@ import { useDataStore } from "@/lib/data-store";
 import { ROLE_LABELS, getInitials, formatDate } from "@/lib/utils";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
+import { changePassword } from "@/lib/db";
 
 export default function ProfilePage() {
   const { user, setUser } = useAuthStore();
@@ -35,25 +36,35 @@ export default function ProfilePage() {
   const handleSaveProfile = async () => {
     if (!name.trim()) { toast.error("Ad soyad boş olamaz"); return; }
     setSaving(true);
-    await new Promise((r) => setTimeout(r, 400));
-    updateUser(user.id, { name });
-    setUser({ ...user, name });
-    setSaving(false);
-    toast.success("Profil güncellendi");
+    try {
+      await updateUser(user.id, { name });
+      setUser({ ...user, name });
+      toast.success("Profil güncellendi");
+    } catch {
+      toast.error("Profil güncellenemedi. Lütfen tekrar deneyin.");
+    } finally {
+      setSaving(false);
+    }
   };
 
   const handleChangePassword = async () => {
     if (!currentPassword || !newPassword) { toast.error("Mevcut ve yeni şifre zorunlu"); return; }
-    if (currentPassword !== user.password) { toast.error("Mevcut şifre hatalı"); return; }
     if (newPassword.length < 6) { toast.error("Yeni şifre en az 6 karakter olmalı"); return; }
     setSavingPw(true);
-    await new Promise((r) => setTimeout(r, 400));
-    updateUser(user.id, { password: newPassword });
-    setUser({ ...user, password: newPassword });
-    setCurrentPassword("");
-    setNewPassword("");
-    setSavingPw(false);
-    toast.success("Şifre güncellendi");
+    try {
+      const changed = await changePassword(user.id, currentPassword, newPassword);
+      if (!changed) {
+        toast.error("Mevcut şifre hatalı");
+        return;
+      }
+      setCurrentPassword("");
+      setNewPassword("");
+      toast.success("Şifre güncellendi");
+    } catch {
+      toast.error("Şifre güncellenemedi. Lütfen tekrar deneyin.");
+    } finally {
+      setSavingPw(false);
+    }
   };
 
   return (

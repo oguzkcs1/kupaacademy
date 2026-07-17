@@ -16,7 +16,6 @@ import { ScoreBadge, scoreColor } from "@/components/operations/score-badge";
 import { useOpsStore } from "@/lib/ops-store";
 import { useDataStore } from "@/lib/data-store";
 import { useAuthStore } from "@/lib/store";
-import { mockBranches } from "@/lib/mock-data";
 import { cn } from "@/lib/utils";
 
 const container = { hidden: {}, show: { transition: { staggerChildren: 0.06 } } };
@@ -61,7 +60,7 @@ export default function OperationsDashboardPage() {
 
   const { runs, photos } = useOpsStore();
   const { branches: dataBranches, users } = useDataStore();
-  const branches = dataBranches.length > 0 ? dataBranches : mockBranches;
+  const branches = dataBranches;
   const activeBranches = branches.filter((b) => b.status === "active");
 
   if (user && !isAdmin) return null;

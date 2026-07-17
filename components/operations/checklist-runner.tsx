@@ -17,7 +17,6 @@ import { scoreColor } from "@/components/operations/score-badge";
 import { useOpsStore } from "@/lib/ops-store";
 import { useAuthStore } from "@/lib/store";
 import { useDataStore } from "@/lib/data-store";
-import { mockBranches } from "@/lib/mock-data";
 import { isSectionComplete, isItemComplete, isRunPhotoComplete, type ChecklistType } from "@/types/operations";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
@@ -25,7 +24,7 @@ import { toast } from "sonner";
 export function ChecklistRunner({ type }: { type: ChecklistType }) {
   const { user } = useAuthStore();
   const { branches: dataBranches } = useDataStore();
-  const branches = dataBranches.length > 0 ? dataBranches : mockBranches;
+  const branches = dataBranches;
   const activeBranches = branches.filter((b) => b.status === "active");
 
   const { getTemplate, runs, startRun, addPhoto, completeRun, photos, _loaded } = useOpsStore();

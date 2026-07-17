@@ -20,7 +20,6 @@ import {
 import { useOpsStore } from "@/lib/ops-store";
 import { useDataStore } from "@/lib/data-store";
 import { useAuthStore } from "@/lib/store";
-import { mockBranches } from "@/lib/mock-data";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 
@@ -28,7 +27,7 @@ export default function OpsTasksPage() {
   const { user } = useAuthStore();
   const { tasks, addTask, toggleTask } = useOpsStore();
   const { branches: dataBranches, users } = useDataStore();
-  const branches = dataBranches.length > 0 ? dataBranches : mockBranches;
+  const branches = dataBranches;
   const activeBranches = branches.filter((b) => b.status === "active");
   const isAdmin = user?.role === "admin";
 

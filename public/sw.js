@@ -1,6 +1,6 @@
 // Kupa Academy Service Worker
 // Sürüm değişince eski cache temizlenir — deploy sonrası bayat kod servis edilmez.
-const VERSION = "kupa-v1";
+const VERSION = "kupa-v2";
 const STATIC_CACHE = `${VERSION}-static`;
 const OFFLINE_URL = "/offline.html";
 
@@ -60,5 +60,35 @@ self.addEventListener("fetch", (event) => {
         return res;
       })
       .catch(() => caches.match(request))
+  );
+});
+
+// ── Push bildirimleri ────────────────────────────────────────────────
+self.addEventListener("push", (event) => {
+  let data = {};
+  try { data = event.data ? event.data.json() : {}; } catch { data = { title: "Kupa Academy", body: event.data && event.data.text() }; }
+  const title = data.title || "Kupa Academy";
+  const options = {
+    body: data.body || "",
+    icon: "/icon-192.png",
+    badge: "/icon-192.png",
+    data: { url: data.url || "/dashboard" },
+    tag: data.tag,
+    renotify: !!data.tag,
+    vibrate: [80, 40, 80],
+  };
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  const url = (event.notification.data && event.notification.data.url) || "/dashboard";
+  event.waitUntil(
+    self.clients.matchAll({ type: "window", includeUncontrolled: true }).then((list) => {
+      for (const client of list) {
+        if ("focus" in client) { client.navigate(url); return client.focus(); }
+      }
+      if (self.clients.openWindow) return self.clients.openWindow(url);
+    })
   );
 });

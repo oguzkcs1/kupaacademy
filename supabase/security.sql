@@ -49,3 +49,33 @@ returns void as $$
   update users set last_login_at = now() where id = p_user_id;
 $$ language sql security definer;
 grant execute on function app_touch_last_login(text) to anon, authenticated;
+
+-- 5) Kullanıcının kendi şifresini mevcut şifresini doğrulayarak değiştirmesi.
+-- Şifre karşılaştırması ve güncelleme tamamen veritabanında gerçekleşir.
+create or replace function app_change_password(
+  p_user_id text,
+  p_current_password text,
+  p_new_password text
+)
+returns boolean as $$
+declare
+  current_hash text;
+begin
+  if length(coalesce(p_new_password, '')) < 6 then
+    return false;
+  end if;
+
+  select password into current_hash from users where id = p_user_id and status = 'active';
+  if current_hash is null or current_hash <> crypt(p_current_password, current_hash) then
+    return false;
+  end if;
+
+  update users
+  set password = crypt(p_new_password, gen_salt('bf'))
+  where id = p_user_id;
+  return true;
+end;
+$$ language plpgsql security definer set search_path = public, extensions;
+
+revoke all on function app_change_password(text, text, text) from public;
+grant execute on function app_change_password(text, text, text) to anon, authenticated;

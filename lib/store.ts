@@ -3,7 +3,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { User } from "@/types";
-import { login as dbLogin } from "@/lib/db";
+import { login as dbLogin, logout as dbLogout } from "@/lib/db";
 
 interface AuthState {
   user: User | null;
@@ -38,6 +38,7 @@ export const useAuthStore = create<AuthState>()(
       },
 
       logout: () => {
+        dbLogout().catch(() => undefined);
         set({ user: null, isAuthenticated: false });
       },
 
@@ -46,7 +47,8 @@ export const useAuthStore = create<AuthState>()(
       },
     }),
     {
-      name: "auth-storage-v2",
+      // v3: veritabanı oturum anahtarlı güvenli giriş
+      name: "auth-storage-v3",
       partialize: (state) => ({
         user: state.user,
         isAuthenticated: state.isAuthenticated,

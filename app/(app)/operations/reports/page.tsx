@@ -8,7 +8,6 @@ import { Badge } from "@/components/ui/badge";
 import { scoreColor } from "@/components/operations/score-badge";
 import { useOpsStore } from "@/lib/ops-store";
 import { useDataStore } from "@/lib/data-store";
-import { mockBranches } from "@/lib/mock-data";
 import { MAX_ITEM_SCORE } from "@/types/operations";
 import { cn } from "@/lib/utils";
 
@@ -42,7 +41,7 @@ function HBar({ label, value, detail, delay }: { label: string; value: number; d
 export default function OpsReportsPage() {
   const { runs, templates } = useOpsStore();
   const { branches: dataBranches } = useDataStore();
-  const branches = dataBranches.length > 0 ? dataBranches : mockBranches;
+  const branches = dataBranches;
   const activeBranches = branches.filter((b) => b.status === "active");
 
   const scoredRuns = useMemo(() => runs.filter((r) => r.score != null), [runs]);

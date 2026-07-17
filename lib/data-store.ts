@@ -33,7 +33,9 @@ interface DataState {
 
   // Hydration
   _loaded: boolean;
+  _error: string | null;
   loadAll: () => Promise<void>;
+  retryLoad: () => Promise<void>;
 
   // Training CRUD
   addTraining: (training: Training) => Promise<void>;
@@ -116,31 +118,33 @@ export const useDataStore = create<DataState>()((set, get) => ({
   documents: [],
   documentFolders: [],
   _loaded: false,
+  _error: null,
 
   loadAll: async () => {
     if (get()._loaded) return;
-    const [
-      trainings, videos, recipes, announcements, users,
-      badges, categories, branches, documents, documentFolders,
-    ] = await Promise.all([
-      db.getTrainings(),
-      db.getVideos(),
-      db.getRecipes(),
-      db.getAnnouncements(),
-      db.getUsers(),
-      db.getBadges(),
-      db.getCategories(),
-      db.getBranches(),
-      db.getDocuments(),
-      db.getDocumentFolders(),
-    ]);
-    const notifications = await db.getAllNotifications().catch(() => []);
-    set({
-      trainings, videos, recipes, announcements, users,
-      badges, categories, branches, documents, documentFolders,
-      notifications,
-      _loaded: true,
-    });
+    set({ _error: null });
+    try {
+      const [
+        trainings, videos, recipes, announcements, users,
+        badges, categories, branches, documents, documentFolders,
+      ] = await Promise.all([
+        db.getTrainings(), db.getVideos(), db.getRecipes(), db.getAnnouncements(),
+        db.getUsers(), db.getBadges(), db.getCategories(), db.getBranches(),
+        db.getDocuments(), db.getDocumentFolders(),
+      ]);
+      const notifications = await db.getAllNotifications().catch(() => []);
+      set({
+        trainings, videos, recipes, announcements, users, badges, categories,
+        branches, documents, documentFolders, notifications, _loaded: true,
+      });
+    } catch (error) {
+      console.error("[data] loadAll error", error);
+      set({ _error: "Academy verileri yüklenemedi. İnternet bağlantınızı kontrol edin." });
+    }
+  },
+  retryLoad: async () => {
+    set({ _loaded: false, _error: null });
+    await get().loadAll();
   },
 
   // ── Training ────────────────────────────────────────────────────────────────
@@ -217,12 +221,14 @@ export const useDataStore = create<DataState>()((set, get) => ({
   // ── User ────────────────────────────────────────────────────────────────────
   addUser: async (user) => {
     await db.upsertUser(user);
-    set((s) => ({ users: [user, ...s.users] }));
+    const { password: _password, ...safeUser } = user;
+    set((s) => ({ users: [safeUser, ...s.users] }));
   },
   updateUser: async (id, data) => {
     const updated = { ...get().users.find((u) => u.id === id)!, ...data };
     await db.upsertUser(updated);
-    set((s) => ({ users: s.users.map((u) => u.id === id ? updated : u) }));
+    const { password: _password, ...safeUser } = updated;
+    set((s) => ({ users: s.users.map((u) => u.id === id ? safeUser : u) }));
   },
   deleteUser: async (id) => {
     await db.deleteUser(id);
@@ -394,6 +400,12 @@ export const useDataStore = create<DataState>()((set, get) => ({
     }));
     await db.insertNotifications(notifs);
     set((s) => ({ notifications: [...notifs, ...s.notifications] }));
+    // Telefon push bildirimi (uygulama kapalıyken de düşer) — fire & forget
+    const url =
+      n.type === "announcement" ? "/announcements"
+      : n.type === "training" ? "/trainings"
+      : "/dashboard";
+    db.sendPushToUsers(ids, { title: n.title, body: n.message, url, tag: n.type }).catch(() => {});
   },
 
   notifyAll: async (n, opts) => {

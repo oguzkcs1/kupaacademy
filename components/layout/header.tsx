@@ -8,6 +8,7 @@ import {
   CheckCheck, GraduationCap, Megaphone, Star,
 } from "lucide-react";
 import { KupaLogo } from "@/components/kupa-logo";
+import { PushToggle } from "@/components/push-toggle";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -131,6 +132,7 @@ export function Header() {
                   </button>
                 )}
               </div>
+              <PushToggle />
               <div className="max-h-80 overflow-y-auto">
                 {notifications.length === 0 ? (
                   <div className="text-center py-8 text-muted-foreground">

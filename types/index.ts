@@ -4,7 +4,8 @@ export interface User {
   id: string;
   name: string;
   username: string;
-  password: string;
+  /** Yalnızca kullanıcı oluşturma/şifre sıfırlama isteklerinde kullanılır. */
+  password?: string;
   email?: string;
   role: UserRole;
   avatar?: string;

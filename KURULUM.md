@@ -27,10 +27,31 @@ npm run dev
 
 Uygulama `http://localhost:3000` adresinde açılır.
 
-## 4. Demo Giriş Bilgileri
+## 4. Ortam Değişkenleri
 
-- **E-posta:** ahmet@kupacoffee.com  
-- **Şifre:** demo123
+`.env.local` ve Vercel ortamına şunları ekleyin:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+NEXT_PUBLIC_VAPID_PUBLIC_KEY=...
+```
+
+VAPID private key yalnız Supabase Edge Function secret olarak saklanmalıdır.
+
+## 5. Supabase SQL Sırası
+
+Yeni kurulumda SQL Editor içinde sırasıyla:
+
+1. `supabase/schema.sql`
+2. `supabase/ops-schema.sql`
+3. `supabase/ops-item-photos.sql`
+4. `supabase/career-schema.sql`
+5. `supabase/security.sql`
+6. `supabase/push-schema.sql`
+7. `supabase/security-v2.sql` — her zaman en son
+
+`security-v2.sql` çalışınca mevcut oturumlar kapanır; kullanıcılar yeniden giriş yapar.
 
 ## Proje Yapısı
 
@@ -42,8 +63,8 @@ kupaacademy/
 │       ├── dashboard/          # Ana panel
 │       ├── trainings/          # Eğitimler
 │       ├── videos/             # Videolar
-│       ├── sops/               # SOP'lar
 │       ├── recipes/            # Reçeteler
+│       ├── operations/         # Operasyon merkezi
 │       ├── products/           # Ürünler
 │       ├── documents/          # Dokümanlar
 │       ├── announcements/      # Duyurular
@@ -61,16 +82,16 @@ kupaacademy/
 │   ├── ui/                     # Tüm UI bileşenleri
 │   └── providers/              # Theme provider
 ├── lib/
-│   ├── mock-data.ts            # Demo veriler
-│   ├── store.ts                # Zustand state management
+│   ├── db.ts                   # Supabase veri erişim katmanı
+│   ├── data-store.ts           # Academy Zustand store
+│   ├── ops-store.ts            # Operasyon Zustand store
+│   ├── store.ts                # Oturum ve UI state
 │   └── utils.ts                # Yardımcı fonksiyonlar
 └── types/index.ts              # TypeScript tipleri
 ```
 
-## Sonraki Adımlar (Backend Entegrasyonu)
+## Production Build
 
-1. **Supabase** kurulumu — PostgreSQL + Auth + Storage
-2. `lib/mock-data.ts` → gerçek API çağrılarıyla değiştir
-3. `lib/store.ts` → Supabase Auth entegrasyonu
-4. TipTap block editörünü tam entegre et
-5. Drag & drop sıralama (@dnd-kit)
+```bash
+npm run build
+```

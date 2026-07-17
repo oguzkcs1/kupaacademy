@@ -9,11 +9,13 @@ import { useAuthStore } from "@/lib/store";
 import { useDataStore } from "@/lib/data-store";
 import { useOpsStore } from "@/lib/ops-store";
 import { motion, AnimatePresence } from "framer-motion";
+import { AlertTriangle, RefreshCw } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, _hasHydrated } = useAuthStore();
-  const { loadAll, _loaded } = useDataStore();
-  const { loadAll: loadOps, _loaded: opsLoaded } = useOpsStore();
+  const { loadAll, retryLoad, _loaded, _error } = useDataStore();
+  const { loadAll: loadOps, retryLoad: retryOps, _loaded: opsLoaded, _error: opsError } = useOpsStore();
   const router = useRouter();
   const pathname = usePathname();
 
@@ -44,6 +46,20 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       <MobileSidebar />
       <div className="flex flex-col flex-1 overflow-hidden min-w-0">
         <Header />
+        {(_error || opsError) && (
+          <div className="mx-4 mt-3 sm:mx-6 flex items-center gap-3 rounded-xl border border-amber-300/60 bg-amber-50 px-4 py-3 text-amber-950 dark:border-amber-800 dark:bg-amber-950/30 dark:text-amber-100">
+            <AlertTriangle className="h-4 w-4 shrink-0" />
+            <p className="min-w-0 flex-1 text-sm">{_error || opsError}</p>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => (_error ? retryLoad() : retryOps())}
+              className="h-8 shrink-0"
+            >
+              <RefreshCw className="h-3.5 w-3.5" /> Tekrar Dene
+            </Button>
+          </div>
+        )}
         <main className="flex-1 overflow-y-auto">
           <AnimatePresence mode="wait">
             <motion.div

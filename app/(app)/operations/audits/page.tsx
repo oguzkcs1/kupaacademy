@@ -12,13 +12,12 @@ import { RunStatusBadge } from "@/components/operations/run-status-badge";
 import { ScoreBadge } from "@/components/operations/score-badge";
 import { useOpsStore } from "@/lib/ops-store";
 import { useDataStore } from "@/lib/data-store";
-import { mockBranches } from "@/lib/mock-data";
 import { formatRelativeTime } from "@/lib/utils";
 
 export default function AuditsPage() {
   const { runs, photos } = useOpsStore();
   const { branches: dataBranches, users } = useDataStore();
-  const branches = dataBranches.length > 0 ? dataBranches : mockBranches;
+  const branches = dataBranches;
 
   const [branchFilter, setBranchFilter] = useState<string>("all");
   const [typeFilter, setTypeFilter] = useState<string>("all");
