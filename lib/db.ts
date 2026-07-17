@@ -574,6 +574,25 @@ export async function getNotifications(userId: string): Promise<Notification[]> 
   }));
 }
 
+export async function getAllNotifications(): Promise<Notification[]> {
+  const { data, error } = await supabase
+    .from("notifications")
+    .select("*")
+    .order("created_at", { ascending: false })
+    .limit(500);
+  if (error) throw error;
+  return (data ?? []).map((r) => ({
+    id: r.id,
+    userId: r.user_id,
+    title: r.title,
+    message: r.message,
+    type: r.type,
+    contentId: r.content_id,
+    read: r.read,
+    createdAt: r.created_at,
+  }));
+}
+
 export async function insertNotification(n: Notification) {
   const { error } = await supabase.from("notifications").insert({
     id: n.id,
@@ -585,6 +604,24 @@ export async function insertNotification(n: Notification) {
     read: n.read,
     created_at: n.createdAt,
   });
+  if (error) throw error;
+}
+
+/** Toplu bildirim ekleme (fanout) */
+export async function insertNotifications(list: Notification[]) {
+  if (list.length === 0) return;
+  const { error } = await supabase.from("notifications").insert(
+    list.map((n) => ({
+      id: n.id,
+      user_id: n.userId,
+      title: n.title,
+      message: n.message,
+      type: n.type,
+      content_id: n.contentId,
+      read: n.read,
+      created_at: n.createdAt,
+    }))
+  );
   if (error) throw error;
 }
 

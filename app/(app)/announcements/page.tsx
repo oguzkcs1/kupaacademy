@@ -60,17 +60,34 @@ function AnnouncementCard({ ann }: { ann: Announcement }) {
   );
 }
 
+const priorityRank = { high: 0, medium: 1, low: 2 };
+
 export default function AnnouncementsPage() {
   const { user } = useAuthStore();
   const { announcements } = useDataStore();
   const isAdmin = user?.role === "admin";
+
+  // Barista: yalnızca yayınlanmış + kendisine hedeflenmiş duyurular
+  const visible = announcements
+    .filter((a) => {
+      if (isAdmin) return true;
+      if (a.status !== "published") return false;
+      const roleOk = !a.targetRoles?.length || a.targetRoles.includes(user!.role);
+      const branchOk = !a.targetBranches?.length || (user?.branchId ? a.targetBranches.includes(user.branchId) : false);
+      return roleOk && branchOk;
+    })
+    .sort((a, b) => {
+      const p = priorityRank[a.priority] - priorityRank[b.priority];
+      if (p !== 0) return p;
+      return b.createdAt.localeCompare(a.createdAt);
+    });
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold">Duyurular</h1>
-          <p className="text-muted-foreground mt-1">{announcements.length} duyuru</p>
+          <p className="text-muted-foreground mt-1">{visible.length} duyuru</p>
         </div>
         {isAdmin && (
           <Button asChild>
@@ -82,9 +99,9 @@ export default function AnnouncementsPage() {
         )}
       </div>
 
-      {announcements.length > 0 ? (
+      {visible.length > 0 ? (
         <div className="space-y-3">
-          {announcements.map((ann) => (
+          {visible.map((ann) => (
             <AnnouncementCard key={ann.id} ann={ann} />
           ))}
         </div>

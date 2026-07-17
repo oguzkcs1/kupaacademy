@@ -91,6 +91,12 @@ interface DataState {
   markAllNotificationsRead: (userId: string) => Promise<void>;
   getUserNotifications: (userId: string) => Notification[];
 
+  // Bildirim fanout (birden fazla kullanıcıya)
+  notifyUsers: (userIds: string[], n: Pick<Notification, "title" | "message" | "type"> & { contentId?: string }) => Promise<void>;
+  notifyAll: (n: Pick<Notification, "title" | "message" | "type"> & { contentId?: string }, opts?: { excludeUserId?: string; role?: import("@/types").UserRole }) => Promise<void>;
+  notifyBranch: (branchId: string, n: Pick<Notification, "title" | "message" | "type"> & { contentId?: string }, opts?: { excludeUserId?: string }) => Promise<void>;
+  notifyAnnouncementTargets: (ann: Announcement) => Promise<void>;
+
   // User badges
   getUserBadges: (userId: string) => UserBadge[];
 }
@@ -128,9 +134,11 @@ export const useDataStore = create<DataState>()((set, get) => ({
       db.getDocuments(),
       db.getDocumentFolders(),
     ]);
+    const notifications = await db.getAllNotifications().catch(() => []);
     set({
       trainings, videos, recipes, announcements, users,
       badges, categories, branches, documents, documentFolders,
+      notifications,
       _loaded: true,
     });
   },
@@ -139,6 +147,14 @@ export const useDataStore = create<DataState>()((set, get) => ({
   addTraining: async (training) => {
     await db.upsertTraining(training);
     set((s) => ({ trainings: [training, ...s.trainings] }));
+    if (training.status === "published") {
+      await get().notifyAll({
+        title: "📚 Yeni Eğitim",
+        message: `"${training.title}" eğitimi yayınlandı. Hemen tamamla!`,
+        type: "training",
+        contentId: training.id,
+      });
+    }
   },
   updateTraining: async (id, data) => {
     const updated = { ...get().trainings.find((t) => t.id === id)!, ...data, updatedAt: new Date().toISOString() };
@@ -184,6 +200,9 @@ export const useDataStore = create<DataState>()((set, get) => ({
   addAnnouncement: async (ann) => {
     await db.upsertAnnouncement(ann);
     set((s) => ({ announcements: [ann, ...s.announcements] }));
+    if (ann.sendNotification && ann.status === "published") {
+      await get().notifyAnnouncementTargets(ann);
+    }
   },
   updateAnnouncement: async (id, data) => {
     const updated = { ...get().announcements.find((a) => a.id === id)!, ...data, updatedAt: new Date().toISOString() };
@@ -357,6 +376,57 @@ export const useDataStore = create<DataState>()((set, get) => ({
     };
     await db.insertNotification(notif);
     set((s) => ({ notifications: [notif, ...s.notifications] }));
+  },
+
+  notifyUsers: async (userIds, n) => {
+    const ids = Array.from(new Set(userIds)).filter(Boolean);
+    if (ids.length === 0) return;
+    const now = new Date().toISOString();
+    const notifs: Notification[] = ids.map((uid) => ({
+      id: `notif-${generateId()}`,
+      userId: uid,
+      title: n.title,
+      message: n.message,
+      type: n.type,
+      contentId: n.contentId,
+      read: false,
+      createdAt: now,
+    }));
+    await db.insertNotifications(notifs);
+    set((s) => ({ notifications: [...notifs, ...s.notifications] }));
+  },
+
+  notifyAll: async (n, opts) => {
+    const targets = get().users.filter(
+      (u) => u.status === "active"
+        && u.id !== opts?.excludeUserId
+        && (!opts?.role || u.role === opts.role)
+    );
+    await get().notifyUsers(targets.map((u) => u.id), n);
+  },
+
+  notifyBranch: async (branchId, n, opts) => {
+    const targets = get().users.filter(
+      (u) => u.status === "active" && u.branchId === branchId && u.id !== opts?.excludeUserId
+    );
+    await get().notifyUsers(targets.map((u) => u.id), n);
+  },
+
+  notifyAnnouncementTargets: async (ann) => {
+    const roles = ann.targetRoles ?? [];
+    const branches = ann.targetBranches ?? [];
+    const targets = get().users.filter((u) => {
+      if (u.status !== "active") return false;
+      const roleOk = roles.length === 0 || roles.includes(u.role);
+      const branchOk = branches.length === 0 || (u.branchId ? branches.includes(u.branchId) : false);
+      return roleOk && branchOk;
+    });
+    await get().notifyUsers(targets.map((u) => u.id), {
+      title: `📢 ${ann.title}`,
+      message: ann.content.slice(0, 140),
+      type: "announcement",
+      contentId: ann.id,
+    });
   },
   markNotificationRead: async (id) => {
     await db.markNotificationRead(id);

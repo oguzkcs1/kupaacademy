@@ -8,6 +8,7 @@ import type {
 import { calculateRunScore } from "@/types/operations";
 import { generateId } from "@/lib/utils";
 import * as db from "@/lib/db";
+import { useDataStore } from "@/lib/data-store";
 
 interface OpsState {
   templates: ChecklistTemplate[];
@@ -221,6 +222,13 @@ export const useOpsStore = create<OpsState>()((set, get) => ({
     updated.score = calculateRunScore(updated);
     await db.upsertOpsRun(updated);
     set((s) => ({ runs: s.runs.map((r) => (r.id === runId ? updated : r)) }));
+    // Şubeye bildirim
+    const typeLabel = updated.type === "opening" ? "Açılış" : "Kapanış";
+    useDataStore.getState().notifyBranch(updated.branchId, {
+      title: "✅ Kontrol Onaylandı",
+      message: `${typeLabel} kontrolünüz ${updated.score}/100 puanla onaylandı.`,
+      type: "system",
+    }).catch(() => {});
   },
 
   requestRevision: async (runId, comment) => {
@@ -229,6 +237,12 @@ export const useOpsStore = create<OpsState>()((set, get) => ({
     const updated: ChecklistRun = { ...run, status: "revision", managerComment: comment };
     await db.upsertOpsRun(updated);
     set((s) => ({ runs: s.runs.map((r) => (r.id === runId ? updated : r)) }));
+    const typeLabel = updated.type === "opening" ? "Açılış" : "Kapanış";
+    useDataStore.getState().notifyBranch(updated.branchId, {
+      title: "🔄 Revize İstendi",
+      message: `${typeLabel} kontrolünüz için revize istendi: ${comment}`,
+      type: "system",
+    }).catch(() => {});
   },
 
   addTask: async (task) => {
@@ -240,6 +254,14 @@ export const useOpsStore = create<OpsState>()((set, get) => ({
     };
     await db.upsertOpsTask(full);
     set((s) => ({ tasks: [full, ...s.tasks] }));
+    // Sorumluya bildirim
+    if (full.assigneeId) {
+      useDataStore.getState().notifyUsers([full.assigneeId], {
+        title: "📋 Yeni Görev",
+        message: full.title,
+        type: "system",
+      }).catch(() => {});
+    }
   },
 
   toggleTask: async (taskId) => {

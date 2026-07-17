@@ -4,7 +4,7 @@ import Link from "next/link";
 import {
   GraduationCap, CheckCircle2, Clock, Award, ClipboardList,
   ArrowRight, PlayCircle, Bell, TrendingUp, Users, BarChart3,
-  ChevronRight,
+  ChevronRight, Sunrise, Sunset, ListTodo, Megaphone, ClipboardCheck, Sparkles,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -13,6 +13,7 @@ import { Progress } from "@/components/ui/progress";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useAuthStore } from "@/lib/store";
 import { useDataStore } from "@/lib/data-store";
+import { useOpsStore } from "@/lib/ops-store";
 import { formatRelativeTime, formatDuration } from "@/lib/utils";
 import { motion } from "framer-motion";
 
@@ -59,14 +60,38 @@ function StatCard({
 
 export default function DashboardPage() {
   const { user } = useAuthStore();
-  const { announcements, videos, trainings, getUserCompletions, getUserBadges, badges } = useDataStore();
+  const { announcements, videos, trainings, getUserCompletions, getUserBadges, badges, getUserNotifications } = useDataStore();
+  const { runs, tasks } = useOpsStore();
 
+  const isAdmin = user?.role === "admin";
   const completions = user ? getUserCompletions(user.id) : [];
   const userBadgeCount = user ? getUserBadges(user.id).length : 0;
   const publishedTrainings = trainings.filter((t) => t.status === "published");
   const pendingTrainings = publishedTrainings.filter(
     (t) => !completions.some((c) => c.trainingId === t.id)
   );
+
+  // ── Bugün yapılacaklar (aksiyon öğeleri) ──
+  const today = new Date().toISOString().slice(0, 10);
+  const branchId = user?.branchId;
+  const todayRun = (type: "opening" | "closing") =>
+    runs.find((r) => r.branchId === branchId && r.type === type && r.date === today);
+  const openingDone = !!todayRun("opening") && todayRun("opening")!.status !== "pending";
+  const closingDone = !!todayRun("closing") && todayRun("closing")!.status !== "pending";
+  const myTasks = tasks.filter((t) => t.assigneeId === user?.id && t.status === "pending");
+  const unreadNotifs = user ? getUserNotifications(user.id).filter((n) => !n.read) : [];
+  const pendingApprovals = runs.filter((r) => r.status === "completed");
+
+  type Action = { icon: React.ElementType; label: string; sub: string; href: string; color: string };
+  const actions: Action[] = [];
+  if (!isAdmin && branchId) {
+    if (!openingDone) actions.push({ icon: Sunrise, label: "Açılış kontrolü", sub: "Bugün henüz yapılmadı", href: "/operations/opening", color: "bg-amber-100 text-amber-700 dark:bg-amber-950/50 dark:text-amber-400" });
+    if (!closingDone) actions.push({ icon: Sunset, label: "Kapanış kontrolü", sub: "Gün sonunda tamamla", href: "/operations/closing", color: "bg-violet-100 text-violet-700 dark:bg-violet-950/50 dark:text-violet-400" });
+  }
+  if (myTasks.length > 0) actions.push({ icon: ListTodo, label: `${myTasks.length} görev seni bekliyor`, sub: myTasks[0].title, href: "/operations/tasks", color: "bg-sky-100 text-sky-700 dark:bg-sky-950/50 dark:text-sky-400" });
+  if (pendingTrainings.length > 0) actions.push({ icon: GraduationCap, label: `${pendingTrainings.length} eğitim bekliyor`, sub: pendingTrainings[0].title, href: "/trainings", color: "bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400" });
+  if (isAdmin && pendingApprovals.length > 0) actions.push({ icon: ClipboardCheck, label: `${pendingApprovals.length} denetim onay bekliyor`, sub: "Puanla ve onayla", href: "/operations/audits", color: "bg-orange-100 text-orange-700 dark:bg-orange-950/50 dark:text-orange-400" });
+  if (unreadNotifs.length > 0) actions.push({ icon: Megaphone, label: `${unreadNotifs.length} okunmamış bildirim`, sub: unreadNotifs[0].title, href: "/announcements", color: "bg-rose-100 text-rose-700 dark:bg-rose-950/50 dark:text-rose-400" });
 
   const greeting = () => {
     const h = new Date().getHours();
@@ -96,6 +121,49 @@ export default function DashboardPage() {
           <span className="text-base">🔥</span>
           <span className="text-sm font-semibold">5 günlük seri</span>
         </div>
+      </motion.div>
+
+      {/* Bugün Yapılacaklar */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35, delay: 0.05 }}
+      >
+        <Card className="border-primary/20 bg-gradient-to-br from-primary/[0.04] to-transparent">
+          <CardHeader className="pb-3 pt-5 px-5">
+            <CardTitle className="text-base font-semibold flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-primary" />
+              Bugün Yapılacaklar
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="px-5 pb-5">
+            {actions.length === 0 ? (
+              <div className="flex items-center gap-3 py-3 text-sm text-muted-foreground">
+                <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                Harika! Bugün için bekleyen bir işin yok. 🎉
+              </div>
+            ) : (
+              <div className="space-y-2">
+                {actions.map((a, i) => (
+                  <Link
+                    key={i}
+                    href={a.href}
+                    className="flex items-center gap-3 p-3 rounded-xl bg-card border border-border/60 hover:border-primary/40 hover:shadow-sm transition-all group"
+                  >
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${a.color}`}>
+                      <a.icon className="w-5 h-5" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium leading-tight">{a.label}</p>
+                      <p className="text-xs text-muted-foreground truncate mt-0.5">{a.sub}</p>
+                    </div>
+                    <ChevronRight className="w-4 h-4 text-muted-foreground/40 group-hover:text-primary transition-colors flex-shrink-0" />
+                  </Link>
+                ))}
+              </div>
+            )}
+          </CardContent>
+        </Card>
       </motion.div>
 
       {/* Stats */}
