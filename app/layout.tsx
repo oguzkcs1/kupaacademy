@@ -22,7 +22,7 @@ const barlow = Barlow({
   display: "swap",
 });
 
-const siteUrl = "https://kupaacademy-ten.vercel.app";
+const siteUrl = "https://kupaacademy.com";
 const siteDescription =
   "Kupa Coffee'nin dijital operasyon ve eğitim platformu. Eğitimler, reçeteler, günlük şube denetimleri ve performans yönetimi tek merkezde.";
 
