@@ -102,6 +102,7 @@ export const STATUS_LABELS: Record<string, string> = {
   archived: "Arşivlendi",
   active: "Aktif",
   inactive: "Pasif",
+  pending: "Onay Bekliyor",
 };
 
 export const CONTENT_TYPE_LABELS: Record<string, string> = {

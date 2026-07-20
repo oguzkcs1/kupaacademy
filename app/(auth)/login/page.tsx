@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Eye, EyeOff, Loader2, ArrowRight, Shield, Zap, BookOpen } from "lucide-react";
 import { KupaLogo } from "@/components/kupa-logo";
 import { Button } from "@/components/ui/button";
@@ -13,7 +14,7 @@ import { motion } from "framer-motion";
 
 const features = [
   { icon: BookOpen, title: "Dijital Eğitimler", desc: "Tüm operasyon eğitimlerine tek yerden erişin" },
-  { icon: Zap, title: "SOP & Reçeteler", desc: "Standart prosedürleri dijitalleştirin" },
+  { icon: Zap, title: "Reçete & Dokümanlar", desc: "Standartları tek bilgi merkezinde yönetin" },
   { icon: Shield, title: "Kurumsal Yönetim", desc: "Ekip performansını takip edin" },
 ];
 
@@ -82,7 +83,7 @@ export default function LoginPage() {
               <span className="text-primary">dijitalleştirin.</span>
             </h2>
             <p className="text-white/50 text-base leading-relaxed max-w-sm">
-              Eğitimler, SOP'lar, reçeteler ve daha fazlası — tüm operasyon bilginiz tek platformda.
+              Eğitimler, reçeteler, dokümanlar ve şube operasyonları — tüm kurumsal bilginiz tek platformda.
             </p>
           </motion.div>
 
@@ -195,20 +196,12 @@ export default function LoginPage() {
               )}
             </Button>
           </form>
-
-          {/* Demo hint */}
-          <div className="mt-8 p-4 rounded-xl bg-muted/60 border border-border/50">
-            <p className="text-xs font-semibold text-foreground/70 mb-2">Demo Hesaplar</p>
-            <div className="space-y-2">
-              <div>
-                <p className="text-[11px] text-muted-foreground/60 uppercase tracking-wide mb-0.5">Yönetici</p>
-                <p className="text-xs text-muted-foreground font-mono">admin / admin123</p>
-              </div>
-              <div>
-                <p className="text-[11px] text-muted-foreground/60 uppercase tracking-wide mb-0.5">Barista</p>
-                <p className="text-xs text-muted-foreground font-mono">mehmet.demir / barista123</p>
-              </div>
-            </div>
+          <div className="mt-7 border-t pt-6 text-center">
+            <p className="text-sm text-muted-foreground">Henüz hesabınız yok mu?</p>
+            <Button asChild variant="outline" className="mt-3 w-full">
+              <Link href="/register">Personel kayıt başvurusu oluştur</Link>
+            </Button>
+            <p className="mt-2 text-[11px] text-muted-foreground">Yeni hesaplar yönetici onayından sonra aktif olur.</p>
           </div>
         </motion.div>
       </div>

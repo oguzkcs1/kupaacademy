@@ -189,7 +189,7 @@ export default function ReportsPage() {
                     {u.completionCount}
                   </div>
                   <Badge variant={u.status === "active" ? "success" : "secondary"} className="text-xs">
-                    {u.status === "active" ? "Aktif" : "Pasif"}
+                    {u.status === "active" ? "Aktif" : u.status === "pending" ? "Onay Bekliyor" : "Pasif"}
                   </Badge>
                 </div>
               </div>

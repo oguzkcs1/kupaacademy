@@ -50,6 +50,7 @@ Yeni kurulumda SQL Editor içinde sırasıyla:
 5. `supabase/security.sql`
 6. `supabase/push-schema.sql`
 7. `supabase/security-v2.sql` — her zaman en son
+8. `supabase/personnel-registration.sql` — personel kayıt/onay akışı
 
 `security-v2.sql` çalışınca mevcut oturumlar kapanır; kullanıcılar yeniden giriş yapar.
 

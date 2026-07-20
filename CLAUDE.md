@@ -13,7 +13,8 @@
 
 - `supabase/security.sql` bcrypt ve şifre RPC'lerini kurar.
 - `supabase/security-v2.sql` süreli uygulama oturumu, RLS politikaları ve operasyon alan korumasını kurar.
-- SQL sırası: `schema.sql` → `ops-schema.sql` → ilgili ek şemalar → `security.sql` → `push-schema.sql` → `security-v2.sql`.
+- `supabase/personnel-registration.sql` şubeli personel başvurusu ve yönetici onay akışını kurar.
+- SQL sırası: `schema.sql` → `ops-schema.sql` → ilgili ek şemalar → `security.sql` → `push-schema.sql` → `security-v2.sql` → `personnel-registration.sql`.
 - İstemcideki rol yalnız UI içindir; gerçek yetki RLS tarafından doğrulanır.
 - Service role ve VAPID private key kesinlikle `NEXT_PUBLIC_*` değişkenlerine veya repoya yazılmaz.
 

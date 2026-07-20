@@ -492,6 +492,46 @@ export async function deleteUser(id: string) {
   if (error) throw error;
 }
 
+export type PersonnelRegistrationReason =
+  | "invalid_name" | "invalid_username" | "weak_password"
+  | "invalid_branch" | "username_taken" | "unknown";
+
+export type PersonnelRegistrationResult =
+  | { ok: true }
+  | { ok: false; reason: PersonnelRegistrationReason };
+
+/** Giriş yapmadan kayıt ekranında gösterilecek aktif şubeler. */
+export async function getPublicBranches(): Promise<Branch[]> {
+  const { data, error } = await supabase.rpc("app_public_branches");
+  if (error) throw error;
+  return ((data ?? []) as Array<Record<string, unknown>>).map((r) => ({
+    id: r.id as string,
+    name: r.name as string,
+    companyId: r.company_id as string,
+    address: (r.address as string) ?? undefined,
+    status: "active",
+  }));
+}
+
+/** Personel başvurusunu daima barista ve onay bekliyor durumunda oluşturur. */
+export async function registerPersonnel(input: {
+  name: string;
+  username: string;
+  password: string;
+  branchId: string;
+}): Promise<PersonnelRegistrationResult> {
+  const { data, error } = await supabase.rpc("app_register_personnel", {
+    p_name: input.name,
+    p_username: input.username,
+    p_password: input.password,
+    p_branch_id: input.branchId,
+  });
+  if (error) throw error;
+  const result = data as { ok?: boolean; reason?: PersonnelRegistrationReason } | null;
+  if (result?.ok) return { ok: true };
+  return { ok: false, reason: result?.reason ?? "unknown" } as PersonnelRegistrationResult;
+}
+
 // ─── Branches ─────────────────────────────────────────────────────────────────
 
 export async function getBranches(): Promise<Branch[]> {

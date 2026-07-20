@@ -13,7 +13,7 @@ export interface User {
   branchId?: string;
   department?: string;
   position?: string;
-  status: "active" | "inactive";
+  status: "active" | "inactive" | "pending";
   badges: Badge[];
   createdAt: string;
   lastLoginAt?: string;

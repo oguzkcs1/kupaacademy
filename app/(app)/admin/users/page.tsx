@@ -3,6 +3,7 @@
 import { useState } from "react";
 import {
   Plus, Search, MoreHorizontal, Edit, Trash2, KeyRound, Users,
+  CheckCircle2, XCircle, Clock3,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -38,29 +39,53 @@ export default function AdminUsersPage() {
   const [showNewModal, setShowNewModal] = useState(false);
   const [editUser, setEditUser] = useState<User | null>(null);
   const [resetUser, setResetUser] = useState<User | null>(null);
+  const [processingUserId, setProcessingUserId] = useState<string | null>(null);
 
   const filtered = users.filter(
     (u) =>
-      !search ||
-      u.name.toLowerCase().includes(search.toLowerCase()) ||
-      u.username.toLowerCase().includes(search.toLowerCase())
+      u.status !== "pending" &&
+      (!search ||
+        u.name.toLowerCase().includes(search.toLowerCase()) ||
+        u.username.toLowerCase().includes(search.toLowerCase()))
   );
 
   const getBranchName = (branchId?: string) =>
     branches.find((b) => b.id === branchId)?.name || "-";
 
-  const handleToggleStatus = (id: string, current: string) => {
-    updateUser(id, { status: current === "active" ? "inactive" : "active" });
-    toast.success("Durum güncellendi");
+  const handleToggleStatus = async (id: string, current: User["status"]) => {
+    try {
+      await updateUser(id, { status: current === "active" ? "inactive" : "active" });
+      toast.success("Durum güncellendi");
+    } catch {
+      toast.error("Durum güncellenemedi");
+    }
   };
 
-  const handleDelete = (u: User) => {
+  const handleDelete = async (u: User) => {
     if (u.role === "admin") { toast.error("Yönetici silinemez"); return; }
-    deleteUser(u.id);
-    toast.success("Kullanıcı silindi");
+    try {
+      await deleteUser(u.id);
+      toast.success("Kullanıcı silindi");
+    } catch {
+      toast.error("Kullanıcı silinemedi");
+    }
+  };
+
+  const handleApplication = async (user: User, action: "approve" | "reject") => {
+    setProcessingUserId(user.id);
+    try {
+      await updateUser(user.id, { status: action === "approve" ? "active" : "inactive" });
+      toast.success(action === "approve" ? `${user.name} onaylandı ve hesabı aktifleştirildi` : `${user.name} başvurusu reddedildi`);
+    } catch {
+      toast.error("Başvuru durumu güncellenemedi");
+    } finally {
+      setProcessingUserId(null);
+    }
   };
 
   const activeCount = users.filter((u) => u.status === "active").length;
+  const pendingUsers = users.filter((u) => u.status === "pending");
+  const inactiveCount = users.filter((u) => u.status === "inactive").length;
 
   return (
     <div className="space-y-5">
@@ -68,7 +93,7 @@ export default function AdminUsersPage() {
         <div>
           <h1 className="text-xl font-bold tracking-tight">Kullanıcı Yönetimi</h1>
           <p className="text-sm text-muted-foreground mt-0.5">
-            {activeCount} aktif · {users.length - activeCount} pasif kullanıcı
+            {activeCount} aktif · {pendingUsers.length} onay bekliyor · {inactiveCount} pasif
           </p>
         </div>
         <Button size="sm" onClick={() => setShowNewModal(true)}>
@@ -76,6 +101,44 @@ export default function AdminUsersPage() {
           Yeni Kullanıcı
         </Button>
       </motion.div>
+
+      {pendingUsers.length > 0 && (
+        <Card className="border-amber-300/70 bg-amber-50/50 dark:border-amber-900 dark:bg-amber-950/20">
+          <CardContent className="p-0">
+            <div className="flex items-center justify-between gap-3 border-b border-amber-200/70 px-4 py-3 dark:border-amber-900">
+              <div className="flex items-center gap-2">
+                <Clock3 className="h-4 w-4 text-amber-600" />
+                <div>
+                  <p className="text-sm font-semibold">Onay Bekleyen Kayıtlar</p>
+                  <p className="text-xs text-muted-foreground">Personel onaylanana kadar sisteme giriş yapamaz.</p>
+                </div>
+              </div>
+              <Badge className="bg-amber-500 text-white hover:bg-amber-500">{pendingUsers.length}</Badge>
+            </div>
+            <div className="divide-y divide-amber-200/60 dark:divide-amber-900/70">
+              {pendingUsers.map((user) => (
+                <div key={user.id} className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center">
+                  <Avatar className="h-9 w-9 flex-shrink-0">
+                    <AvatarFallback className="bg-amber-100 text-xs font-semibold text-amber-700 dark:bg-amber-950">{getInitials(user.name)}</AvatarFallback>
+                  </Avatar>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-medium">{user.name}</p>
+                    <p className="text-xs text-muted-foreground"><span className="font-mono">@{user.username}</span> · {getBranchName(user.branchId)} · {formatRelativeTime(user.createdAt)}</p>
+                  </div>
+                  <div className="flex gap-2 sm:justify-end">
+                    <Button size="sm" variant="outline" className="flex-1 sm:flex-none" disabled={processingUserId === user.id} onClick={() => handleApplication(user, "reject")}>
+                      <XCircle className="h-4 w-4" /> Reddet
+                    </Button>
+                    <Button size="sm" className="flex-1 sm:flex-none" disabled={processingUserId === user.id} onClick={() => handleApplication(user, "approve")}>
+                      <CheckCircle2 className="h-4 w-4" /> Onayla
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       <div className="relative max-w-xs">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
