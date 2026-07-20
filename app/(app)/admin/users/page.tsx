@@ -73,7 +73,7 @@ export default function AdminUsersPage() {
         </div>
         <Button size="sm" onClick={() => setShowNewModal(true)}>
           <Plus className="w-4 h-4" />
-          Yeni Barista
+          Yeni Kullanıcı
         </Button>
       </motion.div>
 
@@ -186,42 +186,62 @@ export default function AdminUsersPage() {
 }
 
 function NewUserDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const { addUser, branches } = useDataStore();
-  const [form, setForm] = useState({ name: "", username: "", password: "", branchId: "", department: "", position: "" });
+  const { addUser, branches, users } = useDataStore();
+  const emptyForm = { name: "", username: "", password: "", role: "barista" as UserRole, branchId: "", department: "", position: "" };
+  const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
 
   const handleSave = async () => {
-    if (!form.name.trim() || !form.username.trim() || !form.password.trim()) {
+    const name = form.name.trim();
+    const username = form.username.trim();
+    const password = form.password.trim();
+    if (!name || !username || !password) {
       toast.error("Ad, kullanıcı adı ve şifre zorunlu");
       return;
     }
+    if (password.length < 6) {
+      toast.error("Şifre en az 6 karakter olmalı");
+      return;
+    }
+    if (users.some((u) => u.username.toLowerCase() === username.toLowerCase())) {
+      toast.error("Bu kullanıcı adı zaten kullanılıyor");
+      return;
+    }
     setSaving(true);
-    await new Promise((r) => setTimeout(r, 400));
-    const newUser: User = {
-      id: `user-${generateId()}`,
-      name: form.name,
-      username: form.username,
-      password: form.password,
-      role: "barista",
-      companyId: "company-1",
-      branchId: form.branchId || undefined,
-      department: form.department || undefined,
-      position: form.position || undefined,
-      status: "active",
-      badges: [],
-      createdAt: new Date().toISOString(),
-    };
-    await addUser(newUser);
-    setSaving(false);
-    toast.success("Barista hesabı oluşturuldu");
-    setForm({ name: "", username: "", password: "", branchId: "", department: "", position: "" });
-    onClose();
+    try {
+      const newUser: User = {
+        id: `user-${generateId()}`,
+        name,
+        username,
+        password,
+        role: form.role,
+        companyId: "company-1",
+        branchId: form.branchId || undefined,
+        department: form.department.trim() || undefined,
+        position: form.position.trim() || undefined,
+        status: "active",
+        badges: [],
+        createdAt: new Date().toISOString(),
+      };
+      await addUser(newUser);
+      toast.success(form.role === "admin" ? "Yönetici hesabı oluşturuldu" : "Barista hesabı oluşturuldu");
+      setForm(emptyForm);
+      onClose();
+    } catch (err) {
+      console.error("[user create]", err);
+      const msg = err instanceof Error ? err.message : "Kayıt oluşturulamadı";
+      toast.error(msg.includes("duplicate") || msg.includes("unique")
+        ? "Bu kullanıcı adı zaten var"
+        : `Hata: ${msg}`);
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
-    <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
+    <Dialog open={open} onOpenChange={(v) => !v && !saving && onClose()}>
       <DialogContent className="max-w-md">
-        <DialogHeader><DialogTitle>Yeni Barista Ekle</DialogTitle></DialogHeader>
+        <DialogHeader><DialogTitle>Yeni Kullanıcı Ekle</DialogTitle></DialogHeader>
         <div className="space-y-4 py-2">
           <div className="space-y-1.5">
             <Label>Ad Soyad *</Label>
@@ -234,10 +254,20 @@ function NewUserDialog({ open, onClose }: { open: boolean; onClose: () => void }
             </div>
             <div className="space-y-1.5">
               <Label>Şifre *</Label>
-              <Input value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} type="password" placeholder="Giriş şifresi" autoComplete="new-password" />
+              <Input value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} type="password" placeholder="En az 6 karakter" autoComplete="new-password" />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-1.5">
+              <Label>Rol *</Label>
+              <Select value={form.role} onValueChange={(v) => setForm({ ...form, role: v as UserRole })}>
+                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="barista">Barista</SelectItem>
+                  <SelectItem value="admin">Yönetici (Admin)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
             <div className="space-y-1.5">
               <Label>Şube</Label>
               <Select value={form.branchId} onValueChange={(v) => setForm({ ...form, branchId: v })}>
@@ -247,19 +277,21 @@ function NewUserDialog({ open, onClose }: { open: boolean; onClose: () => void }
                 </SelectContent>
               </Select>
             </div>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
               <Label>Departman</Label>
-              <Input value={form.department} onChange={(e) => setForm({ ...form, department: e.target.value })} placeholder="Barista, Servis..." />
+              <Input value={form.department} onChange={(e) => setForm({ ...form, department: e.target.value })} placeholder="Barista, Yönetim..." />
             </div>
-          </div>
-          <div className="space-y-1.5">
-            <Label>Pozisyon</Label>
-            <Input value={form.position} onChange={(e) => setForm({ ...form, position: e.target.value })} placeholder="Kıdemli Barista..." />
+            <div className="space-y-1.5">
+              <Label>Pozisyon</Label>
+              <Input value={form.position} onChange={(e) => setForm({ ...form, position: e.target.value })} placeholder="Kıdemli Barista..." />
+            </div>
           </div>
         </div>
         <DialogFooter>
-          <Button variant="outline" onClick={onClose}>İptal</Button>
-          <Button onClick={handleSave} disabled={saving}>{saving ? "Ekleniyor..." : "Barista Ekle"}</Button>
+          <Button variant="outline" onClick={onClose} disabled={saving}>İptal</Button>
+          <Button onClick={handleSave} disabled={saving}>{saving ? "Ekleniyor..." : "Kullanıcı Ekle"}</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
