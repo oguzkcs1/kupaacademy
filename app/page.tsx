@@ -51,14 +51,14 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* ── Nav ─────────────────────────────────────────── */}
-      <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0f1729]/90 backdrop-blur-xl">
         <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
-          <KupaLogo variant="color" width={104} height={52} />
+          <KupaLogo variant="dark" width={104} height={52} />
           <div className="flex items-center gap-1.5 sm:gap-3">
-            <Button asChild variant="ghost" size="sm" className="font-medium hidden sm:inline-flex">
+            <Button asChild variant="ghost" size="sm" className="font-medium hidden sm:inline-flex text-white/80 hover:text-white hover:bg-white/10">
               <Link href="/biz-kimiz">Biz Kimiz?</Link>
             </Button>
-            <Button asChild variant="ghost" size="sm" className="font-medium">
+            <Button asChild variant="ghost" size="sm" className="font-medium text-white/80 hover:text-white hover:bg-white/10">
               <Link href="/kariyer">Kariyer</Link>
             </Button>
             <Button asChild size="sm" className="font-medium">
