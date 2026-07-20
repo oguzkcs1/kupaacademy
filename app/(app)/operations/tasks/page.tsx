@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
-  ListTodo, Plus, CalendarDays, MapPin, User as UserIcon, CheckCircle2, Circle,
+  ListTodo, Plus, CalendarDays, MapPin, User as UserIcon, CheckCircle2, Circle, Loader2,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -33,6 +33,7 @@ export default function OpsTasksPage() {
 
   const [dialogOpen, setDialogOpen] = useState(false);
   const [statusFilter, setStatusFilter] = useState("all");
+  const [togglingId, setTogglingId] = useState<string | null>(null);
   const [form, setForm] = useState({
     title: "",
     description: "",
@@ -40,6 +41,21 @@ export default function OpsTasksPage() {
     assigneeId: "",
     dueDate: "",
   });
+
+  const handleToggle = async (taskId: string, currentStatus: "pending" | "completed") => {
+    if (togglingId) return;
+    setTogglingId(taskId);
+    try {
+      await toggleTask(taskId);
+      toast.success(currentStatus === "pending" ? "Görev tamamlandı 🎉" : "Görev tekrar açıldı");
+    } catch (err) {
+      console.error("[task toggle]", err);
+      const msg = err instanceof Error ? err.message : "Görev güncellenemedi";
+      toast.error(msg.length < 80 ? msg : "Görev güncellenemedi — tekrar deneyin");
+    } finally {
+      setTogglingId(null);
+    }
+  };
 
   const branchName = (id: string) => branches.find((b) => b.id === id)?.name ?? "Şube";
   const userName = (id?: string) => users.find((u) => u.id === id)?.name ?? "Atanmadı";
@@ -135,15 +151,14 @@ export default function OpsTasksPage() {
               >
                 <CardContent className="p-4 flex items-start gap-3">
                   <button
-                    onClick={() => {
-                      toggleTask(task.id);
-                      toast.success(
-                        task.status === "pending" ? "Görev tamamlandı 🎉" : "Görev tekrar açıldı"
-                      );
-                    }}
-                    className="mt-0.5 flex-shrink-0 text-muted-foreground hover:text-primary transition-colors"
+                    onClick={() => handleToggle(task.id, task.status)}
+                    disabled={togglingId === task.id}
+                    aria-label={task.status === "pending" ? "Tamamla" : "Tekrar aç"}
+                    className="mt-0.5 flex-shrink-0 text-muted-foreground hover:text-primary transition-colors disabled:opacity-40"
                   >
-                    {task.status === "completed" ? (
+                    {togglingId === task.id ? (
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                    ) : task.status === "completed" ? (
                       <CheckCircle2 className="w-5 h-5 text-emerald-500" />
                     ) : (
                       <Circle className="w-5 h-5" />

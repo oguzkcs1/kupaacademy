@@ -263,14 +263,13 @@ export const useOpsStore = create<OpsState>()((set, get) => ({
     };
     await db.upsertOpsTask(full);
     set((s) => ({ tasks: [full, ...s.tasks] }));
-    // Sorumluya bildirim
-    if (full.assigneeId) {
-      useDataStore.getState().notifyUsers([full.assigneeId], {
-        title: "📋 Yeni Görev",
-        message: full.title,
-        type: "system",
-      }).catch(() => {});
-    }
+    // İlgili şubedeki tüm aktif personele bildirim (görev şubeye atanır)
+    useDataStore.getState().notifyBranch(full.branchId, {
+      title: "📋 Yeni Görev",
+      message: full.title,
+      type: "system",
+      contentId: full.id,
+    }).catch(() => {});
   },
 
   toggleTask: async (taskId) => {
@@ -281,8 +280,15 @@ export const useOpsStore = create<OpsState>()((set, get) => ({
       status: task.status === "pending" ? "completed" : "pending",
       completedAt: task.status === "pending" ? new Date().toISOString() : undefined,
     };
-    await db.upsertOpsTask(updated);
+    // Optimistik: önce UI'ı güncelle, sonra DB — DB hatası olursa geri al
+    const prev = task;
     set((s) => ({ tasks: s.tasks.map((t) => (t.id === taskId ? updated : t)) }));
+    try {
+      await db.upsertOpsTask(updated);
+    } catch (err) {
+      set((s) => ({ tasks: s.tasks.map((t) => (t.id === taskId ? prev : t)) }));
+      throw err;
+    }
   },
 
   // ── Şablon yönetimi ─────────────────────────────────────────────────────────
