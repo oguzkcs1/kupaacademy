@@ -456,10 +456,9 @@ export async function logout() {
   setDatabaseSession();
 }
 
-export async function upsertUser(u: Partial<User> & { id: string }) {
-  // Sadece açıkça tanımlı alanları payload'a al — undefined = "değişiklik yok"
-  // (Aksi halde partial update NULL yazıp NOT NULL kısıtına takılır → 400)
-  const payload: Record<string, unknown> = { id: u.id };
+/** Sadece tanımlı alanları payload'a alır (undefined = değişiklik yok) */
+function buildUserPayload(u: Partial<User>): Record<string, unknown> {
+  const payload: Record<string, unknown> = {};
   const set = (k: string, v: unknown) => { if (v !== undefined) payload[k] = v; };
   set("name", u.name);
   set("username", u.username);
@@ -471,9 +470,26 @@ export async function upsertUser(u: Partial<User> & { id: string }) {
   set("department", u.department);
   set("position", u.position);
   set("status", u.status);
-  // Boş/eksik şifre mevcut hash'i ezmemeli.
   if (u.password?.trim()) payload.password = u.password;
+  return payload;
+}
+
+/**
+ * Yeni kullanıcı ekler VEYA mevcutu tamamen üzerine yazar.
+ * upsert = INSERT ... ON CONFLICT (id) DO UPDATE — bu yüzden yeni satır için
+ * password gibi NOT NULL alanları verilmelidir. Kısmi güncelleme için updateUser'ı kullanın.
+ */
+export async function upsertUser(u: Partial<User> & { id: string }) {
+  const payload = { id: u.id, ...buildUserPayload(u) };
   const { error } = await supabase.from("users").upsert(payload);
+  if (error) throw error;
+}
+
+/** Mevcut kullanıcının yalnızca verilen alanlarını günceller (NOT NULL alanlarına dokunmaz). */
+export async function updateUser(id: string, u: Partial<User>) {
+  const payload = buildUserPayload(u);
+  if (Object.keys(payload).length === 0) return;
+  const { error } = await supabase.from("users").update(payload).eq("id", id);
   if (error) throw error;
 }
 

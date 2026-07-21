@@ -225,8 +225,9 @@ export const useDataStore = create<DataState>()((set, get) => ({
     set((s) => ({ users: [safeUser, ...s.users] }));
   },
   updateUser: async (id, data) => {
+    // Kısmi güncelleme — sadece verilen alanlar DB'de değişir (NOT NULL alanlarına dokunmaz)
+    await db.updateUser(id, data);
     const updated = { ...get().users.find((u) => u.id === id)!, ...data };
-    await db.upsertUser(updated);
     const { password: _password, ...safeUser } = updated;
     set((s) => ({ users: s.users.map((u) => u.id === id ? safeUser : u) }));
   },
