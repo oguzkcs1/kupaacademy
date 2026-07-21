@@ -457,19 +457,20 @@ export async function logout() {
 }
 
 export async function upsertUser(u: Partial<User> & { id: string }) {
-  const payload: Record<string, unknown> = {
-    id: u.id,
-    name: u.name,
-    username: u.username,
-    email: u.email,
-    role: u.role ?? "barista",
-    avatar: u.avatar,
-    company_id: u.companyId ?? "company-1",
-    branch_id: u.branchId,
-    department: u.department,
-    position: u.position,
-    status: u.status ?? "active",
-  };
+  // Sadece açıkça tanımlı alanları payload'a al — undefined = "değişiklik yok"
+  // (Aksi halde partial update NULL yazıp NOT NULL kısıtına takılır → 400)
+  const payload: Record<string, unknown> = { id: u.id };
+  const set = (k: string, v: unknown) => { if (v !== undefined) payload[k] = v; };
+  set("name", u.name);
+  set("username", u.username);
+  set("email", u.email);
+  set("role", u.role);
+  set("avatar", u.avatar);
+  set("company_id", u.companyId);
+  set("branch_id", u.branchId);
+  set("department", u.department);
+  set("position", u.position);
+  set("status", u.status);
   // Boş/eksik şifre mevcut hash'i ezmemeli.
   if (u.password?.trim()) payload.password = u.password;
   const { error } = await supabase.from("users").upsert(payload);
