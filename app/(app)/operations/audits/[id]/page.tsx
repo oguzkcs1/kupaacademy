@@ -63,7 +63,9 @@ export default function AuditDetailPage() {
   const staff = users.find((u) => u.id === run.userId);
   const runPhotos = photos.filter((p) => p.runId === run.id);
   const isAdmin = user?.role === "admin";
-  const canReview = isAdmin && run.status === "completed";
+  // Admin, personel göndermemiş olsa da (in_progress) puanlayabilir —
+  // aksi halde eksik/takılı kalmış kayıtlar puanlanamıyor.
+  const canReview = isAdmin && (run.status === "completed" || run.status === "in_progress");
   const fullyScored = isRunFullyScored(run);
   const liveScore = calculateRunScore(run);
 
