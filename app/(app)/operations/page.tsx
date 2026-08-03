@@ -6,7 +6,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   Sunrise, Sunset, Clock, AlertTriangle, Gauge, Trophy, TrendingDown,
-  ChevronRight, Camera, Building2,
+  ChevronRight, Building2,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -58,7 +58,7 @@ export default function OperationsDashboardPage() {
     if (user && !isAdmin) router.replace("/operations/leaderboard");
   }, [user, isAdmin, router]);
 
-  const { runs, photos } = useOpsStore();
+  const { runs } = useOpsStore();
   const { branches: dataBranches, users } = useDataStore();
   const branches = dataBranches;
   const activeBranches = branches.filter((b) => b.status === "active");
@@ -95,11 +95,6 @@ export default function OperationsDashboardPage() {
 
   const best = branchScores.length ? branchScores.reduce((a, b) => (b.avg! > a.avg! ? b : a)) : null;
   const worst = branchScores.length ? branchScores.reduce((a, b) => (b.avg! < a.avg! ? b : a)) : null;
-
-  const todayPhotos = [...photos]
-    .filter((p) => p.takenAt.startsWith(today))
-    .sort((a, b) => b.takenAt.localeCompare(a.takenAt))
-    .slice(0, 6);
 
   const userName = (id: string) => users.find((u) => u.id === id)?.name ?? "Personel";
   const branchName = (id: string) => branches.find((b) => b.id === id)?.name ?? "Şube";
@@ -267,51 +262,6 @@ export default function OperationsDashboardPage() {
         </div>
       </motion.div>
 
-      {/* Bugünün fotoğrafları */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.25 }}
-      >
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-3 pt-5 px-5">
-            <div>
-              <CardTitle className="text-base font-semibold">Bugünün Son Fotoğrafları</CardTitle>
-              <p className="text-xs text-muted-foreground mt-0.5">Şubelerden gelen görseller</p>
-            </div>
-            <Button variant="ghost" size="sm" asChild className="text-xs h-7 px-2 text-muted-foreground hover:text-foreground">
-              <Link href="/operations/gallery">Galeri <ChevronRight className="ml-0.5 h-3 w-3" /></Link>
-            </Button>
-          </CardHeader>
-          <CardContent className="px-5 pb-5">
-            {todayPhotos.length === 0 ? (
-              <div className="text-center py-10 text-muted-foreground">
-                <Camera className="w-8 h-8 mx-auto mb-2 opacity-20" />
-                <p className="text-sm">Bugün henüz fotoğraf yüklenmedi</p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-3 sm:grid-cols-6 gap-2.5">
-                {todayPhotos.map((p) => (
-                  <Link
-                    key={p.id}
-                    href="/operations/gallery"
-                    className="group relative aspect-square rounded-xl overflow-hidden bg-muted"
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={p.url} alt={p.categoryLabel} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="absolute bottom-1.5 left-1.5 right-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Badge className="bg-black/55 backdrop-blur-sm text-white border-0 text-[10px] max-w-full truncate block">
-                        {p.categoryLabel} · {branchName(p.branchId).split(" ")[0]}
-                      </Badge>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      </motion.div>
     </div>
   );
 }

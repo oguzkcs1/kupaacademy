@@ -32,7 +32,6 @@ const navItems = [
   { label: "Kapanış Kontrolü", href: "/operations/closing", icon: Sunset },
   { label: "Şube Şampiyonası", href: "/operations/leaderboard", icon: Trophy },
   { label: "Günlük Denetimler", href: "/operations/audits", icon: ClipboardCheck, adminOnly: true },
-  { label: "Fotoğraf Galerisi", href: "/operations/gallery", icon: Camera, adminOnly: true },
   { label: "Görevler", href: "/operations/tasks", icon: ListTodo },
   { label: "Operasyon Raporları", href: "/operations/reports", icon: PieChart, adminOnly: true },
   { type: "separator", label: "YÖNETİM" },

@@ -1,0 +1,523 @@
+{"kind":"deck","id":"pr/x37hsv","name":"Deck"}
+{"kind":"layout","layoutId":"aeea40f9-87d0-4c0e-bd0f-ec8420deb4b2","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"328cc082-e70f-4aa7-bdef-e81ca75255d3","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/s52ff5","slide":1,"title":"KUPA","textShapes":5}
+{"kind":"shape","id":"sh/p8f6lcv2","slide":1,"bbox":[0,0,510,720]}
+{"kind":"textbox","id":"sh/2lonqxcr","slide":1,"text":"KUPA","textPreview":"KUPA","textChars":4,"textLines":1,"bbox":[64,46,250,64]}
+{"kind":"textbox","id":"sh/3mxoj2dc","slide":1,"text":"COFFEE CO.","textPreview":"COFFEE CO.","textChars":10,"textLines":1,"bbox":[66,103,180,24]}
+{"kind":"textbox","id":"sh/gjm5onel","slide":1,"text":"Kahve ürünümüz.\nSistem ise yatırımınız.","textPreview":"Kahve ürünümüz. | Sistem ise yatırımınız.","textChars":39,"textLines":2,"bbox":[64,184,390,208]}
+{"kind":"textbox","id":"sh/hkf6hsv6","slide":1,"text":"Kupa Coffee Franchise\nYatırımcı Sunumu","textPreview":"Kupa Coffee Franchise | Yatırımcı Sunumu","textChars":38,"textLines":2,"bbox":[64,414,350,70]}
+{"kind":"shape","id":"sh/uh4nmxwf","slide":1,"bbox":[64,505,280,2]}
+{"kind":"textbox","id":"sh/fidof2d0","slide":1,"text":"2026  •  Türkiye","textPreview":"2026  •  Türkiye","textChars":16,"textLines":1,"bbox":[64,528,240,28]}
+{"kind":"image","id":"im/tk329sby","slide":1,"name":"","geometry":"roundRect","alt":"Pursaklar şubesinin mimari iç mekânı","bbox":[544,42,680,348]}
+{"kind":"image","id":"im/sjulgnad","slide":1,"name":"","geometry":"roundRect","alt":"Amasya şubesinin iç mekânı","bbox":[544,414,326,250]}
+{"kind":"image","id":"im/2d4by1kz","slide":1,"name":"","geometry":"roundRect","alt":"Samsun şubesinin servis alanı","bbox":[894,414,330,250]}
+{"kind":"notes","id":"nt/s52ff5","slide":1,"text":""}
+{"kind":"slide","id":"sl/rchxrw","slide":2,"title":"YATIRIM TEZI","textShapes":18}
+{"kind":"textbox","id":"sh/y5wjyt0b","slide":2,"text":"YATIRIM TEZI","textPreview":"YATIRIM TEZI","textChars":12,"textLines":1,"bbox":[64,45,520,24]}
+{"kind":"textbox","id":"sh/l8n2t8j2","slide":2,"text":"Bir şube değil, tekrar edilebilir bir işletme modeli","textPreview":"Bir şube değil, tekrar edilebilir bir işletme modeli","textChars":52,"textLines":1,"bbox":[64,82,1090,72]}
+{"kind":"textbox","id":"sh/07e103ih","slide":2,"text":"Yatırımcı için değer; ürünün arkasındaki standardizasyon, eğitim ve sürekli destekte oluşur.","textPreview":"Yatırımcı için değer; ürünün arkasındaki standardizasyon, eğitim ve sürekli destekte oluşur.","textChars":92,"textLines":1,"bbox":[64,151,1060,42]}
+{"kind":"textbox","id":"sh/7u5kvi1s","slide":2,"text":"KUPA COFFEE CO.  •  FRANCHISE","textPreview":"KUPA COFFEE CO.  •  FRANCHISE","textChars":29,"textLines":1,"bbox":[64,680,420,18]}
+{"kind":"textbox","id":"sh/mtwj2d0n","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1170,678,46,20]}
+{"kind":"shape","id":"sh/9w72x8jy","slide":2,"bbox":[64,230,264,310]}
+{"kind":"textbox","id":"sh/8vy143id","slide":2,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[86,248,54,26]}
+{"kind":"textbox","id":"sh/3yl0je1o","slide":2,"text":"Net marka kimliği","textPreview":"Net marka kimliği","textChars":17,"textLines":1,"bbox":[86,284,220,34]}
+{"kind":"textbox","id":"sh/2dcjq903","slide":2,"text":"Tescilli marka, tutarlı mekân dili ve farklı şehirlerde tanınabilir deneyim.","textPreview":"Tescilli marka, tutarlı mekân dili ve farklı şehirlerde tanınabilir deneyim.","textChars":76,"textLines":1,"bbox":[86,331,220,194]}
+{"kind":"shape","id":"sh/k329s72t","slide":2,"bbox":[348,230,264,310]}
+{"kind":"textbox","id":"sh/l4ba1cjy","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[370,248,54,26]}
+{"kind":"textbox","id":"sh/y1krqxkn","slide":2,"text":"Merkezi sistem","textPreview":"Merkezi sistem","textChars":14,"textLines":1,"bbox":[370,284,220,34]}
+{"kind":"textbox","id":"sh/j2tsz218","slide":2,"text":"Reçete, süreç, kontrol listesi ve operasyon standartlarının tek merkezden yönetimi.","textPreview":"Reçete, süreç, kontrol listesi ve operasyon standartlarının tek merkezden yönetimi.","textChars":83,"textLines":1,"bbox":[370,331,220,194]}
+{"kind":"shape","id":"sh/87mtw72p","slide":2,"bbox":[632,230,264,310]}
+{"kind":"textbox","id":"sh/t8va5cja","slide":2,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[654,248,54,26]}
+{"kind":"textbox","id":"sh/65kbuxkj","slide":2,"text":"Kupa Academy","textPreview":"Kupa Academy","textChars":12,"textLines":1,"bbox":[654,284,220,34]}
+{"kind":"textbox","id":"sh/76ds3214","slide":2,"text":"Personelin açılıştan günlük operasyona kadar aynı sistemle gelişmesini sağlayan eğitim altyapısı.","textPreview":"Personelin açılıştan günlük operasyona kadar aynı sistemle gelişmesini sağlayan eğitim altyapısı.","textChars":97,"textLines":1,"bbox":[654,331,220,194]}
+{"kind":"shape","id":"sh/obi9kn2l","slide":2,"bbox":[916,230,300,310]}
+{"kind":"textbox","id":"sh/9crat8j6","slide":2,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[938,248,54,26]}
+{"kind":"textbox","id":"sh/5gzy1k7i","slide":2,"text":"Sürekli destek","textPreview":"Sürekli destek","textChars":14,"textLines":1,"bbox":[938,284,256,34]}
+{"kind":"textbox","id":"sh/4fqh8fqx","slide":2,"text":"Lokasyon değerlendirmesinden kalite denetimine uzanan, yatırımcıyı yalnız bırakmayan yapı.","textPreview":"Lokasyon değerlendirmesinden kalite denetimine uzanan, yatırımcıyı yalnız bırakmayan yapı.","textChars":90,"textLines":1,"bbox":[938,331,256,194]}
+{"kind":"textbox","id":"sh/3uhgza9c","slide":2,"text":"Kupa Coffee, kahve satışını yönetilebilir bir franchise sistemine dönüştürür.","textPreview":"Kupa Coffee, kahve satışını yönetilebilir bir franchise sistemine dönüştürür.","textChars":77,"textLines":1,"bbox":[64,582,1050,48]}
+{"kind":"notes","id":"nt/rchxrw","slide":2,"text":""}
+{"kind":"slide","id":"sl/3n3ztg","slide":3,"title":"HIKÂYEMIZ","textShapes":12}
+{"kind":"textbox","id":"sh/toni1kji","slide":3,"text":"HIKÂYEMIZ","textPreview":"HIKÂYEMIZ","textChars":9,"textLines":1,"bbox":[64,45,520,24]}
+{"kind":"textbox","id":"sh/6lwz6507","slide":3,"text":"Amasya’da başlayan fikir, bugün 9 şubelik bir ağa dönüştü","textPreview":"Amasya’da başlayan fikir, bugün 9 şubelik bir ağa dönüştü","textChars":57,"textLines":1,"bbox":[64,82,1090,72]}
+{"kind":"textbox","id":"sh/7m50za1s","slide":3,"text":"KUPA COFFEE CO.  •  FRANCHISE","textPreview":"KUPA COFFEE CO.  •  FRANCHISE","textChars":29,"textLines":1,"bbox":[64,680,420,18]}
+{"kind":"textbox","id":"sh/kjuh4vi1","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1170,678,46,20]}
+{"kind":"shape","id":"sh/ihcz250v","slide":3,"bbox":[604,220,612,390]}
+{"kind":"textbox","id":"sh/jilgva1g","slide":3,"text":"2020","textPreview":"2020","textChars":4,"textLines":1,"bbox":[644,258,160,56]}
+{"kind":"textbox","id":"sh/4fyhgzi5","slide":3,"text":"Amasya’da başlangıç","textPreview":"Amasya’da başlangıç","textChars":19,"textLines":1,"bbox":[644,316,160,42]}
+{"kind":"textbox","id":"sh/pg7i94jq","slide":3,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[844,258,150,56]}
+{"kind":"textbox","id":"sh/50bip83u","slide":3,"text":"şehir","textPreview":"şehir","textChars":5,"textLines":1,"bbox":[844,316,150,42]}
+{"kind":"textbox","id":"sh/4z21w329","slide":3,"text":"9","textPreview":"9","textChars":1,"textLines":1,"bbox":[1010,258,150,56]}
+{"kind":"textbox","id":"sh/jyt0nylo","slide":3,"text":"franchise şube","textPreview":"franchise şube","textChars":14,"textLines":1,"bbox":[1010,316,150,42]}
+{"kind":"textbox","id":"sh/ixkjutk3","slide":3,"text":"Yerel bir kahve kültüründen; merkezi standartlarla yönetilen, eğitim ve denetimle desteklenen ulusal ölçekte büyüyebilir bir modele.","textPreview":"Yerel bir kahve kültüründen; merkezi standartlarla yönetilen, eğitim ve denetimle desteklenen ulusal ölçekte büyüyebilir bir modele.","textChars":132,"textLines":1,"bbox":[644,396,505,100]}
+{"kind":"textbox","id":"sh/hwbilo3i","slide":3,"text":"Markanın özü değişmedi: kaliteli kahve, samimi deneyim ve her şubede aynı güven.","textPreview":"Markanın özü değişmedi: kaliteli kahve, samimi deneyim ve her şubede aynı güven.","textChars":80,"textLines":1,"bbox":[644,522,500,54]}
+{"kind":"image","id":"im/szmlgz6l","slide":3,"name":"","geometry":"roundRect","alt":"Kupa Coffee Amasya şubesinin dış cephesi","bbox":[64,220,510,390]}
+{"kind":"notes","id":"nt/3n3ztg","slide":3,"text":""}
+{"kind":"slide","id":"sl/328dmm","slide":4,"title":"MISYONUMUZ","textShapes":6}
+{"kind":"textbox","id":"sh/ru5ori54","slide":4,"text":"MISYONUMUZ","textPreview":"MISYONUMUZ","textChars":10,"textLines":1,"bbox":[64,45,520,24]}
+{"kind":"textbox","id":"sh/svyp036p","slide":4,"text":"Her şehirde aynı kaliteyi, yerel sıcaklıkla buluşturmak","textPreview":"Her şehirde aynı kaliteyi, yerel sıcaklıkla buluşturmak","textChars":55,"textLines":1,"bbox":[64,82,1090,72]}
+{"kind":"textbox","id":"sh/dw76t8na","slide":4,"text":"KUPA COFFEE CO.  •  FRANCHISE","textPreview":"KUPA COFFEE CO.  •  FRANCHISE","textChars":29,"textLines":1,"bbox":[64,680,420,18]}
+{"kind":"textbox","id":"sh/exg72d4v","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1170,678,46,20]}
+{"kind":"textbox","id":"sh/fipovi5g","slide":4,"text":"Kahveyi yalnızca servis edilen bir ürün değil; çalışmak, buluşmak ve günün ritmini paylaşmak için tasarlanmış bir deneyim olarak görüyoruz.","textPreview":"Kahveyi yalnızca servis edilen bir ürün değil; çalışmak, buluşmak ve günün ritmini paylaşmak için tasarlanmış bir deneyim olarak görüyoruz.","textChars":139,"textLines":1,"bbox":[64,245,720,150]}
+{"kind":"shape","id":"sh/0jyponm1","slide":4,"bbox":[64,455,610,2]}
+{"kind":"textbox","id":"sh/1k76xsn6","slide":4,"text":"Franchise sistemimizin görevi, bu deneyimi ölçülebilir standartlarla korumak ve her işletmecinin sürdürülebilir biçimde yönetebilmesini sağlamaktır.","textPreview":"Franchise sistemimizin görevi, bu deneyimi ölçülebilir standartlarla korumak ve her işletmecinin sürdürülebilir biçimde yönetebilmesini s...","textChars":148,"textLines":1,"bbox":[64,485,700,92]}
+{"kind":"image","id":"im/nidkfeh0","slide":4,"name":"","geometry":"roundRect","alt":"Kupa Coffee samimi oturma alanı","bbox":[830,220,386,390]}
+{"kind":"notes","id":"nt/328dmm","slide":4,"text":""}
+{"kind":"slide","id":"sl/hzwbpv","slide":5,"title":"VIZYONUMUZ","textShapes":15}
+{"kind":"textbox","id":"sh/5svq9gb6","slide":5,"text":"VIZYONUMUZ","textPreview":"VIZYONUMUZ","textChars":10,"textLines":1,"bbox":[64,45,520,24]}
+{"kind":"textbox","id":"sh/ipkre1cf","slide":5,"text":"Türkiye’nin güvenilir ve ölçeklenebilir kahve markalarından biri olmak","textPreview":"Türkiye’nin güvenilir ve ölçeklenebilir kahve markalarından biri olmak","textChars":70,"textLines":1,"bbox":[64,82,1090,72]}
+{"kind":"textbox","id":"sh/3qt876t0","slide":5,"text":"KUPA COFFEE CO.  •  FRANCHISE","textPreview":"KUPA COFFEE CO.  •  FRANCHISE","textChars":29,"textLines":1,"bbox":[64,680,420,18]}
+{"kind":"textbox","id":"sh/svm9kvuh","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1170,678,46,20]}
+{"kind":"textbox","id":"sh/dgvqd0b2","slide":5,"text":"Büyümenin ölçüsü yalnızca şube sayısı değildir.","textPreview":"Büyümenin ölçüsü yalnızca şube sayısı değildir.","textChars":47,"textLines":1,"bbox":[64,220,630,70]}
+{"kind":"textbox","id":"sh/qt4rilcb","slide":5,"text":"Doğru lokasyon, doğru yatırımcı ve aynı operasyon standardı birlikte büyüdüğünde marka değeri kalıcı hale gelir.","textPreview":"Doğru lokasyon, doğru yatırımcı ve aynı operasyon standardı birlikte büyüdüğünde marka değeri kalıcı hale gelir.","textChars":112,"textLines":1,"bbox":[64,300,600,80]}
+{"kind":"shape","id":"sh/rud8bqtw","slide":5,"bbox":[735,230,481,82]}
+{"kind":"textbox","id":"sh/8zip8rud","slide":5,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[757,253,42,24]}
+{"kind":"textbox","id":"sh/tkbq1wby","slide":5,"text":"Seçici büyüme","textPreview":"Seçici büyüme","textChars":13,"textLines":1,"bbox":[814,244,160,28]}
+{"kind":"textbox","id":"sh/10bmtkra","slide":5,"text":"Lokasyon ve yatırımcı uyumunu birlikte değerlendirmek.","textPreview":"Lokasyon ve yatırımcı uyumunu birlikte değerlendirmek.","textChars":54,"textLines":1,"bbox":[973,240,215,42]}
+{"kind":"shape","id":"sh/0zilkfq5","slide":5,"bbox":[735,335,481,82]}
+{"kind":"textbox","id":"sh/zy94ra9k","slide":5,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[757,358,42,24]}
+{"kind":"textbox","id":"sh/ex03i58z","slide":5,"text":"Tek standart","textPreview":"Tek standart","textChars":12,"textLines":1,"bbox":[814,349,160,28]}
+{"kind":"textbox","id":"sh/94bmx4rm","slide":5,"text":"Ürün, hizmet ve deneyimi şehirden bağımsız korumak.","textPreview":"Ürün, hizmet ve deneyimi şehirden bağımsız korumak.","textChars":51,"textLines":1,"bbox":[973,345,215,42]}
+{"kind":"shape","id":"sh/o325ozq1","slide":5,"bbox":[735,440,481,82]}
+{"kind":"textbox","id":"sh/n2t4vu9g","slide":5,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[757,463,42,24]}
+{"kind":"textbox","id":"sh/m1knmp8v","slide":5,"text":"Sürekli gelişim","textPreview":"Sürekli gelişim","textChars":15,"textLines":1,"bbox":[814,454,160,28]}
+{"kind":"textbox","id":"sh/x8vm14ri","slide":5,"text":"Eğitim, veri ve denetimle sistemi her gün iyileştirmek.","textPreview":"Eğitim, veri ve denetimle sistemi her gün iyileştirmek.","textChars":55,"textLines":1,"bbox":[973,450,215,42]}
+{"kind":"notes","id":"nt/hzwbpv","slide":5,"text":""}
+{"kind":"slide","id":"sl/eyr7xx","slide":6,"title":"MARKA DEĞERLERIMIZ","textShapes":22}
+{"kind":"textbox","id":"sh/tsnyxwbu","slide":6,"text":"MARKA DEĞERLERIMIZ","textPreview":"MARKA DEĞERLERIMIZ","textChars":18,"textLines":1,"bbox":[64,45,520,24]}
+{"kind":"textbox","id":"sh/6pcfmhcj","slide":6,"text":"Güven, günlük küçük standartların toplamıdır","textPreview":"Güven, günlük küçük standartların toplamıdır","textChars":44,"textLines":1,"bbox":[64,82,1090,72]}
+{"kind":"textbox","id":"sh/7q5gvmto","slide":6,"text":"KUPA COFFEE CO.  •  FRANCHISE","textPreview":"KUPA COFFEE CO.  •  FRANCHISE","textChars":29,"textLines":1,"bbox":[64,680,420,18]}
+{"kind":"textbox","id":"sh/gvehsrul","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1170,678,46,20]}
+{"kind":"shape","id":"sh/hwny1wb6","slide":6,"bbox":[64,220,355,145]}
+{"kind":"textbox","id":"sh/utwzqhcf","slide":6,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[88,240,40,22]}
+{"kind":"textbox","id":"sh/fu5gzmt0","slide":6,"text":"Kalite","textPreview":"Kalite","textChars":6,"textLines":1,"bbox":[88,272,300,30]}
+{"kind":"textbox","id":"sh/wzuxg7u1","slide":6,"text":"Her reçetede ölçülebilir tutarlılık.","textPreview":"Her reçetede ölçülebilir tutarlılık.","textChars":36,"textLines":1,"bbox":[88,310,300,38]}
+{"kind":"shape","id":"sh/x03ypcvm","slide":6,"bbox":[449,220,355,145]}
+{"kind":"textbox","id":"sh/tonix0by","slide":6,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[473,240,40,22]}
+{"kind":"textbox","id":"sh/8neh4vad","slide":6,"text":"Misafirperverlik","textPreview":"Misafirperverlik","textChars":16,"textLines":1,"bbox":[473,272,300,30]}
+{"kind":"textbox","id":"sh/7m50vqts","slide":6,"text":"Samimi, erişilebilir ve özenli hizmet.","textPreview":"Samimi, erişilebilir ve özenli hizmet.","textChars":38,"textLines":1,"bbox":[473,310,300,38]}
+{"kind":"shape","id":"sh/6lwz2ls7","slide":6,"bbox":[834,220,355,145]}
+{"kind":"textbox","id":"sh/hc7i1kbu","slide":6,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[858,240,40,22]}
+{"kind":"textbox","id":"sh/gby18fa9","slide":6,"text":"Sadelik","textPreview":"Sadelik","textChars":7,"textLines":1,"bbox":[858,272,300,30]}
+{"kind":"textbox","id":"sh/va50zato","slide":6,"text":"Kolay öğrenilen, uygulanabilir süreçler.","textPreview":"Kolay öğrenilen, uygulanabilir süreçler.","textChars":40,"textLines":1,"bbox":[858,310,300,38]}
+{"kind":"shape","id":"sh/upwj65s3","slide":6,"bbox":[64,395,355,145]}
+{"kind":"textbox","id":"sh/5g7i5kb6","slide":6,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[88,415,40,22]}
+{"kind":"textbox","id":"sh/4fy1cfal","slide":6,"text":"Gelişim","textPreview":"Gelişim","textChars":7,"textLines":1,"bbox":[88,447,300,30]}
+{"kind":"textbox","id":"sh/oj6l8jih","slide":6,"text":"Eğitim ve geri bildirimle sürekli ilerleme.","textPreview":"Eğitim ve geri bildirimle sürekli ilerleme.","textChars":43,"textLines":1,"bbox":[88,485,300,38]}
+{"kind":"shape","id":"sh/pkf21oz2","slide":6,"bbox":[449,395,355,145]}
+{"kind":"textbox","id":"sh/2ho36t0r","slide":6,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[473,415,40,22]}
+{"kind":"textbox","id":"sh/3ixkzyhw","slide":6,"text":"Sorumluluk","textPreview":"Sorumluluk","textChars":10,"textLines":1,"bbox":[473,447,300,30]}
+{"kind":"textbox","id":"sh/cnqlc3it","slide":6,"text":"Marka standardına ve yatırımcı emeğine saygı.","textPreview":"Marka standardına ve yatırımcı emeğine saygı.","textChars":45,"textLines":1,"bbox":[473,485,300,38]}
+{"kind":"shape","id":"sh/xoz258ze","slide":6,"bbox":[834,395,355,145]}
+{"kind":"textbox","id":"sh/qlo3at0n","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[858,415,40,22]}
+{"kind":"textbox","id":"sh/bmhk3yh8","slide":6,"text":"Birlik","textPreview":"Birlik","textChars":6,"textLines":1,"bbox":[858,447,300,30]}
+{"kind":"textbox","id":"sh/srm10zi9","slide":6,"text":"Merkez ve franchise işletmecisinin aynı hedefte buluşması.","textPreview":"Merkez ve franchise işletmecisinin aynı hedefte buluşması.","textChars":58,"textLines":1,"bbox":[858,485,300,38]}
+{"kind":"notes","id":"nt/eyr7xx","slide":6,"text":""}
+{"kind":"slide","id":"sl/urqqty","slide":7,"title":"NEDEN KUPA COFFEE","textShapes":12}
+{"kind":"textbox","id":"sh/krqtwrqx","slide":7,"text":"NEDEN KUPA COFFEE","textPreview":"NEDEN KUPA COFFEE","textChars":17,"textLines":1,"bbox":[64,45,520,24]}
+{"kind":"textbox","id":"sh/jqhsnm9c","slide":7,"text":"Yatırımcı için dört katmanda değer üreten model","textPreview":"Yatırımcı için dört katmanda değer üreten model","textChars":47,"textLines":1,"bbox":[64,82,1090,72]}
+{"kind":"textbox","id":"sh/ip8bu18r","slide":7,"text":"KUPA COFFEE CO.  •  FRANCHISE","textPreview":"KUPA COFFEE CO.  •  FRANCHISE","textChars":29,"textLines":1,"bbox":[64,680,420,18]}
+{"kind":"textbox","id":"sh/xozalwr6","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1170,678,46,20]}
+{"kind":"shape","id":"sh/vmhsjm9g","slide":7,"bbox":[658,220,558,82]}
+{"kind":"textbox","id":"sh/alobqhsv","slide":7,"text":"Ürün","textPreview":"Ürün","textChars":4,"textLines":1,"bbox":[682,238,135,28]}
+{"kind":"textbox","id":"sh/hkjuxgrq","slide":7,"text":"Geniş içecek ve atıştırmalık portföyü","textPreview":"Geniş içecek ve atıştırmalık portföyü","textChars":37,"textLines":1,"bbox":[824,236,360,45]}
+{"kind":"shape","id":"sh/gjat4bq5","slide":7,"bbox":[658,320,558,82]}
+{"kind":"textbox","id":"sh/qh0jmp87","slide":7,"text":"Mekân","textPreview":"Mekân","textChars":5,"textLines":1,"bbox":[682,338,135,28]}
+{"kind":"textbox","id":"sh/ri9kvaps","slide":7,"text":"Çalışma, buluşma ve sosyalleşmeye uygun konsept","textPreview":"Çalışma, buluşma ve sosyalleşmeye uygun konsept","textChars":47,"textLines":1,"bbox":[824,336,360,45]}
+{"kind":"shape","id":"sh/sji1ofqd","slide":7,"bbox":[658,420,558,82]}
+{"kind":"textbox","id":"sh/dkr2xk7y","slide":7,"text":"Sistem","textPreview":"Sistem","textChars":6,"textLines":1,"bbox":[682,438,135,28]}
+{"kind":"textbox","id":"sh/idgji58b","slide":7,"text":"Standart operasyon, reçete ve kontrol yapısı","textPreview":"Standart operasyon, reçete ve kontrol yapısı","textChars":44,"textLines":1,"bbox":[824,436,360,45]}
+{"kind":"shape","id":"sh/3epkrapg","slide":7,"bbox":[658,520,558,82]}
+{"kind":"textbox","id":"sh/4fy1kfq1","slide":7,"text":"Destek","textPreview":"Destek","textChars":6,"textLines":1,"bbox":[682,538,135,28]}
+{"kind":"textbox","id":"sh/5g72tk7m","slide":7,"text":"Eğitim, pazarlama ve düzenli kalite takibi","textPreview":"Eğitim, pazarlama ve düzenli kalite takibi","textChars":42,"textLines":1,"bbox":[824,536,360,45]}
+{"kind":"image","id":"im/hsrap4f6","slide":7,"name":"","geometry":"roundRect","alt":"Samsun şubesinin geniş iç mekânı","bbox":[64,220,560,410]}
+{"kind":"notes","id":"nt/urqqty","slide":7,"text":""}
+{"kind":"slide","id":"sl/yfexbk","slide":8,"title":"KONSEPTIMIZ","textShapes":10}
+{"kind":"textbox","id":"sh/l4ri9czi","slide":8,"text":"KONSEPTIMIZ","textPreview":"KONSEPTIMIZ","textChars":11,"textLines":1,"bbox":[64,45,520,24]}
+{"kind":"textbox","id":"sh/y1gjyxg7","slide":8,"text":"Mekân tasarımı, operasyonun sessiz ortağıdır","textPreview":"Mekân tasarımı, operasyonun sessiz ortağıdır","textChars":44,"textLines":1,"bbox":[64,82,1090,72]}
+{"kind":"textbox","id":"sh/z29072hs","slide":8,"text":"KUPA COFFEE CO.  •  FRANCHISE","textPreview":"KUPA COFFEE CO.  •  FRANCHISE","textChars":29,"textLines":1,"bbox":[64,680,420,18]}
+{"kind":"textbox","id":"sh/czy1wny1","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1170,678,46,20]}
+{"kind":"textbox","id":"sh/ovy1sny5","slide":8,"text":"Açık ve sıcak","textPreview":"Açık ve sıcak","textChars":13,"textLines":1,"bbox":[900,222,270,34]}
+{"kind":"textbox","id":"sh/pw7i1szq","slide":8,"text":"Doğal ışık, ahşap dokular, rahat oturma ve sade yönlendirme dili.","textPreview":"Doğal ışık, ahşap dokular, rahat oturma ve sade yönlendirme dili.","textChars":65,"textLines":1,"bbox":[900,266,270,70]}
+{"kind":"textbox","id":"sh/5gfalk3a","slide":8,"text":"Çok amaçlı","textPreview":"Çok amaçlı","textChars":10,"textLines":1,"bbox":[900,385,270,34]}
+{"kind":"textbox","id":"sh/kf6tcf2p","slide":8,"text":"Kısa moladan uzun çalışmaya, bireysel kullanımdan grup buluşmalarına kadar esnek planlama.","textPreview":"Kısa moladan uzun çalışmaya, bireysel kullanımdan grup buluşmalarına kadar esnek planlama.","textChars":90,"textLines":1,"bbox":[900,429,270,88]}
+{"kind":"textbox","id":"sh/jexsjal4","slide":8,"text":"Tekrarlanabilir","textPreview":"Tekrarlanabilir","textChars":15,"textLines":1,"bbox":[900,550,270,34]}
+{"kind":"textbox","id":"sh/idoba5kj","slide":8,"text":"Marka kodlarını korurken lokasyonun mimari potansiyeline uyarlanabilen konsept.","textPreview":"Marka kodlarını korurken lokasyonun mimari potansiyeline uyarlanabilen konsept.","textChars":79,"textLines":1,"bbox":[900,590,270,60]}
+{"kind":"image","id":"im/k3q503u9","slide":8,"name":"","geometry":"roundRect","alt":"Pursaklar şubesinin galeri boşluğu","bbox":[64,210,420,420]}
+{"kind":"image","id":"im/j2h4ryto","slide":8,"name":"","geometry":"roundRect","alt":"Amasya şubesinin gün ışığı alan bölümü","bbox":[508,210,340,200]}
+{"kind":"image","id":"im/y183ydcj","slide":8,"name":"","geometry":"roundRect","alt":"Pursaklar şubesinin bahçe alanı","bbox":[508,430,340,200]}
+{"kind":"notes","id":"nt/yfexbk","slide":8,"text":""}
+{"kind":"slide","id":"sl/kvso08","slide":9,"title":"YENİ NESİL KONSEPTİMİZ","textShapes":12}
+{"kind":"textbox","id":"sh/3ap4bepo","slide":9,"text":"YENİ NESİL KONSEPTİMİZ","textPreview":"YENİ NESİL KONSEPTİMİZ","textChars":22,"textLines":1,"bbox":[64,46,370,24]}
+{"kind":"textbox","id":"sh/4bi5kjq9","slide":9,"text":"Kupa Coffee\n& Bakery","textPreview":"Kupa Coffee | & Bakery","textChars":20,"textLines":2,"bbox":[64,92,390,112]}
+{"kind":"textbox","id":"sh/pcr6do7u","slide":9,"text":"Klasik kahve deneyimini günlük fırın ürünleri, zengin kahvaltı seçenekleri ve premium pastane lezzetleriyle buluşturan yeni nesil mağaza konseptimiz.","textPreview":"Klasik kahve deneyimini günlük fırın ürünleri, zengin kahvaltı seçenekleri ve premium pastane lezzetleriyle buluşturan yeni nesil mağaza ...","textChars":149,"textLines":1,"bbox":[64,226,370,116]}
+{"kind":"shape","id":"sh/qd0nmt8f","slide":9,"bbox":[64,365,300,2]}
+{"kind":"textbox","id":"sh/re9ofepk","slide":9,"text":"ÇUKURAMBAR","textPreview":"ÇUKURAMBAR","textChars":10,"textLines":1,"bbox":[64,392,230,24]}
+{"kind":"textbox","id":"sh/cfi5ojq5","slide":9,"text":"Çukurambar şubemiz; ürün çeşitliliği, açık servis dili ve sıcak mekân deneyimiyle yeni nesil bakery yaklaşımımızın güçlü temsilcisidir.","textPreview":"Çukurambar şubemiz; ürün çeşitliliği, açık servis dili ve sıcak mekân deneyimiyle yeni nesil bakery yaklaşımımızın güçlü temsilcisidir.","textChars":135,"textLines":1,"bbox":[64,428,370,86]}
+{"kind":"textbox","id":"sh/dgr6ho7q","slide":9,"text":"Kupa Coffee büyürken yalnızca\nşube sayısını değil, misafir\ndeneyimini de sürekli geliştiriyor.","textPreview":"Kupa Coffee büyürken yalnızca | şube sayısını değil, misafir | deneyimini de sürekli geliştiriyor.","textChars":94,"textLines":3,"bbox":[64,544,390,86]}
+{"kind":"shape","id":"sh/7i543u9g","slide":9,"bbox":[530,242,320,62]}
+{"kind":"textbox","id":"sh/n61on6p0","slide":9,"text":"Artisan\nBakery","textPreview":"Artisan | Bakery","textChars":14,"textLines":2,"bbox":[548,258,284,38]}
+{"kind":"shape","id":"sh/ps36pw76","slide":9,"bbox":[870,242,320,62]}
+{"kind":"textbox","id":"sh/o7u5gr6l","slide":9,"text":"Specialty\nCoffee","textPreview":"Specialty | Coffee","textChars":16,"textLines":2,"bbox":[888,258,284,38]}
+{"kind":"shape","id":"sh/e1snah8j","slide":9,"bbox":[530,534,320,62]}
+{"kind":"textbox","id":"sh/14j6lw7a","slide":9,"text":"Breakfast","textPreview":"Breakfast","textChars":9,"textLines":1,"bbox":[548,550,284,38]}
+{"kind":"shape","id":"sh/ryh4fmps","slide":9,"bbox":[870,534,320,62]}
+{"kind":"textbox","id":"sh/qx8n6h8n","slide":9,"text":"Patisserie","textPreview":"Patisserie","textChars":10,"textLines":1,"bbox":[888,550,284,38]}
+{"kind":"textbox","id":"sh/u98nihsf","slide":9,"text":"KUPA COFFEE CO.  •  FRANCHISE","textPreview":"KUPA COFFEE CO.  •  FRANCHISE","textChars":29,"textLines":1,"bbox":[64,680,420,18]}
+{"kind":"textbox","id":"sh/vahor290","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1170,678,46,20]}
+{"kind":"image","id":"im/vypwbelc","slide":9,"name":"","geometry":"roundRect","alt":"Çukurambar şubesinin bakery vitrini","bbox":[530,44,320,260]}
+{"kind":"image","id":"im/9cbi9k3u","slide":9,"name":"","geometry":"roundRect","alt":"Çukurambar şubesinin kahve servis bankosu","bbox":[870,44,320,260]}
+{"kind":"image","id":"im/wfmh4f2l","slide":9,"name":"","geometry":"roundRect","alt":"Çukurambar şubesinin aydınlık terası","bbox":[530,336,320,260]}
+{"kind":"image","id":"im/ved0bal0","slide":9,"name":"","geometry":"roundRect","alt":"Çukurambar şubesinin premium pastane vitrini","bbox":[870,336,320,260]}
+{"kind":"notes","id":"nt/kvso08","slide":9,"text":""}
+{"kind":"slide","id":"sl/8bvq41","slide":10,"title":"ÜRÜN GRUPLARIMIZ","textShapes":23}
+{"kind":"textbox","id":"sh/etc7m9s7","slide":10,"text":"ÜRÜN GRUPLARIMIZ","textPreview":"ÜRÜN GRUPLARIMIZ","textChars":16,"textLines":1,"bbox":[64,45,520,24]}
+{"kind":"textbox","id":"sh/1w3qhory","slide":10,"text":"Günün farklı anlarına yayılan dengeli ürün portföyü","textPreview":"Günün farklı anlarına yayılan dengeli ürün portföyü","textChars":51,"textLines":1,"bbox":[64,82,1090,72]}
+{"kind":"textbox","id":"sh/0vupojad","slide":10,"text":"KUPA COFFEE CO.  •  FRANCHISE","textPreview":"KUPA COFFEE CO.  •  FRANCHISE","textChars":29,"textLines":1,"bbox":[64,680,420,18]}
+{"kind":"textbox","id":"sh/rql8be9g","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1170,678,46,20]}
+{"kind":"shape","id":"sh/qps7i9sb","slide":10,"bbox":[64,220,355,152]}
+{"kind":"textbox","id":"sh/ds3qd4rm","slide":10,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[88,240,40,22]}
+{"kind":"textbox","id":"sh/srupkja1","slide":10,"text":"Espresso bazlı","textPreview":"Espresso bazlı","textChars":14,"textLines":1,"bbox":[88,272,300,30]}
+{"kind":"textbox","id":"sh/bm58ny90","slide":10,"text":"Americano, latte, mocha ve imza reçeteler","textPreview":"Americano, latte, mocha ve imza reçeteler","textChars":41,"textLines":1,"bbox":[88,312,300,48]}
+{"kind":"shape","id":"sh/alwrutsf","slide":10,"bbox":[449,220,355,152]}
+{"kind":"textbox","id":"sh/8v6tkral","slide":10,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[473,240,40,22]}
+{"kind":"textbox","id":"sh/twfadwb6","slide":10,"text":"Soğuk içecekler","textPreview":"Soğuk içecekler","textChars":15,"textLines":1,"bbox":[473,272,300,30]}
+{"kind":"textbox","id":"sh/6tobihsf","slide":10,"text":"Iced coffee, frappe, milkshake ve sezon ürünleri","textPreview":"Iced coffee, frappe, milkshake ve sezon ürünleri","textChars":48,"textLines":1,"bbox":[473,312,300,48]}
+{"kind":"shape","id":"sh/7uxsbmt0","slide":10,"bbox":[834,220,355,152]}
+{"kind":"textbox","id":"sh/kr6tg7a9","slide":10,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[858,240,40,22]}
+{"kind":"textbox","id":"sh/lsfa9cbu","slide":10,"text":"Türk kahvesi","textPreview":"Türk kahvesi","textChars":12,"textLines":1,"bbox":[858,272,300,30]}
+{"kind":"textbox","id":"sh/y54behsj","slide":10,"text":"Klasik ve yöresel alternatifler","textPreview":"Klasik ve yöresel alternatifler","textChars":31,"textLines":1,"bbox":[858,312,300,48]}
+{"kind":"shape","id":"sh/jqxs72to","slide":10,"bbox":[64,400,355,152]}
+{"kind":"textbox","id":"sh/w3mtc7ad","slide":10,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[88,420,40,22]}
+{"kind":"textbox","id":"sh/x4va5cby","slide":10,"text":"Ferahlık","textPreview":"Ferahlık","textChars":8,"textLines":1,"bbox":[88,452,300,30]}
+{"kind":"textbox","id":"sh/d83it4za","slide":10,"text":"Limonata, mojito ve meyve bazlı içecekler","textPreview":"Limonata, mojito ve meyve bazlı içecekler","textChars":41,"textLines":1,"bbox":[88,492,300,48]}
+{"kind":"shape","id":"sh/cnuhkzip","slide":10,"bbox":[449,400,355,152]}
+{"kind":"textbox","id":"sh/rml0ruhk","slide":10,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[473,420,40,22]}
+{"kind":"textbox","id":"sh/qlczip0z","slide":10,"text":"Tatlı","textPreview":"Tatlı","textChars":5,"textLines":1,"bbox":[473,452,300,30]}
+{"kind":"textbox","id":"sh/pk3ipkze","slide":10,"text":"Dilim pasta, donut, kek ve çikolata","textPreview":"Dilim pasta, donut, kek ve çikolata","textChars":35,"textLines":1,"bbox":[473,492,300,48]}
+{"kind":"shape","id":"sh/4juhgzit","slide":10,"bbox":[834,400,355,152]}
+{"kind":"textbox","id":"sh/3ilgnuh8","slide":10,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[858,420,40,22]}
+{"kind":"textbox","id":"sh/2hszep0n","slide":10,"text":"Atıştırmalık","textPreview":"Atıştırmalık","textChars":12,"textLines":1,"bbox":[858,452,300,30]}
+{"kind":"textbox","id":"sh/9gni1ozi","slide":10,"text":"Sandviç, kruvasan ve sıcak alternatifler","textPreview":"Sandviç, kruvasan ve sıcak alternatifler","textChars":40,"textLines":1,"bbox":[858,492,300,48]}
+{"kind":"textbox","id":"sh/ofehsjyx","slide":10,"text":"Portföy yapısı; sabah, öğle, akşam ve paket servis kullanım senaryolarını destekleyecek esneklikte kurgulanır.","textPreview":"Portföy yapısı; sabah, öğle, akşam ve paket servis kullanım senaryolarını destekleyecek esneklikte kurgulanır.","textChars":110,"textLines":1,"bbox":[64,598,1100,40]}
+{"kind":"notes","id":"nt/8bvq41","slide":10,"text":""}
+{"kind":"slide","id":"sl/801eqn","slide":11,"title":"OPERASYON GÜCÜMÜZ","textShapes":23}
+{"kind":"textbox","id":"sh/t43mpojy","slide":11,"text":"OPERASYON GÜCÜMÜZ","textPreview":"OPERASYON GÜCÜMÜZ","textChars":17,"textLines":1,"bbox":[64,45,520,24]}
+{"kind":"textbox","id":"sh/61c3u9kn","slide":11,"text":"Her şube aynı işletme omurgasına bağlanır","textPreview":"Her şube aynı işletme omurgasına bağlanır","textChars":41,"textLines":1,"bbox":[64,82,1090,72]}
+{"kind":"textbox","id":"sh/72l4ne18","slide":11,"text":"KUPA COFFEE CO.  •  FRANCHISE","textPreview":"KUPA COFFEE CO.  •  FRANCHISE","textChars":29,"textLines":1,"bbox":[64,680,420,18]}
+{"kind":"textbox","id":"sh/gre50j2p","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1170,678,46,20]}
+{"kind":"shape","id":"sh/hsnmtoja","slide":11,"bbox":[64,220,548,96]}
+{"kind":"textbox","id":"sh/upw3ytkj","slide":11,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[86,238,42,22]}
+{"kind":"textbox","id":"sh/fq54re14","slide":11,"text":"Standart operasyon","textPreview":"Standart operasyon","textChars":18,"textLines":1,"bbox":[140,237,190,26]}
+{"kind":"textbox","id":"sh/wvaloz2l","slide":11,"text":"Günlük işleyişin görev ve sorumluluk bazında tanımlanması.","textPreview":"Günlük işleyişin görev ve sorumluluk bazında tanımlanması.","textChars":58,"textLines":1,"bbox":[140,270,430,38]}
+{"kind":"shape","id":"sh/xwjmh43q","slide":11,"bbox":[640,220,548,96]}
+{"kind":"textbox","id":"sh/h8rmdgji","slide":11,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[662,238,42,22]}
+{"kind":"textbox","id":"sh/g7yl4b2x","slide":11,"text":"Merkezi yönetim","textPreview":"Merkezi yönetim","textChars":15,"textLines":1,"bbox":[716,237,190,26]}
+{"kind":"textbox","id":"sh/v6p4b61c","slide":11,"text":"Marka standartlarının tek merkezden güncellenmesi ve aktarılması.","textPreview":"Marka standartlarının tek merkezden güncellenmesi ve aktarılması.","textChars":65,"textLines":1,"bbox":[716,270,430,38]}
+{"kind":"shape","id":"sh/u5g321kr","slide":11,"bbox":[64,340,548,96]}
+{"kind":"textbox","id":"sh/5wrmhgje","slide":11,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[86,358,42,22]}
+{"kind":"textbox","id":"sh/4vil8b2t","slide":11,"text":"Kalite kontrol","textPreview":"Kalite kontrol","textChars":14,"textLines":1,"bbox":[140,357,190,26]}
+{"kind":"textbox","id":"sh/3u94fq18","slide":11,"text":"Ürün, hizmet ve mekân deneyiminin düzenli izlenmesi.","textPreview":"Ürün, hizmet ve mekân deneyiminin düzenli izlenmesi.","textChars":52,"textLines":1,"bbox":[140,390,430,38]}
+{"kind":"shape","id":"sh/i9036lkn","slide":11,"bbox":[640,340,548,96]}
+{"kind":"textbox","id":"sh/d0bml0ja","slide":11,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[662,358,42,22]}
+{"kind":"textbox","id":"sh/sz2lcv25","slide":11,"text":"Eğitim","textPreview":"Eğitim","textChars":6,"textLines":1,"bbox":[716,357,190,26]}
+{"kind":"textbox","id":"sh/wfax43ed","slide":11,"text":"Rol bazlı personel gelişimi ve uygulamalı öğrenme.","textPreview":"Rol bazlı personel gelişimi ve uygulamalı öğrenme.","textChars":50,"textLines":1,"bbox":[716,390,430,38]}
+{"kind":"shape","id":"sh/xg3ex8vy","slide":11,"bbox":[64,460,548,96]}
+{"kind":"textbox","id":"sh/adsf2tw7","slide":11,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[86,478,42,22]}
+{"kind":"textbox","id":"sh/be1wvyds","slide":11,"text":"Süreç yönetimi","textPreview":"Süreç yönetimi","textChars":14,"textLines":1,"bbox":[140,477,190,26]}
+{"kind":"textbox","id":"sh/kjux83e9","slide":11,"text":"Açılış, vardiya, kapanış ve raporlama disiplininin korunması.","textPreview":"Açılış, vardiya, kapanış ve raporlama disiplininin korunması.","textChars":61,"textLines":1,"bbox":[140,510,430,38]}
+{"kind":"shape","id":"sh/lk3e18vu","slide":11,"bbox":[640,460,548,96]}
+{"kind":"textbox","id":"sh/yhcf6dwj","slide":11,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[662,478,42,22]}
+{"kind":"textbox","id":"sh/jilwzyd4","slide":11,"text":"Sürdürülebilirlik","textPreview":"Sürdürülebilirlik","textChars":17,"textLines":1,"bbox":[716,477,190,26]}
+{"kind":"textbox","id":"sh/0nqdwje5","slide":11,"text":"İşletmenin kişilere değil, tanımlı sisteme dayanması.","textPreview":"İşletmenin kişilere değil, tanımlı sisteme dayanması.","textChars":53,"textLines":1,"bbox":[716,510,430,38]}
+{"kind":"textbox","id":"sh/1ozepovq","slide":11,"text":"Amaç: yatırımcının günlük operasyonu öngörülebilir, takip edilebilir ve geliştirilebilir bir sistemle yönetmesi.","textPreview":"Amaç: yatırımcının günlük operasyonu öngörülebilir, takip edilebilir ve geliştirilebilir bir sistemle yönetmesi.","textChars":112,"textLines":1,"bbox":[64,602,1120,40]}
+{"kind":"notes","id":"nt/801eqn","slide":11,"text":""}
+{"kind":"slide","id":"sl/cduqyy","slide":12,"title":"KALITE POLITIKAMIZ","textShapes":16}
+{"kind":"textbox","id":"sh/z2lc7ul8","slide":12,"text":"KALITE POLITIKAMIZ","textPreview":"KALITE POLITIKAMIZ","textChars":18,"textLines":1,"bbox":[64,45,520,24]}
+{"kind":"textbox","id":"sh/kned0zmt","slide":12,"text":"Kalite, kontrol edilen bir sonuç değil; tasarlanmış bir süreçtir","textPreview":"Kalite, kontrol edilen bir sonuç değil; tasarlanmış bir süreçtir","textChars":64,"textLines":1,"bbox":[64,82,1090,72]}
+{"kind":"textbox","id":"sh/lone943e","slide":12,"text":"KUPA COFFEE CO.  •  FRANCHISE","textPreview":"KUPA COFFEE CO.  •  FRANCHISE","textChars":29,"textLines":1,"bbox":[64,680,420,18]}
+{"kind":"textbox","id":"sh/mpwv294j","slide":12,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1170,678,46,20]}
+{"kind":"shape","id":"sh/8red4jmp","slide":12,"bbox":[548,220,668,78]}
+{"kind":"textbox","id":"sh/9snedo3a","slide":12,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[570,240,36,34]}
+{"kind":"textbox","id":"sh/2tsvqp4f","slide":12,"text":"Standart reçete","textPreview":"Standart reçete","textChars":15,"textLines":1,"bbox":[626,236,190,28]}
+{"kind":"textbox","id":"sh/nu1cza50","slide":12,"text":"Her ürün için tanımlı malzeme ve uygulama","textPreview":"Her ürün için tanımlı malzeme ve uygulama","textChars":41,"textLines":1,"bbox":[816,235,370,42]}
+{"kind":"shape","id":"sh/jm1cnelo","slide":12,"bbox":[548,318,668,78]}
+{"kind":"textbox","id":"sh/ilsbu9kj","slide":12,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[570,338,36,34]}
+{"kind":"textbox","id":"sh/583upo3u","slide":12,"text":"Doğru uygulama","textPreview":"Doğru uygulama","textChars":14,"textLines":1,"bbox":[626,334,190,28]}
+{"kind":"textbox","id":"sh/4nadwj29","slide":12,"text":"Eğitimli ekip ve görev bazlı kontrol listeleri","textPreview":"Eğitimli ekip ve görev bazlı kontrol listeleri","textChars":46,"textLines":1,"bbox":[816,333,370,42]}
+{"kind":"shape","id":"sh/vi1cjuls","slide":12,"bbox":[548,416,668,78]}
+{"kind":"textbox","id":"sh/uhsbqpk7","slide":12,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[570,436,36,34]}
+{"kind":"textbox","id":"sh/hkjul43y","slide":12,"text":"Düzenli denetim","textPreview":"Düzenli denetim","textChars":15,"textLines":1,"bbox":[626,432,190,28]}
+{"kind":"textbox","id":"sh/wjatsz2d","slide":12,"text":"Operasyon, hijyen, servis ve marka görünümü takibi","textPreview":"Operasyon, hijyen, servis ve marka görünümü takibi","textChars":50,"textLines":1,"bbox":[816,431,370,42]}
+{"kind":"shape","id":"sh/7ehcfulw","slide":12,"bbox":[548,514,668,78]}
+{"kind":"textbox","id":"sh/md8bmpkb","slide":12,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[570,534,36,34]}
+{"kind":"textbox","id":"sh/qp8vypo3","slide":12,"text":"Geri bildirim","textPreview":"Geri bildirim","textChars":13,"textLines":1,"bbox":[626,530,190,28]}
+{"kind":"textbox","id":"sh/bqhc7u5o","slide":12,"text":"Bulgunun aksiyona ve yeni eğitime dönüşmesi","textPreview":"Bulgunun aksiyona ve yeni eğitime dönüşmesi","textChars":43,"textLines":1,"bbox":[816,529,370,42]}
+{"kind":"image","id":"im/i98b2547","slide":12,"name":"","geometry":"roundRect","alt":"Amasya şubesinin ürün ve servis bankosu","bbox":[64,220,440,390]}
+{"kind":"notes","id":"nt/cduqyy","slide":12,"text":""}
+{"kind":"slide","id":"sl/7ot8af","slide":13,"title":"KUPA ACADEMY","textShapes":18}
+{"kind":"textbox","id":"sh/1czyl4ba","slide":13,"text":"KUPA ACADEMY","textPreview":"KUPA ACADEMY","textChars":12,"textLines":1,"bbox":[64,45,520,24]}
+{"kind":"textbox","id":"sh/e98zapcz","slide":13,"text":"Bilgiyi kişiden sisteme taşıyan dijital eğitim altyapısı","textPreview":"Bilgiyi kişiden sisteme taşıyan dijital eğitim altyapısı","textChars":56,"textLines":1,"bbox":[64,82,1090,72]}
+{"kind":"textbox","id":"sh/fahgjutk","slide":13,"text":"Her görev, her vardiya ve her şube için ortak öğrenme dili.","textPreview":"Her görev, her vardiya ve her şube için ortak öğrenme dili.","textChars":59,"textLines":1,"bbox":[64,151,1060,42]}
+{"kind":"textbox","id":"sh/ofqhgzu1","slide":13,"text":"KUPA COFFEE CO.  •  FRANCHISE","textPreview":"KUPA COFFEE CO.  •  FRANCHISE","textChars":29,"textLines":1,"bbox":[64,680,420,18]}
+{"kind":"textbox","id":"sh/pgjyp4bm","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1170,678,46,20]}
+{"kind":"shape","id":"sh/2d8ze9cv","slide":13,"bbox":[64,230,1152,350]}
+{"kind":"shape","id":"sh/nehgnetg","slide":13,"bbox":[96,268,700,42]}
+{"kind":"textbox","id":"sh/4j6x4fux","slide":13,"text":"KUPA ACADEMY  /  ÖĞRENME MERKEZİ","textPreview":"KUPA ACADEMY  /  ÖĞRENME MERKEZİ","textChars":32,"textLines":1,"bbox":[118,278,480,20]}
+{"kind":"shape","id":"sh/5kfydkbi","slide":13,"bbox":[96,330,326,84]}
+{"kind":"textbox","id":"sh/d0f6xo7i","slide":13,"text":"Video eğitimleri","textPreview":"Video eğitimleri","textChars":16,"textLines":1,"bbox":[114,345,285,24]}
+{"kind":"textbox","id":"sh/cz6p4jqx","slide":13,"text":"Kısa, erişilebilir ve tekrar izlenebilir içerikler","textPreview":"Kısa, erişilebilir ve tekrar izlenebilir içerikler","textChars":50,"textLines":1,"bbox":[114,374,285,34]}
+{"kind":"shape","id":"sh/ryxovepc","slide":13,"bbox":[446,330,326,84]}
+{"kind":"textbox","id":"sh/qxon298r","slide":13,"text":"Operasyon eğitimleri","textPreview":"Operasyon eğitimleri","textChars":20,"textLines":1,"bbox":[464,345,285,24]}
+{"kind":"textbox","id":"sh/1of61o7e","slide":13,"text":"Görev bazlı günlük uygulamalar","textPreview":"Görev bazlı günlük uygulamalar","textChars":30,"textLines":1,"bbox":[464,374,285,34]}
+{"kind":"shape","id":"sh/0n6p8jqt","slide":13,"bbox":[96,435,326,84]}
+{"kind":"textbox","id":"sh/zmxozepo","slide":13,"text":"Standart reçeteler","textPreview":"Standart reçeteler","textChars":18,"textLines":1,"bbox":[114,450,285,24]}
+{"kind":"textbox","id":"sh/e1o76t83","slide":13,"text":"Ürünü doğru ve aynı şekilde hazırlama","textPreview":"Ürünü doğru ve aynı şekilde hazırlama","textChars":37,"textLines":1,"bbox":[114,479,285,34]}
+{"kind":"shape","id":"sh/9sz6587q","slide":13,"bbox":[446,435,326,84]}
+{"kind":"textbox","id":"sh/orqpc3q5","slide":13,"text":"Personel gelişimi","textPreview":"Personel gelişimi","textChars":17,"textLines":1,"bbox":[464,450,285,24]}
+{"kind":"textbox","id":"sh/8vy987eh","slide":13,"text":"Rol ve yetkinlik bazlı öğrenme yolculuğu","textPreview":"Rol ve yetkinlik bazlı öğrenme yolculuğu","textChars":40,"textLines":1,"bbox":[464,479,285,34]}
+{"kind":"textbox","id":"sh/tw7qhcfm","slide":13,"text":"7/24","textPreview":"7/24","textChars":4,"textLines":1,"bbox":[860,275,250,56]}
+{"kind":"textbox","id":"sh/6tgr6xwb","slide":13,"text":"erişilebilir dijital içerik","textPreview":"erişilebilir dijital içerik","textChars":27,"textLines":1,"bbox":[860,333,250,42]}
+{"kind":"textbox","id":"sh/7up8f2xw","slide":13,"text":"Eğitim → Uygulama → Kontrol → Gelişim","textPreview":"Eğitim → Uygulama → Kontrol → Gelişim","textChars":37,"textLines":1,"bbox":[860,405,280,70]}
+{"kind":"textbox","id":"sh/gzy9cred","slide":13,"text":"Franchise yatırımcısı için daha hızlı adaptasyon, ekip için daha net beklenti, marka için daha güçlü tutarlılık.","textPreview":"Franchise yatırımcısı için daha hızlı adaptasyon, ekip için daha net beklenti, marka için daha güçlü tutarlılık.","textChars":112,"textLines":1,"bbox":[860,492,292,68]}
+{"kind":"notes","id":"nt/7ot8af","slide":13,"text":""}
+{"kind":"slide","id":"sl/rg1jdf","slide":14,"title":"KUPA ACADEMY","textShapes":21}
+{"kind":"textbox","id":"sh/gj2hk3mt","slide":14,"text":"KUPA ACADEMY","textPreview":"KUPA ACADEMY","textChars":12,"textLines":1,"bbox":[64,45,520,24]}
+{"kind":"textbox","id":"sh/vitgbi58","slide":14,"text":"Eğitim, günlük operasyonun içine yerleşir","textPreview":"Eğitim, günlük operasyonun içine yerleşir","textChars":41,"textLines":1,"bbox":[64,82,1090,72]}
+{"kind":"textbox","id":"sh/uhkzid4n","slide":14,"text":"KUPA COFFEE CO.  •  FRANCHISE","textPreview":"KUPA COFFEE CO.  •  FRANCHISE","textChars":29,"textLines":1,"bbox":[64,680,420,18]}
+{"kind":"textbox","id":"sh/tgry98ni","slide":14,"text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1170,678,46,20]}
+{"kind":"shape","id":"sh/8fihg3mx","slide":14,"bbox":[64,215,548,72]}
+{"kind":"textbox","id":"sh/7u9g7y5c","slide":14,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[82,236,40,22]}
+{"kind":"textbox","id":"sh/6t0zet4r","slide":14,"text":"Açılış kontrol listeleri","textPreview":"Açılış kontrol listeleri","textChars":24,"textLines":1,"bbox":[136,232,445,32]}
+{"kind":"shape","id":"sh/dcvilsnm","slide":14,"bbox":[64,308,548,72]}
+{"kind":"textbox","id":"sh/sbmhsnm1","slide":14,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[82,329,40,22]}
+{"kind":"textbox","id":"sh/2dcnmpoz","slide":14,"text":"Kapanış kontrol listeleri","textPreview":"Kapanış kontrol listeleri","textChars":25,"textLines":1,"bbox":[136,325,445,32]}
+{"kind":"shape","id":"sh/3el4vupk","slide":14,"bbox":[64,401,548,72]}
+{"kind":"textbox","id":"sh/ofu5oz65","slide":14,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[82,422,40,22]}
+{"kind":"textbox","id":"sh/pg3mxk7a","slide":14,"text":"Standart ürün reçeteleri","textPreview":"Standart ürün reçeteleri","textChars":24,"textLines":1,"bbox":[136,418,445,32]}
+{"kind":"shape","id":"sh/epsni5on","slide":14,"bbox":[64,494,548,72]}
+{"kind":"textbox","id":"sh/fq14rap8","slide":14,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[82,515,40,22]}
+{"kind":"textbox","id":"sh/gra5kf6t","slide":14,"text":"Servis ve misafir deneyimi","textPreview":"Servis ve misafir deneyimi","textChars":26,"textLines":1,"bbox":[136,511,445,32]}
+{"kind":"shape","id":"sh/1c3mtk7e","slide":14,"bbox":[640,215,548,72]}
+{"kind":"textbox","id":"sh/ylwnu9o7","slide":14,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[658,236,40,22]}
+{"kind":"textbox","id":"sh/zm5o3e5s","slide":14,"text":"Rol bazlı video eğitimleri","textPreview":"Rol bazlı video eğitimleri","textChars":26,"textLines":1,"bbox":[712,232,445,32]}
+{"kind":"shape","id":"sh/vqxkv654","slide":14,"bbox":[640,308,548,72]}
+{"kind":"textbox","id":"sh/upojm14j","slide":14,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[658,329,40,22]}
+{"kind":"textbox","id":"sh/hsz2xgna","slide":14,"text":"Operasyon güncellemeleri","textPreview":"Operasyon güncellemeleri","textChars":24,"textLines":1,"bbox":[712,325,445,32]}
+{"kind":"shape","id":"sh/wr61obmp","slide":14,"bbox":[640,401,548,72]}
+{"kind":"textbox","id":"sh/juhkz650","slide":14,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[658,422,40,22]}
+{"kind":"textbox","id":"sh/it8jq14f","slide":14,"text":"Denetim bulgularına göre gelişim","textPreview":"Denetim bulgularına göre gelişim","textChars":32,"textLines":1,"bbox":[712,418,445,32]}
+{"kind":"shape","id":"sh/5wz21gn6","slide":14,"bbox":[640,494,548,72]}
+{"kind":"textbox","id":"sh/4vq1sbml","slide":14,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[658,515,40,22]}
+{"kind":"textbox","id":"sh/rihk3q5c","slide":14,"text":"Sürekli gelişim kültürü","textPreview":"Sürekli gelişim kültürü","textChars":23,"textLines":1,"bbox":[712,511,445,32]}
+{"kind":"shape","id":"sh/6x83ul4r","slide":14,"bbox":[64,610,1124,3]}
+{"kind":"textbox","id":"sh/ona1kv2p","slide":14,"text":"Standart yazılır. Eğitimle aktarılır. Denetimle korunur.","textPreview":"Standart yazılır. Eğitimle aktarılır. Denetimle korunur.","textChars":56,"textLines":1,"bbox":[64,630,900,36]}
+{"kind":"notes","id":"nt/rg1jdf","slide":14,"text":""}
+{"kind":"slide","id":"sl/kgntk7","slide":15,"title":"PAZARLAMA DESTEĞIMIZ","textShapes":16}
+{"kind":"textbox","id":"sh/83excnqx","slide":15,"text":"PAZARLAMA DESTEĞIMIZ","textPreview":"PAZARLAMA DESTEĞIMIZ","textChars":20,"textLines":1,"bbox":[64,45,520,24]}
+{"kind":"textbox","id":"sh/72lg3ipc","slide":15,"text":"Merkezi marka dili, yerel büyüme fırsatlarıyla birleşir","textPreview":"Merkezi marka dili, yerel büyüme fırsatlarıyla birleşir","textChars":55,"textLines":1,"bbox":[64,82,1090,72]}
+{"kind":"textbox","id":"sh/61cfad8r","slide":15,"text":"KUPA COFFEE CO.  •  FRANCHISE","textPreview":"KUPA COFFEE CO.  •  FRANCHISE","textChars":29,"textLines":1,"bbox":[64,680,420,18]}
+{"kind":"textbox","id":"sh/l03y1s7m","slide":15,"text":"15","textPreview":"15","textChars":2,"textLines":1,"bbox":[1170,678,46,20]}
+{"kind":"shape","id":"sh/jylgzipg","slide":15,"bbox":[535,220,316,168]}
+{"kind":"textbox","id":"sh/yxcf6d8v","slide":15,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[557,240,38,20]}
+{"kind":"textbox","id":"sh/xw3yx87a","slide":15,"text":"Kurumsal içerik","textPreview":"Kurumsal içerik","textChars":15,"textLines":1,"bbox":[557,272,270,30]}
+{"kind":"textbox","id":"sh/wbax43qp","slide":15,"text":"Kampanya dili, görsel standart ve marka bütünlüğü","textPreview":"Kampanya dili, görsel standart ve marka bütünlüğü","textChars":49,"textLines":1,"bbox":[557,312,270,58]}
+{"kind":"shape","id":"sh/axgr6d8n","slide":15,"bbox":[875,220,316,168]}
+{"kind":"textbox","id":"sh/by98zip8","slide":15,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[897,240,38,20]}
+{"kind":"textbox","id":"sh/cji98nqt","slide":15,"text":"Açılış iletişimi","textPreview":"Açılış iletişimi","textChars":16,"textLines":1,"bbox":[897,272,270,30]}
+{"kind":"textbox","id":"sh/xkrq1s7e","slide":15,"text":"Yeni şubenin bölgesel duyurusu ve lansman desteği","textPreview":"Yeni şubenin bölgesel duyurusu ve lansman desteği","textChars":49,"textLines":1,"bbox":[897,312,270,58]}
+{"kind":"shape","id":"sh/2tg72d8r","slide":15,"bbox":[535,410,316,168]}
+{"kind":"textbox","id":"sh/nup8vipc","slide":15,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[557,430,38,20]}
+{"kind":"textbox","id":"sh/ovyp4nqh","slide":15,"text":"Dijital görünürlük","textPreview":"Dijital görünürlük","textChars":18,"textLines":1,"bbox":[557,462,270,30]}
+{"kind":"textbox","id":"sh/pw7qx872","slide":15,"text":"Sosyal medya ve dijital kanal kullanım rehberliği","textPreview":"Sosyal medya ve dijital kanal kullanım rehberliği","textChars":49,"textLines":1,"bbox":[557,502,270,58]}
+{"kind":"shape","id":"sh/epw7yt8f","slide":15,"bbox":[875,410,316,168]}
+{"kind":"textbox","id":"sh/fq58ryp0","slide":15,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[897,430,38,20]}
+{"kind":"textbox","id":"sh/3ulozu5s","slide":15,"text":"Yerel aktivasyon","textPreview":"Yerel aktivasyon","textChars":16,"textLines":1,"bbox":[897,462,270,30]}
+{"kind":"textbox","id":"sh/itcn6po7","slide":15,"text":"Şehrin dinamiğine uygun, marka standartlı uygulamalar","textPreview":"Şehrin dinamiğine uygun, marka standartlı uygulamalar","textChars":53,"textLines":1,"bbox":[897,502,270,58]}
+{"kind":"image","id":"im/9czi54jm","slide":15,"name":"","geometry":"roundRect","alt":"Samsun şubesindeki marka mesajı ve çalışma alanı","bbox":[64,220,430,390]}
+{"kind":"notes","id":"nt/kgntk7","slide":15,"text":""}
+{"kind":"slide","id":"sl/ol7r37","slide":16,"title":"FRANCHISE DESTEKLERI","textShapes":28}
+{"kind":"textbox","id":"sh/axsjypk3","slide":16,"text":"FRANCHISE DESTEKLERI","textPreview":"FRANCHISE DESTEKLERI","textChars":20,"textLines":1,"bbox":[64,45,520,24]}
+{"kind":"textbox","id":"sh/x032t4ju","slide":16,"text":"Yatırımcı, sözleşmeden sonra yalnız kalmaz","textPreview":"Yatırımcı, sözleşmeden sonra yalnız kalmaz","textChars":42,"textLines":1,"bbox":[64,82,1090,72]}
+{"kind":"textbox","id":"sh/wzu10z29","slide":16,"text":"KUPA COFFEE CO.  •  FRANCHISE","textPreview":"KUPA COFFEE CO.  •  FRANCHISE","textChars":29,"textLines":1,"bbox":[64,680,420,18]}
+{"kind":"textbox","id":"sh/nu1knu1s","slide":16,"text":"16","textPreview":"16","textChars":2,"textLines":1,"bbox":[1170,678,46,20]}
+{"kind":"shape","id":"sh/mtsjupk7","slide":16,"bbox":[64,235,166,292]}
+{"kind":"textbox","id":"sh/9wj2pkjy","slide":16,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[84,257,40,22]}
+{"kind":"textbox","id":"sh/ova1wz2d","slide":16,"text":"Ön analiz","textPreview":"Ön analiz","textChars":9,"textLines":1,"bbox":[84,300,130,34]}
+{"kind":"textbox","id":"sh/7qlkze1w","slide":16,"text":"Yatırımcı profili ve hedef şehir","textPreview":"Yatırımcı profili ve hedef şehir","textChars":32,"textLines":1,"bbox":[84,352,126,88]}
+{"kind":"textbox","id":"sh/6pcj69kb","slide":16,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[230,335,26,30]}
+{"kind":"shape","id":"sh/ofyh4fep","slide":16,"bbox":[256,235,166,292]}
+{"kind":"textbox","id":"sh/pgrixkva","slide":16,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[276,257,40,22]}
+{"kind":"textbox","id":"sh/2dgz2pwj","slide":16,"text":"Lokasyon","textPreview":"Lokasyon","textChars":8,"textLines":1,"bbox":[276,300,130,34]}
+{"kind":"textbox","id":"sh/3ep0vud4","slide":16,"text":"Bölge, erişim ve mekân uygunluğu","textPreview":"Bölge, erişim ve mekân uygunluğu","textChars":32,"textLines":1,"bbox":[276,352,126,88]}
+{"kind":"textbox","id":"sh/gbyh0fed","slide":16,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[422,335,26,30]}
+{"kind":"shape","id":"sh/hc7itkvy","slide":16,"bbox":[448,235,166,292]}
+{"kind":"textbox","id":"sh/u9gzy5wn","slide":16,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[468,257,40,22]}
+{"kind":"textbox","id":"sh/fap0rad8","slide":16,"text":"Kurulum","textPreview":"Kurulum","textChars":7,"textLines":1,"bbox":[468,300,130,34]}
+{"kind":"textbox","id":"sh/s7ehwveh","slide":16,"text":"Konsept, tedarik ve açılış hazırlığı","textPreview":"Konsept, tedarik ve açılış hazırlığı","textChars":36,"textLines":1,"bbox":[468,352,126,88]}
+{"kind":"textbox","id":"sh/t8nip0v2","slide":16,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[614,335,26,30]}
+{"kind":"shape","id":"sh/94fytw7q","slide":16,"bbox":[640,235,166,292]}
+{"kind":"textbox","id":"sh/836x0r65","slide":16,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[660,257,40,22]}
+{"kind":"textbox","id":"sh/72xgrmpk","slide":16,"text":"Eğitim","textPreview":"Eğitim","textChars":6,"textLines":1,"bbox":[660,300,130,34]}
+{"kind":"textbox","id":"sh/m1ofyhof","slide":16,"text":"Yönetici ve ekip adaptasyonu","textPreview":"Yönetici ve ekip adaptasyonu","textChars":28,"textLines":1,"bbox":[660,352,126,88]}
+{"kind":"textbox","id":"sh/l0fypw7u","slide":16,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[806,335,26,30]}
+{"kind":"shape","id":"sh/kf6xwr69","slide":16,"bbox":[832,235,166,292]}
+{"kind":"textbox","id":"sh/zexgnmpo","slide":16,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[852,257,40,22]}
+{"kind":"textbox","id":"sh/yd4fuho3","slide":16,"text":"Açılış","textPreview":"Açılış","textChars":6,"textLines":1,"bbox":[852,300,130,34]}
+{"kind":"textbox","id":"sh/5wzy1gny","slide":16,"text":"Sahada operasyon başlangıç desteği","textPreview":"Sahada operasyon başlangıç desteği","textChars":34,"textLines":1,"bbox":[852,352,126,88]}
+{"kind":"textbox","id":"sh/4bqh8b6d","slide":16,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[998,335,26,30]}
+{"kind":"shape","id":"sh/2hkv2d4v","slide":16,"bbox":[1024,235,166,292]}
+{"kind":"textbox","id":"sh/nitcvi5g","slide":16,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1044,257,40,22]}
+{"kind":"textbox","id":"sh/oj2d4nm1","slide":16,"text":"Süreklilik","textPreview":"Süreklilik","textChars":10,"textLines":1,"bbox":[1044,300,130,34]}
+{"kind":"textbox","id":"sh/pkbuxsnm","slide":16,"text":"Denetim, eğitim ve pazarlama desteği","textPreview":"Denetim, eğitim ve pazarlama desteği","textChars":36,"textLines":1,"bbox":[1044,352,126,88]}
+{"kind":"textbox","id":"sh/ed0vyt4z","slide":16,"text":"Tek temas noktası, ortak standartlar ve düzenli iletişim; franchise ilişkisini operasyonel bir ortaklığa dönüştürür.","textPreview":"Tek temas noktası, ortak standartlar ve düzenli iletişim; franchise ilişkisini operasyonel bir ortaklığa dönüştürür.","textChars":116,"textLines":1,"bbox":[64,575,1090,52]}
+{"kind":"notes","id":"nt/ol7r37","slide":16,"text":""}
+{"kind":"slide","id":"sl/5adx4q","slide":17,"title":"GÜÇLÜ FRANCHISE AĞIMIZ","textShapes":17}
+{"kind":"textbox","id":"sh/9cbaxw36","slide":17,"text":"GÜÇLÜ FRANCHISE AĞIMIZ","textPreview":"GÜÇLÜ FRANCHISE AĞIMIZ","textChars":22,"textLines":1,"bbox":[64,45,520,24]}
+{"kind":"textbox","id":"sh/m9kr2hkf","slide":17,"text":"5 şehirde 9 şube, tek kurumsal sistem","textPreview":"5 şehirde 9 şube, tek kurumsal sistem","textChars":37,"textLines":1,"bbox":[64,82,1090,72]}
+{"kind":"textbox","id":"sh/natsvml0","slide":17,"text":"KUPA COFFEE CO.  •  FRANCHISE","textPreview":"KUPA COFFEE CO.  •  FRANCHISE","textChars":29,"textLines":1,"bbox":[64,680,420,18]}
+{"kind":"textbox","id":"sh/wfmt8r2h","slide":17,"text":"17","textPreview":"17","textChars":2,"textLines":1,"bbox":[1170,678,46,20]}
+{"kind":"shape","id":"sh/adkb61kr","slide":17,"bbox":[64,190,650,122]}
+{"kind":"textbox","id":"sh/vedszmlw","slide":17,"text":"AMASYA  •  ANKARA  •  KONYA  •  DENİZLİ  •  SAMSUN","textPreview":"AMASYA  •  ANKARA  •  KONYA  •  DENİZLİ  •  SAMSUN","textChars":50,"textLines":1,"bbox":[84,252,610,24]}
+{"kind":"textbox","id":"sh/cji9w72d","slide":17,"text":"ŞUBE AĞI","textPreview":"ŞUBE AĞI","textChars":8,"textLines":1,"bbox":[750,210,200,22]}
+{"kind":"shape","id":"sh/dkrapc3y","slide":17,"bbox":[750,248,215,44]}
+{"kind":"textbox","id":"sh/9k3ux4nm","slide":17,"text":"Amasya / Merkez","textPreview":"Amasya / Merkez","textChars":15,"textLines":1,"bbox":[764,260,190,20]}
+{"kind":"shape","id":"sh/8jud4zm1","slide":17,"bbox":[985,248,215,44]}
+{"kind":"textbox","id":"sh/nilcvu5g","slide":17,"text":"Konya / Meram","textPreview":"Konya / Meram","textChars":13,"textLines":1,"bbox":[999,260,190,20]}
+{"kind":"shape","id":"sh/mhcv2p4b","slide":17,"bbox":[750,306,215,44]}
+{"kind":"textbox","id":"sh/x8nu14ny","slide":17,"text":"Denizli / Kampüs","textPreview":"Denizli / Kampüs","textChars":16,"textLines":1,"bbox":[764,318,190,20]}
+{"kind":"shape","id":"sh/w7ud8zmd","slide":17,"bbox":[985,306,215,44]}
+{"kind":"textbox","id":"sh/v6lczu5s","slide":17,"text":"Samsun / Vezirköprü","textPreview":"Samsun / Vezirköprü","textChars":19,"textLines":1,"bbox":[999,318,190,20]}
+{"kind":"shape","id":"sh/alcv6p47","slide":17,"bbox":[750,364,215,44]}
+{"kind":"textbox","id":"sh/5cnu5onu","slide":17,"text":"Ankara / Beytepe","textPreview":"Ankara / Beytepe","textChars":16,"textLines":1,"bbox":[764,376,190,20]}
+{"kind":"shape","id":"sh/kbedcjm9","slide":17,"bbox":[985,364,215,44]}
+{"kind":"textbox","id":"sh/4r65oryx","slide":17,"text":"Ankara / Dikmen","textPreview":"Ankara / Dikmen","textChars":15,"textLines":1,"bbox":[999,376,190,20]}
+{"kind":"shape","id":"sh/psf6xcz2","slide":17,"bbox":[750,422,215,44]}
+{"kind":"textbox","id":"sh/2ponmhgr","slide":17,"text":"Ankara / Ümitköy","textPreview":"Ankara / Ümitköy","textChars":16,"textLines":1,"bbox":[764,434,190,20]}
+{"kind":"shape","id":"sh/3qxovmhc","slide":17,"bbox":[985,422,215,44]}
+{"kind":"textbox","id":"sh/cv65sryt","slide":17,"text":"Ankara / Pursaklar","textPreview":"Ankara / Pursaklar","textChars":18,"textLines":1,"bbox":[999,434,190,20]}
+{"kind":"shape","id":"sh/dwz61wze","slide":17,"bbox":[750,480,215,44]}
+{"kind":"textbox","id":"sh/qtonqhgn","slide":17,"text":"Ankara / Çukurambar","textPreview":"Ankara / Çukurambar","textChars":19,"textLines":1,"bbox":[764,492,190,20]}
+{"kind":"textbox","id":"sh/ruxozmh8","slide":17,"text":"Tüm şubelerimiz Kupa Coffee Kurumsal’ın franchise işletmeleridir.","textPreview":"Tüm şubelerimiz Kupa Coffee Kurumsal’ın franchise işletmeleridir.","textChars":65,"textLines":1,"bbox":[64,620,760,32]}
+{"kind":"textbox","id":"sh/szm5g7yp","slide":17,"text":"Her yeni franchise, aynı güçlü sistemin bir parçası olur.","textPreview":"Her yeni franchise, aynı güçlü sistemin bir parçası olur.","textChars":57,"textLines":1,"bbox":[750,594,440,58]}
+{"kind":"image","id":"im/4r2pcjq9","slide":17,"name":"","geometry":"roundRect","alt":"Türkiye üzerinde Kupa Coffee şehirlerinin gösterimi","bbox":[64,210,650,390]}
+{"kind":"notes","id":"nt/5adx4q","slide":17,"text":""}
+{"kind":"slide","id":"sl/kaa032","slide":18,"title":"GÜÇLÜ FRANCHISE AĞIMIZ","textShapes":8}
+{"kind":"textbox","id":"sh/id8jedc7","slide":18,"text":"GÜÇLÜ FRANCHISE AĞIMIZ","textPreview":"GÜÇLÜ FRANCHISE AĞIMIZ","textChars":22,"textLines":1,"bbox":[64,45,520,24]}
+{"kind":"textbox","id":"sh/5gji9sbi","slide":18,"text":"Farklı şehirler, aynı deneyim standardı","textPreview":"Farklı şehirler, aynı deneyim standardı","textChars":39,"textLines":1,"bbox":[64,82,1090,72]}
+{"kind":"textbox","id":"sh/4fa1gnux","slide":18,"text":"KUPA COFFEE CO.  •  FRANCHISE","textPreview":"KUPA COFFEE CO.  •  FRANCHISE","textChars":29,"textLines":1,"bbox":[64,680,420,18]}
+{"kind":"textbox","id":"sh/vqh03idg","slide":18,"text":"18","textPreview":"18","textChars":2,"textLines":1,"bbox":[1170,678,46,20]}
+{"kind":"textbox","id":"sh/hczi5sbm","slide":18,"text":"AMASYA","textPreview":"AMASYA","textChars":6,"textLines":1,"bbox":[84,486,150,24]}
+{"kind":"textbox","id":"sh/fml0f2tk","slide":18,"text":"SAMSUN","textPreview":"SAMSUN","textChars":6,"textLines":1,"bbox":[480,486,150,24]}
+{"kind":"textbox","id":"sh/gfe9ojqh","slide":18,"text":"ANKARA / PURSAKLAR","textPreview":"ANKARA / PURSAKLAR","textChars":18,"textLines":1,"bbox":[876,486,240,24]}
+{"kind":"textbox","id":"sh/hgnaho72","slide":18,"text":"Tüm franchise işletmeleri; merkezi operasyon sistemi, standart ürün reçeteleri, Kupa Academy eğitim platformu, düzenli kalite denetimleri ve kurumsal marka standartları doğrultusunda yönetilir.","textPreview":"Tüm franchise işletmeleri; merkezi operasyon sistemi, standart ürün reçeteleri, Kupa Academy eğitim platformu, düzenli kalite denetimleri...","textChars":193,"textLines":1,"bbox":[64,548,1120,72]}
+{"kind":"image","id":"im/7epcbi9g","slide":18,"name":"","geometry":"roundRect","alt":"Amasya şubesinin iç mekânı","bbox":[64,210,360,260]}
+{"kind":"image","id":"im/tg7udsrm","slide":18,"name":"","geometry":"roundRect","alt":"Samsun şubesinin iç mekânı","bbox":[460,210,360,260]}
+{"kind":"image","id":"im/vipcf29c","slide":18,"name":"","geometry":"roundRect","alt":"Pursaklar şubesinin iç mekânı","bbox":[856,210,360,260]}
+{"kind":"notes","id":"nt/kaa032","slide":18,"text":""}
+{"kind":"slide","id":"sl/w92wkx","slide":19,"title":"MARKA GÜVENCESI","textShapes":12}
+{"kind":"textbox","id":"sh/alwbidg3","slide":19,"text":"MARKA GÜVENCESI","textPreview":"MARKA GÜVENCESI","textChars":15,"textLines":1,"bbox":[64,45,520,24]}
+{"kind":"textbox","id":"sh/x8nudszu","slide":19,"text":"Tescilli marka, güçlü hukuki altyapı","textPreview":"Tescilli marka, güçlü hukuki altyapı","textChars":36,"textLines":1,"bbox":[64,82,1090,72]}
+{"kind":"textbox","id":"sh/cnetkny9","slide":19,"text":"KUPA COFFEE CO.  •  FRANCHISE","textPreview":"KUPA COFFEE CO.  •  FRANCHISE","textChars":29,"textLines":1,"bbox":[64,680,420,18]}
+{"kind":"textbox","id":"sh/nilc7yhc","slide":19,"text":"19","textPreview":"19","textChars":2,"textLines":1,"bbox":[1170,678,46,20]}
+{"kind":"shape","id":"sh/2hcbedg7","slide":19,"bbox":[64,218,650,382]}
+{"kind":"textbox","id":"sh/pknu98zi","slide":19,"text":"Kupa Coffee markası yasal olarak tescillenmiş ve koruma altına alınmıştır.","textPreview":"Kupa Coffee markası yasal olarak tescillenmiş ve koruma altına alınmıştır.","textChars":74,"textLines":1,"bbox":[98,260,560,80]}
+{"kind":"textbox","id":"sh/ojetg3yx","slide":19,"text":"Marka kimliğimiz, kurumsal yapımız ve franchise sistemimiz güçlü bir hukuki altyapı ile desteklenmektedir.","textPreview":"Marka kimliğimiz, kurumsal yapımız ve franchise sistemimiz güçlü bir hukuki altyapı ile desteklenmektedir.","textChars":106,"textLines":1,"bbox":[98,358,550,82]}
+{"kind":"shape","id":"sh/fels3yhg","slide":19,"bbox":[98,468,520,1]}
+{"kind":"textbox","id":"sh/edcbatgv","slide":19,"text":"Tescil No","textPreview":"Tescil No","textChars":9,"textLines":1,"bbox":[98,494,100,20]}
+{"kind":"textbox","id":"sh/srqdsfy5","slide":19,"text":"2024 024273","textPreview":"2024 024273","textChars":11,"textLines":1,"bbox":[98,520,190,30]}
+{"kind":"textbox","id":"sh/tszu1kfq","slide":19,"text":"Sınıflar","textPreview":"Sınıflar","textChars":8,"textLines":1,"bbox":[330,494,100,20]}
+{"kind":"textbox","id":"sh/6p8vq5gz","slide":19,"text":"30  •  35  •  43","textPreview":"30  •  35  •  43","textChars":16,"textLines":1,"bbox":[330,520,190,30]}
+{"kind":"textbox","id":"sh/rqhczaxk","slide":19,"text":"Tescil","textPreview":"Tescil","textChars":6,"textLines":1,"bbox":[530,494,90,20]}
+{"kind":"textbox","id":"sh/4nqdovy9","slide":19,"text":"09.02.2026","textPreview":"09.02.2026","textChars":10,"textLines":1,"bbox":[530,520,150,30]}
+{"kind":"shape","id":"sh/5ozux0fu","slide":19,"bbox":[760,190,420,440]}
+{"kind":"image","id":"im/lgvih8r6","slide":19,"name":"","geometry":"roundRect","alt":"Kupa Coffee marka tescil belgesi","bbox":[785,210,370,400]}
+{"kind":"notes","id":"nt/w92wkx","slide":19,"text":""}
+{"kind":"slide","id":"sl/m2e5pv","slide":20,"title":"TÜRKIYE’DE BÜYÜME HEDEFIMIZ","textShapes":17}
+{"kind":"textbox","id":"sh/7i54balc","slide":20,"text":"TÜRKIYE’DE BÜYÜME HEDEFIMIZ","textPreview":"TÜRKIYE’DE BÜYÜME HEDEFIMIZ","textChars":27,"textLines":1,"bbox":[64,45,520,24]}
+{"kind":"textbox","id":"sh/sjel4fmx","slide":20,"text":"Hızlı değil, doğru ve tekrarlanabilir büyüme","textPreview":"Hızlı değil, doğru ve tekrarlanabilir büyüme","textChars":44,"textLines":1,"bbox":[64,82,1090,72]}
+{"kind":"textbox","id":"sh/tknmd03i","slide":20,"text":"KUPA COFFEE CO.  •  FRANCHISE","textPreview":"KUPA COFFEE CO.  •  FRANCHISE","textChars":29,"textLines":1,"bbox":[64,680,420,18]}
+{"kind":"textbox","id":"sh/ulw365k3","slide":20,"text":"20","textPreview":"20","textChars":2,"textLines":1,"bbox":[1170,678,46,20]}
+{"kind":"shape","id":"sh/fmp4falo","slide":20,"bbox":[64,235,264,310]}
+{"kind":"textbox","id":"sh/gnyl8f29","slide":20,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[86,258,44,44]}
+{"kind":"textbox","id":"sh/h87mhk3u","slide":20,"text":"Doğru şehir","textPreview":"Doğru şehir","textChars":11,"textLines":1,"bbox":[86,326,210,34]}
+{"kind":"textbox","id":"sh/29gnapkz","slide":20,"text":"Kahve tüketimi, görünürlük ve yerel talep potansiyeli","textPreview":"Kahve tüketimi, görünürlük ve yerel talep potansiyeli","textChars":53,"textLines":1,"bbox":[86,380,210,94]}
+{"kind":"shape","id":"sh/3ap4julk","slide":20,"bbox":[352,235,264,310]}
+{"kind":"textbox","id":"sh/ruxw7a10","slide":20,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[374,258,44,44]}
+{"kind":"textbox","id":"sh/qtove5kf","slide":20,"text":"Doğru lokasyon","textPreview":"Doğru lokasyon","textChars":14,"textLines":1,"bbox":[374,326,210,34]}
+{"kind":"textbox","id":"sh/dwfe9kj6","slide":20,"text":"Erişim, yaya trafiği, cephe ve kullanım senaryoları","textPreview":"Erişim, yaya trafiği, cephe ve kullanım senaryoları","textChars":51,"textLines":1,"bbox":[374,380,210,94]}
+{"kind":"shape","id":"sh/sv6dgf2l","slide":20,"bbox":[640,235,264,310]}
+{"kind":"textbox","id":"sh/36dw3a14","slide":20,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[662,258,44,44]}
+{"kind":"textbox","id":"sh/i54va5kj","slide":20,"text":"Doğru yatırımcı","textPreview":"Doğru yatırımcı","textChars":15,"textLines":1,"bbox":[662,326,210,34]}
+{"kind":"textbox","id":"sh/5sve50ja","slide":20,"text":"Operasyon disiplinine ve marka kültürüne uyum","textPreview":"Operasyon disiplinine ve marka kültürüne uyum","textChars":45,"textLines":1,"bbox":[662,380,210,94]}
+{"kind":"shape","id":"sh/4rmdcv2p","slide":20,"bbox":[928,235,264,310]}
+{"kind":"textbox","id":"sh/n2hwfu18","slide":20,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[950,258,44,44]}
+{"kind":"textbox","id":"sh/218fmpkn","slide":20,"text":"Doğru açılış","textPreview":"Doğru açılış","textChars":12,"textLines":1,"bbox":[950,326,210,34]}
+{"kind":"textbox","id":"sh/yhszet4v","slide":20,"text":"Eğitim, kurulum ve saha desteğiyle kontrollü başlangıç","textPreview":"Eğitim, kurulum ve saha desteğiyle kontrollü başlangıç","textChars":54,"textLines":1,"bbox":[950,380,210,94]}
+{"kind":"textbox","id":"sh/zi1gnylg","slide":20,"text":"Büyüme hedefi, her yeni şubenin mevcut ağı güçlendirdiği bir franchise mimarisi kurmaktır.","textPreview":"Büyüme hedefi, her yeni şubenin mevcut ağı güçlendirdiği bir franchise mimarisi kurmaktır.","textChars":90,"textLines":1,"bbox":[64,585,1120,44]}
+{"kind":"notes","id":"nt/m2e5pv","slide":20,"text":""}
+{"kind":"slide","id":"sl/ixfo8z","slide":21,"title":"NEDEN BIZ?","textShapes":17}
+{"kind":"textbox","id":"sh/ulwjul0r","slide":21,"text":"NEDEN BIZ?","textPreview":"NEDEN BIZ?","textChars":10,"textLines":1,"bbox":[64,45,520,24]}
+{"kind":"textbox","id":"sh/ho725gzi","slide":21,"text":"Yatırım kararını destekleyen bütünsel yapı","textPreview":"Yatırım kararını destekleyen bütünsel yapı","textChars":42,"textLines":1,"bbox":[64,82,1090,72]}
+{"kind":"textbox","id":"sh/gny1wvix","slide":21,"text":"KUPA COFFEE CO.  •  FRANCHISE","textPreview":"KUPA COFFEE CO.  •  FRANCHISE","textChars":29,"textLines":1,"bbox":[64,680,420,18]}
+{"kind":"textbox","id":"sh/3qpk7qh8","slide":21,"text":"21","textPreview":"21","textChars":2,"textLines":1,"bbox":[1170,678,46,20]}
+{"kind":"shape","id":"sh/5s7290ze","slide":21,"bbox":[526,220,318,92]}
+{"kind":"textbox","id":"sh/4ryl0vit","slide":21,"text":"✓","textPreview":"✓","textChars":1,"textLines":1,"bbox":[546,247,34,34]}
+{"kind":"textbox","id":"sh/ju5kv6h4","slide":21,"text":"Tescilli ve korunmuş marka","textPreview":"Tescilli ve korunmuş marka","textChars":26,"textLines":1,"bbox":[592,240,225,50]}
+{"kind":"shape","id":"sh/ytcjm10j","slide":21,"bbox":[866,220,318,92]}
+{"kind":"textbox","id":"sh/wzmlwryx","slide":21,"text":"✓","textPreview":"✓","textChars":1,"textLines":1,"bbox":[886,247,34,34]}
+{"kind":"textbox","id":"sh/h0v2pwfi","slide":21,"text":"9 şubede çalışan franchise deneyimi","textPreview":"9 şubede çalışan franchise deneyimi","textChars":35,"textLines":1,"bbox":[932,240,225,50]}
+{"kind":"shape","id":"sh/uxk3u1gr","slide":21,"bbox":[526,335,318,92]}
+{"kind":"textbox","id":"sh/vytknmxc","slide":21,"text":"✓","textPreview":"✓","textChars":1,"textLines":1,"bbox":[546,362,34,34]}
+{"kind":"textbox","id":"sh/4nml0by9","slide":21,"text":"Merkezi operasyon ve kalite standardı","textPreview":"Merkezi operasyon ve kalite standardı","textChars":37,"textLines":1,"bbox":[592,355,225,50]}
+{"kind":"shape","id":"sh/5ov2tgfe","slide":21,"bbox":[866,335,318,92]}
+{"kind":"textbox","id":"sh/i143y1g3","slide":21,"text":"✓","textPreview":"✓","textChars":1,"textLines":1,"bbox":[886,362,34,34]}
+{"kind":"textbox","id":"sh/j2dkr6xo","slide":21,"text":"Kupa Academy ile sürekli eğitim","textPreview":"Kupa Academy ile sürekli eğitim","textChars":31,"textLines":1,"bbox":[932,355,225,50]}
+{"kind":"shape","id":"sh/k7i1o7yp","slide":21,"bbox":[526,450,318,92]}
+{"kind":"textbox","id":"sh/lsb2hcfa","slide":21,"text":"✓","textPreview":"✓","textChars":1,"textLines":1,"bbox":[546,477,34,34]}
+{"kind":"textbox","id":"sh/1cja54n2","slide":21,"text":"Açılış öncesi ve sonrası destek","textPreview":"Açılış öncesi ve sonrası destek","textChars":31,"textLines":1,"bbox":[592,470,225,50]}
+{"kind":"shape","id":"sh/0ba9wjmh","slide":21,"bbox":[866,450,318,92]}
+{"kind":"textbox","id":"sh/fahs3e5w","slide":21,"text":"✓","textPreview":"✓","textChars":1,"textLines":1,"bbox":[886,477,34,34]}
+{"kind":"textbox","id":"sh/e98ru94b","slide":21,"text":"Yerel potansiyeli kullanan esnek konsept","textPreview":"Yerel potansiyeli kullanan esnek konsept","textChars":40,"textLines":1,"bbox":[932,470,225,50]}
+{"kind":"textbox","id":"sh/pgja9ony","slide":21,"text":"Bu marka yalnızca kahve satmıyor; kurulmuş ve çalışan bir işletme sistemi sunuyor.","textPreview":"Bu marka yalnızca kahve satmıyor; kurulmuş ve çalışan bir işletme sistemi sunuyor.","textChars":82,"textLines":1,"bbox":[526,580,660,52]}
+{"kind":"image","id":"im/ze9wju1o","slide":21,"name":"","geometry":"roundRect","alt":"Kupa Coffee Pursaklar şubesinin binası","bbox":[64,220,420,390]}
+{"kind":"notes","id":"nt/ixfo8z","slide":21,"text":""}
+{"kind":"slide","id":"sl/bzszxl","slide":22,"title":"FRANCHISE BAŞVURU SÜRECI","textShapes":20}
+{"kind":"textbox","id":"sh/tgn618vq","slide":22,"text":"FRANCHISE BAŞVURU SÜRECI","textPreview":"FRANCHISE BAŞVURU SÜRECI","textChars":24,"textLines":1,"bbox":[64,45,520,24]}
+{"kind":"textbox","id":"sh/6dwn6tcz","slide":22,"text":"Karardan açılışa uzanan şeffaf yol haritası","textPreview":"Karardan açılışa uzanan şeffaf yol haritası","textChars":43,"textLines":1,"bbox":[64,82,1090,72]}
+{"kind":"textbox","id":"sh/7e5ofydk","slide":22,"text":"KUPA COFFEE CO.  •  FRANCHISE","textPreview":"KUPA COFFEE CO.  •  FRANCHISE","textChars":29,"textLines":1,"bbox":[64,680,420,18]}
+{"kind":"textbox","id":"sh/kre54jut","slide":22,"text":"22","textPreview":"22","textChars":2,"textLines":1,"bbox":[1170,678,46,20]}
+{"kind":"textbox","id":"sh/5cn6dove","slide":22,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[64,232,52,40]}
+{"kind":"shape","id":"sh/ipcn29c3","slide":22,"bbox":[64,289,190,3]}
+{"kind":"textbox","id":"sh/jq5obed8","slide":22,"text":"Tanışma","textPreview":"Tanışma","textChars":7,"textLines":1,"bbox":[64,318,190,34]}
+{"kind":"textbox","id":"sh/4nypgnud","slide":22,"text":"Hedef, şehir ve yatırımcı profilini konuşuruz.","textPreview":"Hedef, şehir ve yatırımcı profilini konuşuruz.","textChars":46,"textLines":1,"bbox":[64,366,190,96]}
+{"kind":"textbox","id":"sh/p8769svi","slide":22,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[294,232,52,40]}
+{"kind":"shape","id":"sh/5wrml8bi","slide":22,"bbox":[294,289,190,3]}
+{"kind":"textbox","id":"sh/kvi5s3ux","slide":22,"text":"Ön değerlendirme","textPreview":"Ön değerlendirme","textChars":16,"textLines":1,"bbox":[294,318,190,34]}
+{"kind":"textbox","id":"sh/ju94jytc","slide":22,"text":"Marka–yatırımcı uyumunu birlikte değerlendiririz.","textPreview":"Marka–yatırımcı uyumunu birlikte değerlendiririz.","textChars":49,"textLines":1,"bbox":[294,366,190,96]}
+{"kind":"textbox","id":"sh/it0nqtcr","slide":22,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[524,232,52,40]}
+{"kind":"shape","id":"sh/xs7mh8b6","slide":22,"bbox":[524,289,190,3]}
+{"kind":"textbox","id":"sh/wry5o3ul","slide":22,"text":"Lokasyon analizi","textPreview":"Lokasyon analizi","textChars":16,"textLines":1,"bbox":[524,318,190,34]}
+{"kind":"textbox","id":"sh/vqp4fyt0","slide":22,"text":"Mekân ve bölge potansiyelini inceleriz.","textPreview":"Mekân ve bölge potansiyelini inceleriz.","textChars":39,"textLines":1,"bbox":[524,366,190,96]}
+{"kind":"textbox","id":"sh/apgnmtcv","slide":22,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[754,232,52,40]}
+{"kind":"shape","id":"sh/1ob6tsba","slide":22,"bbox":[754,289,190,3]}
+{"kind":"textbox","id":"sh/gn250nu5","slide":22,"text":"Planlama","textPreview":"Planlama","textChars":8,"textLines":1,"bbox":[754,318,190,34]}
+{"kind":"textbox","id":"sh/03uhcvmd","slide":22,"text":"Sözleşme, konsept, tedarik ve eğitim takvimi oluştururuz.","textPreview":"Sözleşme, konsept, tedarik ve eğitim takvimi oluştururuz.","textChars":57,"textLines":1,"bbox":[754,366,190,96]}
+{"kind":"textbox","id":"sh/l43yl0ny","slide":22,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[984,232,52,40]}
+{"kind":"shape","id":"sh/yhszal47","slide":22,"bbox":[984,289,190,3]}
+{"kind":"textbox","id":"sh/z2lgjq5s","slide":22,"text":"Açılış","textPreview":"Açılış","textChars":6,"textLines":1,"bbox":[984,318,190,34]}
+{"kind":"textbox","id":"sh/cfah8v6h","slide":22,"text":"Ekibi hazırlar, operasyonu birlikte başlatırız.","textPreview":"Ekibi hazırlar, operasyonu birlikte başlatırız.","textChars":47,"textLines":1,"bbox":[984,366,190,96]}
+{"kind":"shape","id":"sh/dgjyhgnm","slide":22,"bbox":[64,560,1124,72]}
+{"kind":"textbox","id":"sh/qdsf6lob","slide":22,"text":"İlk adım: hedef lokasyonunuzu ve yatırım planınızı birlikte değerlendirelim.","textPreview":"İlk adım: hedef lokasyonunuzu ve yatırım planınızı birlikte değerlendirelim.","textChars":76,"textLines":1,"bbox":[94,582,1050,30]}
+{"kind":"notes","id":"nt/bzszxl","slide":22,"text":""}
+{"kind":"slide","id":"sl/d7u5it","slide":23,"title":"KUPA COFFEE CO.","textShapes":6}
+{"kind":"shape","id":"sh/vmtwj6d8","slide":23,"bbox":[0,0,820,720]}
+{"kind":"textbox","id":"sh/ulkva1c3","slide":23,"text":"KUPA COFFEE CO.","textPreview":"KUPA COFFEE CO.","textChars":15,"textLines":1,"bbox":[64,54,300,28]}
+{"kind":"textbox","id":"sh/5sbepgbq","slide":23,"text":"Güçlü bir markanın\nyeni büyüme ortağı olun.","textPreview":"Güçlü bir markanın | yeni büyüme ortağı olun.","textChars":43,"textLines":2,"bbox":[64,168,620,150]}
+{"kind":"textbox","id":"sh/4r2dgvu5","slide":23,"text":"Franchise görüşmesi  •  Lokasyon değerlendirmesi  •  Açılış planlaması","textPreview":"Franchise görüşmesi  •  Lokasyon değerlendirmesi  •  Açılış planlaması","textChars":70,"textLines":1,"bbox":[64,350,610,62]}
+{"kind":"shape","id":"sh/3qtwnqtk","slide":23,"bbox":[64,456,560,2]}
+{"kind":"textbox","id":"sh/ipkvelcz","slide":23,"text":"www.kupacoffeeco.com","textPreview":"www.kupacoffeeco.com","textChars":20,"textLines":1,"bbox":[64,492,430,38]}
+{"kind":"textbox","id":"sh/dgvet0bm","slide":23,"text":"Kahveden fazlası. Çalışan bir franchise sistemi.","textPreview":"Kahveden fazlası. Çalışan bir franchise sistemi.","textChars":48,"textLines":1,"bbox":[64,568,560,34]}
+{"kind":"textbox","id":"sh/sfmdkvu1","slide":23,"text":"23","textPreview":"23","textChars":2,"textLines":1,"bbox":[700,678,46,20]}
+{"kind":"image","id":"im/hozeh436","slide":23,"name":"","geometry":"rect","alt":"Kupa Coffee Pursaklar şubesinin iç mekânı","bbox":[760,0,520,720]}
+{"kind":"notes","id":"nt/d7u5it","slide":23,"text":""}
