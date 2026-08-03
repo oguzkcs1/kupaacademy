@@ -14,7 +14,7 @@ const config: Record<RunStatus, { label: string; className: string }> = {
     className: "bg-sky-100 text-sky-700 dark:bg-sky-950/50 dark:text-sky-400 border-transparent",
   },
   completed: {
-    label: "Onay Bekliyor",
+    label: "Gönderildi",
     className: "bg-amber-100 text-amber-700 dark:bg-amber-950/50 dark:text-amber-400 border-transparent",
   },
   approved: {

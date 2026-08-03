@@ -187,7 +187,7 @@ export function ChecklistRunner({ type }: { type: ChecklistType }) {
             <div>
               <p className="font-semibold text-lg">Bugünkü {template.title.toLowerCase()} tamamlandı</p>
               <p className="text-sm text-muted-foreground mt-1">
-                {run.status === "approved" ? "Merkez tarafından değerlendirildi" : "Merkez puanlaması bekleniyor"}
+                {run.status === "approved" ? "Merkez tarafından değerlendirildi" : "Başarıyla gönderildi — merkez puanlamasını bekliyor"}
               </p>
             </div>
             {run.score != null ? (
