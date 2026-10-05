@@ -6,7 +6,7 @@ import {
   LayoutDashboard, GraduationCap, Video, FileText, ChefHat,
   Package, Megaphone, FolderOpen, ClipboardList, Users, Award,
   BarChart3, Settings, Image, ChevronLeft, ChevronRight, Tag,
-  Building2, Sunrise, Sunset, ClipboardCheck, Camera, ListTodo, PieChart,
+  Building2, Sunrise, Sunset, ClipboardCheck, Camera, ListTodo, PieChart, Archive,
   Store, ListChecks, Briefcase, Trophy,
 } from "lucide-react";
 import { X } from "lucide-react";
@@ -45,6 +45,7 @@ const navItems = [
   { label: "Kategori Yönetimi", href: "/admin/categories", icon: Tag, adminOnly: true },
   { label: "Şube Yönetimi", href: "/admin/branches", icon: Store, adminOnly: true },
   { label: "Checklist Yönetimi", href: "/admin/checklists", icon: ListChecks, adminOnly: true },
+  { label: "Denetim Arşivi", href: "/admin/audits", icon: Archive, adminOnly: true },
   { label: "Doküman Yönetimi", href: "/admin/documents", icon: FolderOpen, adminOnly: true },
   { label: "Duyuru Yönetimi", href: "/admin/announcements", icon: Megaphone, adminOnly: true },
   { label: "Kullanıcılar", href: "/admin/users", icon: Users, adminOnly: true },

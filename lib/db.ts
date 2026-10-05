@@ -802,6 +802,34 @@ export async function upsertOpsRun(run: ChecklistRun) {
   if (error) throw error;
 }
 
+/**
+ * Denetimleri ve onlara bağlı fotoğraf kayıtlarını kalıcı olarak siler.
+ * ops_runs -> ops_photos ilişkisi DB tarafında cascade olsa da, Storage
+ * objeleri otomatik silinmez; bu yüzden önce Storage yollarını temizleriz.
+ */
+export async function deleteOpsRuns(runIds: string[]): Promise<void> {
+  if (runIds.length === 0) return;
+
+  const { data: photoRows, error: photoError } = await supabase
+    .from("ops_photos")
+    .select("storage_path")
+    .in("run_id", runIds);
+  if (photoError) throw photoError;
+
+  const paths = (photoRows ?? [])
+    .map((photo) => photo.storage_path as string | null)
+    .filter((path): path is string => Boolean(path));
+
+  // Storage API en fazla makul boyuttaki dizilerle daha stabil çalışır.
+  for (let index = 0; index < paths.length; index += 100) {
+    const { error } = await supabase.storage.from("ops-photos").remove(paths.slice(index, index + 100));
+    if (error) throw error;
+  }
+
+  const { error } = await supabase.from("ops_runs").delete().in("id", runIds);
+  if (error) throw error;
+}
+
 // ─── Operasyon: Fotoğraflar ───────────────────────────────────────────────────
 
 export async function getOpsPhotos(): Promise<OpsPhoto[]> {

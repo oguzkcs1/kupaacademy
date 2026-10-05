@@ -34,6 +34,8 @@ interface OpsState {
   completeRun: (runId: string) => Promise<void>;
   approveRun: (runId: string, comment?: string) => Promise<void>;
   requestRevision: (runId: string, comment: string) => Promise<void>;
+  /** Yönetici: seçili geçmiş denetimleri ve bağlı fotoğraflarını siler */
+  deleteRuns: (runIds: string[]) => Promise<void>;
 
   addTask: (task: Omit<OpsTask, "id" | "createdAt" | "status">) => Promise<void>;
   toggleTask: (taskId: string) => Promise<void>;
@@ -252,6 +254,16 @@ export const useOpsStore = create<OpsState>()((set, get) => ({
       message: `${typeLabel} kontrolünüz için revize istendi: ${comment}`,
       type: "system",
     }).catch(() => {});
+  },
+
+  deleteRuns: async (runIds) => {
+    if (runIds.length === 0) return;
+    await db.deleteOpsRuns(runIds);
+    const deleted = new Set(runIds);
+    set((s) => ({
+      runs: s.runs.filter((run) => !deleted.has(run.id)),
+      photos: s.photos.filter((photo) => !photo.runId || !deleted.has(photo.runId)),
+    }));
   },
 
   addTask: async (task) => {
