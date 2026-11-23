@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { requireValidSession, SessionExpiredError } from "@/lib/session-check";
 import { useRouter, usePathname } from "next/navigation";
 import { Sidebar, MobileSidebar } from "./sidebar";
 import { Header } from "./header";
@@ -18,6 +19,40 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const { loadAll: loadOps, retryLoad: retryOps, _loaded: opsLoaded, _error: opsError } = useOpsStore();
   const router = useRouter();
   const pathname = usePathname();
+  const [sessionReady, setSessionReady] = useState(false);
+  const [sessionError, setSessionError] = useState(false);
+
+  useEffect(() => {
+    if (!_hasHydrated || !isAuthenticated) return;
+    let active = true;
+    let checking = false;
+    const expired = () => {
+      useAuthStore.setState({ user: null, isAuthenticated: false });
+      window.location.replace("/login?reason=session-expired");
+    };
+    const check = async () => {
+      if (checking || document.visibilityState === "hidden") return;
+      checking = true;
+      try {
+        await requireValidSession();
+        if (active) { setSessionReady(true); setSessionError(false); }
+      } catch (error) {
+        if (active && !(error instanceof SessionExpiredError)) setSessionError(true);
+      } finally { checking = false; }
+    };
+    window.addEventListener("kupa-session-expired", expired);
+    window.addEventListener("focus", check);
+    window.addEventListener("online", check);
+    document.addEventListener("visibilitychange", check);
+    void check();
+    return () => {
+      active = false;
+      window.removeEventListener("kupa-session-expired", expired);
+      window.removeEventListener("focus", check);
+      window.removeEventListener("online", check);
+      document.removeEventListener("visibilitychange", check);
+    };
+  }, [_hasHydrated, isAuthenticated]);
 
   useEffect(() => {
     if (_hasHydrated && !isAuthenticated) {
@@ -26,19 +61,23 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   }, [_hasHydrated, isAuthenticated, router]);
 
   useEffect(() => {
-    if (isAuthenticated && !_loaded) {
+    if (isAuthenticated && sessionReady && !_loaded) {
       loadAll();
     }
-  }, [isAuthenticated, _loaded, loadAll]);
+  }, [isAuthenticated, sessionReady, _loaded, loadAll]);
 
   useEffect(() => {
-    if (isAuthenticated && !opsLoaded) {
+    if (isAuthenticated && sessionReady && !opsLoaded) {
       loadOps();
     }
-  }, [isAuthenticated, opsLoaded, loadOps]);
+  }, [isAuthenticated, sessionReady, opsLoaded, loadOps]);
 
   if (!_hasHydrated) return null;
   if (!isAuthenticated) return null;
+  if (!sessionReady) return <div className="p-6 text-center" role="status">
+    {sessionError ? "Oturum kontrol edilemedi. İnternet bağlantınızı kontrol edin." : "Oturum kontrol ediliyor..."}
+    {sessionError && <Button className="ml-3" onClick={() => window.location.reload()}>Tekrar dene</Button>}
+  </div>;
 
   return (
     <div className="flex h-screen overflow-hidden bg-background">

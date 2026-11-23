@@ -20,6 +20,7 @@ import { useDataStore } from "@/lib/data-store";
 import { isSectionComplete, isItemComplete, isRunPhotoComplete, type ChecklistType } from "@/types/operations";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import { SessionExpiredError } from "@/lib/session-check";
 
 export function ChecklistRunner({ type }: { type: ChecklistType }) {
   const { user } = useAuthStore();
@@ -97,8 +98,9 @@ export function ChecklistRunner({ type }: { type: ChecklistType }) {
         categoryLabel: sectionTpl?.title ?? "",
       });
       toast.success(`${itemTpl?.label ?? "Madde"} fotoğrafı yüklendi`);
-    } catch {
-      toast.error("Fotoğraf yüklenemedi — tekrar deneyin");
+    } catch (error) {
+      if (error instanceof SessionExpiredError) return;
+      toast.error(error instanceof Error ? error.message : "Fotoğraf yüklenemedi — tekrar deneyin");
     } finally {
       setUploadingItem(null);
     }

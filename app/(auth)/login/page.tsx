@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Eye, EyeOff, Loader2, ArrowRight, Shield, Zap, BookOpen } from "lucide-react";
@@ -25,6 +25,11 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const { login } = useAuthStore();
   const router = useRouter();
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("reason") === "session-expired") {
+      toast.error("Oturumunuz sona erdi. Devam etmek için tekrar giriş yapın.", { id: "session-expired", duration: 8000 });
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

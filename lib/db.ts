@@ -3,6 +3,7 @@
  * All functions return typed data or throw on error.
  */
 import { getDatabaseSession, setDatabaseSession, supabase } from "./supabase";
+import { requireValidSession } from "./session-check";
 import type {
   Training, Video, Recipe, Announcement, User, Badge,
   Category, Document, DocumentFolder, TrainingCompletion,
@@ -874,6 +875,7 @@ export async function uploadOpsPhoto(
   file: File | Blob,
   branchId: string
 ): Promise<{ url: string; path: string }> {
+  await requireValidSession();
   const ext = file instanceof File ? file.name.split(".").pop() || "jpg" : "jpg";
   const path = `${branchId}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
   const { error } = await supabase.storage
